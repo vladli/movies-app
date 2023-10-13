@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 
 import Footer from "./Layout/Footer";
 import Header from "./Layout/Header";
+import ThemeSwitcher from "./Layout/ThemeSwitcher";
 import Providers from "./providers";
 
 import "./globals.css";
@@ -28,6 +29,7 @@ export default function RootLayout({
             {children}
             <Footer />
           </div>
+          <ThemeSwitcher />
         </Providers>
       </body>
     </html>

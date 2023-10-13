@@ -7,7 +7,25 @@ const config: Config = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
 
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      defaultTheme: "light",
+      themes: {
+        light: {
+          colors: {
+            background: "#fff",
+            content1: "rgb(229, 231, 235)",
+          },
+        },
+        dark: {
+          colors: {
+            background: "#000",
+            content1: "#000",
+          },
+        },
+      },
+    }),
+  ],
   darkMode: "class",
 };
 export default config;
