@@ -1,14 +1,13 @@
 import { DefaultSession, DefaultUser } from "next-auth";
+
 export enum Role {
   user = "user",
   admin = "admin",
 }
 interface IUser extends DefaultUser {
-  /**
-   * Role of user
-   */
   id: string;
   role?: Role;
+  provider?: string;
 }
 declare module "next-auth" {
   interface User extends IUser {}

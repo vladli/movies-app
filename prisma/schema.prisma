@@ -44,9 +44,13 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
+  password      String?
   image         String?
   accounts      Account[]
   sessions      Session[]
+
+  provider String?
+  role     String?
 
   createdAt DateTime? @default(now()) @map(name: "created_at")
   updatedAt DateTime? @default(now()) @map(name: "updated_at")

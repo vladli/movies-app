@@ -1,44 +1,87 @@
 "use client";
-import { CardBody, Input, Button, Divider } from "@nextui-org/react";
-import { signIn } from "next-auth/react";
-import Image from "next/image";
-import React from "react";
+import React, { useCallback, useState } from "react";
+import { useForm } from "react-hook-form";
 import { MdMail } from "react-icons/md";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button, CardBody, Divider, Input } from "@nextui-org/react";
+import { hash } from "argon2";
+import Image from "next/image";
+import { signIn } from "next-auth/react";
+import { z } from "zod";
+export const loginSchema = z.object({
+  email: z.string().email().min(1),
+  password: z.string().min(1),
+});
+type User = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
+  const [errorMessage, setErrorMessage] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<User>({ resolver: zodResolver(loginSchema) });
+
+  const onSubmit = useCallback(async (data: User) => {
+    const { error }: any = await signIn("emailAuth", {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    });
+    if (error) {
+      setErrorMessage(error);
+    } else {
+      setErrorMessage("");
+    }
+  }, []);
   return (
     <CardBody className="flex flex-col gap-4">
-      <form className="flex flex-col gap-2">
+      <form
+        className="flex flex-col gap-4"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Input
-          type="email"
+          value="dev.vladli@gmail.com"
+          {...register("email")}
+          errorMessage={errors.email ? errors.email.message : null}
           label="Email"
-          placeholder="you@example.com"
           labelPlacement="outside"
+          placeholder="you@example.com"
           startContent={
-            <MdMail className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+            <MdMail className="pointer-events-none shrink-0 text-2xl text-default-400" />
           }
         />
         <Input
-          type="password"
+          {...register("password")}
+          errorMessage={errors.password ? errors.password.message : null}
           label="Password"
-          placeholder="Enter your password"
           labelPlacement="outside"
+          placeholder="Enter your password"
           startContent={
-            <MdMail className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+            <MdMail className="pointer-events-none shrink-0 text-2xl text-default-400" />
           }
+          type="password"
         />
-        <Button color="primary">Submit</Button>
+        <Button
+          color="primary"
+          type="submit"
+        >
+          Submit
+        </Button>
+        {errorMessage ? (
+          <div className="text-danger">{errorMessage}</div>
+        ) : null}
       </form>
       <Divider />
       <Button
-        className="bg-gray-200 text-black font-medium"
+        className="bg-gray-200 font-medium text-black"
         onClick={() => signIn("google")}
         startContent={
           <Image
-            src="/socials/google.svg"
             alt=""
-            width={20}
             height={20}
+            src="/socials/google.svg"
+            width={20}
           />
         }
       >

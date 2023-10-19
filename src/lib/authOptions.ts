@@ -1,5 +1,7 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
+import { verify } from "argon2";
 import { NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 
 import { prisma } from "@/lib/prisma";
@@ -27,6 +29,7 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.id = user.id;
         token.role = user.role;
+        token.provider = user.provider;
       }
       return token;
     },
@@ -34,11 +37,42 @@ export const authOptions: NextAuthOptions = {
       if (session?.user) {
         session.user.id = token.id;
         session.user.role = token.role;
+        session.user.provider = token.provider;
       }
       return session;
     },
   },
   providers: [
+    CredentialsProvider({
+      id: "emailAuth",
+      name: "Credentials",
+      type: "credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      //@ts-expect-error
+      async authorize(credentials: any) {
+        const user = await prisma.user.findUnique({
+          where: {
+            provider: "email",
+            email: credentials.email,
+          },
+        });
+        if (!user) {
+          throw new Error("Please check your email and password");
+        }
+
+        const isValidPassword = user.password
+          ? await verify(user.password, credentials.password)
+          : false;
+        if (!isValidPassword) {
+          throw new Error("Please check your email and password");
+        }
+        return user;
+      },
+    }),
+
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,

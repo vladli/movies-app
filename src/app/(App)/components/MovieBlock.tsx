@@ -1,18 +1,8 @@
 "use client";
 import React from "react";
-import {
-  Badge,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Chip,
-  Divider,
-  Image,
-  Link,
-} from "@nextui-org/react";
+import { Card, CardHeader, Chip, Image } from "@nextui-org/react";
 import NextImage from "next/image";
+
 import { Movie } from "@/actions/getMovies";
 
 type Props = {
@@ -21,13 +11,13 @@ type Props = {
 
 export default function MovieBlock({ movie }: Props) {
   return (
-    <Card className="w-[18rem] h-[34rem]">
+    <Card className="h-[34rem] w-[18rem]">
       <CardHeader className="flex-col !items-start py-4">
         <div className="flex items-center gap-1 text-tiny font-bold uppercase">
           {movie.titleType.text}
           <Chip
-            size="sm"
             color="primary"
+            size="sm"
           >
             {movie.releaseYear.year}
           </Chip>
@@ -37,14 +27,14 @@ export default function MovieBlock({ movie }: Props) {
       </CardHeader>
       {movie.primaryImage?.url ? (
         <Image
-          width={400}
-          height={800}
+          alt="Card background"
           as={NextImage}
+          className="h-full w-full object-cover"
+          height={800}
           radius="none"
           removeWrapper
-          alt="Card background"
-          className="object-cover w-full h-full"
           src={movie.primaryImage.url}
+          width={400}
         />
       ) : null}
     </Card>

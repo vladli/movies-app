@@ -1,15 +1,17 @@
-import { Card } from "@nextui-org/react";
 import React from "react";
-import LoginForm from "./components/LoginForm";
+import { Card } from "@nextui-org/react";
+import { hash } from "argon2";
 import Link from "next/link";
 
-export default function login() {
+import LoginForm from "./components/LoginForm";
+
+export default async function login() {
   return (
-    <section className="p-4 flex flex-col items-center h-[100dvh]">
+    <section className="flex h-[100dvh] flex-col items-center p-4">
       <div className="flex">
         <Link href="/">logo</Link>
       </div>
-      <div className="flex justify-center items-center h-full">
+      <div className="flex h-full items-center justify-center">
         <Card className="w-[85dvw] sm:w-[30rem]">
           <LoginForm />
         </Card>
