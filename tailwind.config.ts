@@ -12,15 +12,11 @@ const config: Config = {
       defaultTheme: "light",
       themes: {
         light: {
-          colors: {
-            background: "#fff",
-            content1: "rgb(229, 231, 235)",
-          },
+          colors: {},
         },
         dark: {
           colors: {
             background: "#000",
-            content1: "#000",
           },
         },
       },

@@ -1,5 +1,18 @@
-import Image from "next/image";
+import React from "react";
 
-export default function Home() {
-  return <main className="grow bg-background p-4 text-foreground">asd</main>;
+import getMovies from "@/actions/getMovies";
+
+import MovieBlock from "./components/MovieBlock";
+
+export default async function Home() {
+  const movies = await getMovies();
+  return (
+    <div className="flex flex-wrap justify-evenly gap-4">
+      {movies?.results?.map((movie) => (
+        <React.Fragment key={movie._id}>
+          <MovieBlock movie={movie} />
+        </React.Fragment>
+      ))}
+    </div>
+  );
 }
