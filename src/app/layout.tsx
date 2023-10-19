@@ -28,21 +28,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${inter.className} relative`}>
         <Providers session={session}>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <div className="absolute bottom-20 right-5 z-10 h-[10rem] w-[10rem] opacity-20">
-              <Image
-                alt=""
-                fill
-                src="/bg.png"
-              />
-            </div>
-
-            <main className="grow bg-background p-4 text-foreground">
-              {children}
-            </main>
-            <Footer />
-          </div>
+          {children}
           <ThemeSwitcher />
         </Providers>
       </body>

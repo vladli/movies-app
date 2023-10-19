@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import { Button } from "@nextui-org/react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
 export default function Header() {
   const { data: session } = useSession();
@@ -19,8 +20,9 @@ export default function Header() {
         <div className="absolute right-4">
           {!session ? (
             <Button
+              as={Link}
               color="primary"
-              onClick={() => signIn()}
+              href="/auth/login"
             >
               Sign In
             </Button>
