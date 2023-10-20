@@ -3,11 +3,12 @@ import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdMail } from "react-icons/md";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, CardBody, Divider, Input } from "@nextui-org/react";
-import { hash } from "argon2";
+import { Button, CardBody, Divider, Input, Spinner } from "@nextui-org/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { z } from "zod";
+
 export const loginSchema = z.object({
   email: z.string().email().min(1),
   password: z.string().min(1),
@@ -15,11 +16,12 @@ export const loginSchema = z.object({
 type User = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
+  const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<User>({ resolver: zodResolver(loginSchema) });
 
   const onSubmit = useCallback(async (data: User) => {
@@ -32,6 +34,7 @@ export default function LoginForm() {
       setErrorMessage(error);
     } else {
       setErrorMessage("");
+      router.replace("/");
     }
   }, []);
   return (
@@ -64,9 +67,20 @@ export default function LoginForm() {
         />
         <Button
           color="primary"
+          isDisabled={isSubmitting}
           type="submit"
         >
-          Submit
+          {isSubmitting ? (
+            <Spinner
+              classNames={{
+                circle1: "border-b-white",
+                circle2: "border-b-white",
+              }}
+              size="sm"
+            />
+          ) : (
+            "Submit"
+          )}
         </Button>
         {errorMessage ? (
           <div className="text-danger">{errorMessage}</div>
@@ -75,6 +89,7 @@ export default function LoginForm() {
       <Divider />
       <Button
         className="bg-gray-200 font-medium text-black"
+        isDisabled={isSubmitting}
         onClick={() => signIn("google")}
         startContent={
           <Image
