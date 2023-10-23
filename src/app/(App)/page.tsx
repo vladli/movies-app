@@ -15,7 +15,7 @@ export default async function Home({ searchParams }: Props) {
   const { page } = searchParams;
   const movies = await getMovies(Number(page));
   return (
-    <section className="flex flex-col items-center gap-10">
+    <section className="flex flex-col items-center gap-10 p-4">
       <div className="flex flex-wrap justify-evenly gap-4">
         {movies?.results?.map((movie) => (
           <React.Fragment key={movie.id}>

@@ -46,10 +46,29 @@ export type Movie = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  videos: {
+    results: Video[];
+  };
+};
+
+export type Video = {
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  key: string;
+  site: string;
+  size: number;
+  type: string;
+  official: boolean;
+  published_at: string;
+  id: string;
 };
 
 export default async function getMovie(id: string): Promise<Movie | undefined> {
-  const url = `https://api.themoviedb.org/3/movie/${id}`;
+  const params = new URLSearchParams({
+    append_to_response: "videos",
+  }).toString();
+  const url = `https://api.themoviedb.org/3/movie/${id}?${params}`;
   const options = {
     method: "GET",
     headers: {
