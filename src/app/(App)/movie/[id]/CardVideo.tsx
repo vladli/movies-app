@@ -3,7 +3,7 @@ import React from "react";
 import YouTube, { YouTubeProps } from "react-youtube";
 import { Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/react";
 
-import type { Video } from "@/actions/getCast";
+import type { Video } from "@/actions/getMovie";
 
 type Props = {
   isOpen: boolean;
