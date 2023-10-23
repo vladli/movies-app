@@ -24,7 +24,7 @@ export default function LoginForm() {
     formState: { errors, isSubmitting },
   } = useForm<User>({ resolver: zodResolver(loginSchema) });
 
-  const onSubmit = useCallback(async (data: User) => {
+  const onSubmit = async (data: User) => {
     const { error }: any = await signIn("emailAuth", {
       email: data.email,
       password: data.password,
@@ -36,7 +36,7 @@ export default function LoginForm() {
       setErrorMessage("");
       router.replace("/");
     }
-  }, []);
+  };
   return (
     <CardBody className="flex flex-col gap-4">
       <form

@@ -19,7 +19,7 @@ export default function ThemeSwitcher() {
       </div>
     );
   return (
-    <div className="fixed bottom-3 right-2">
+    <div className="fixed bottom-3 right-2 z-50">
       <Button
         isIconOnly
         onClick={() => setTheme(switchTheme)}

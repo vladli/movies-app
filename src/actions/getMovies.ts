@@ -2,32 +2,35 @@
 
 type Props = {
   page: number;
-  next: string;
-  entries: number;
+  total_pages: number;
+  total_results: number;
   results: Movie[];
 };
 
 export type Movie = {
-  _id: string;
-  id: string;
-  primaryImage: Record<string, any>;
-  titleType: Record<string, any>;
-  titleText: Record<string, any>;
-  originalTitleText: Record<string, any>;
-  releaseYear: Record<string, any>;
-  releaseDate: null | string;
+  adult: boolean;
+  backdrop_path: string;
+  id: number;
+  title: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  media_type: string;
+  genre_ids: number[];
+  popularity: number;
+  release_date: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
 };
 
 export default async function getMovies(): Promise<Props | undefined> {
-  const params = new URLSearchParams({
-    list: "top_boxoffice_200",
-  }).toString();
-  const url = `https://moviesdatabase.p.rapidapi.com/titles/random?${params}`;
+  const url = `https://api.themoviedb.org/3/trending/movie/week`;
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": process.env.RAPID_API as string,
-      "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com",
+      Authorization: process.env.TMBD_API as string,
     },
   };
   try {
