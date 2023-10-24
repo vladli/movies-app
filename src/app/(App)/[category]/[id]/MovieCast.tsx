@@ -22,7 +22,7 @@ export default function MovieCast({
   return (
     <motion.section
       animate={{ opacity: 1, x: 0, transition: { delay: 0.6 } }}
-      className="flex flex-col items-center gap-4 p-4"
+      className="bg-gradient-to-b from-background/90 to-background flex flex-col items-center gap-4 p-4"
       initial={{ opacity: 0, x: -200 }}
     >
       <h2 className="my-4 text-center text-3xl font-bold lg:text-left">

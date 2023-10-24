@@ -118,7 +118,8 @@ export default async function getSeries(
       ...options,
       // cache: "no-store",
     });
-    return response.json();
+    if (response.status === 200) return response.json();
+    return undefined;
   } catch (error) {
     console.error(error);
   }

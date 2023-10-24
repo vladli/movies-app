@@ -8,24 +8,33 @@ import MovieCast from "./MovieCast";
 import SimilarMovies from "./SimilarMovies";
 import getSeries from "@/actions/getSeries";
 
-export default async function page({
-  params,
-}: {
-  params: { category: string; id: string };
-}) {
-  let movie, series, cast;
-  if (params.category === "movie") {
-    [movie, cast] = await Promise.all([
-      getMovie(params.id),
-      getCast("movie", params.id),
-    ]);
-  } else if (params.category === "tv") {
-    [series, cast] = await Promise.all([
-      getSeries(params.id),
-      getCast("tv", params.id),
-    ]);
-  }
+export async function generateMetadata({ params }: Props) {
+  const isMovie = params.category === "movie";
+  const [movie, series] = await Promise.all([
+    isMovie ? getMovie(params.id) : undefined,
+    !isMovie ? getSeries(params.id) : undefined,
+  ]);
+  return {
+    title: movie?.title || series?.name || "Not Found",
+  };
+}
 
+type Props = {
+  params: {
+    category: string;
+    id: string;
+  };
+};
+
+export default async function page({ params }: Props) {
+  if (!["movie", "tv"].includes(params.category)) return null;
+
+  const isMovie = params.category === "movie";
+  const [movie, series, cast] = await Promise.all([
+    isMovie ? getMovie(params.id) : undefined,
+    !isMovie ? getSeries(params.id) : undefined,
+    getCast(isMovie ? "movie" : "tv", params.id),
+  ]);
   if (!movie && !series) return null;
   return (
     <>
