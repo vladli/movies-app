@@ -9,6 +9,7 @@ import MovieRating from "@/components/MovieRating";
 import { TMDB_BACKDROP_PATH, TMDB_POSTER_ORIGINAL } from "@/lib/constants";
 
 import CardVideo from "./CardVideo";
+import type { TVShow } from "@/actions/getSeries";
 
 const h2: Variants = {
   visible: { opacity: 1, scale: 1 },
@@ -23,10 +24,19 @@ const h3: Variants = {
   hidden: { opacity: 0, x: -100 },
 };
 
-export default function MovieCard({ data }: { data: Movie }) {
+export default function MovieCard({
+  movie,
+  series,
+}: {
+  movie: Movie | undefined;
+  series: TVShow | undefined;
+}) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const movie = data;
-  const releaseYear = new Date(movie.release_date).getFullYear();
+  const releaseYear = new Date(
+    movie?.release_date || (series?.first_air_date as string)
+  ).getFullYear();
+  const backDropImage = movie?.backdrop_path || series?.backdrop_path;
+  const posterImage = movie?.poster_path || series?.poster_path;
   return (
     <section className="relative">
       <div className="absolute left-0 top-0 z-0 h-full w-full">
@@ -36,18 +46,18 @@ export default function MovieCard({ data }: { data: Movie }) {
           className="object-cover"
           fill
           priority
-          src={TMDB_BACKDROP_PATH + movie.backdrop_path}
+          src={TMDB_BACKDROP_PATH + backDropImage}
         />
       </div>
       <div className="flex flex-col items-center justify-around gap-2 p-4 lg:flex-row-reverse lg:items-start">
         <section className="relative min-h-[20rem] max-w-[28rem]">
           <MovieRating
             className="rounded-tl-large"
-            score={movie.vote_average}
+            score={movie?.vote_average || series?.vote_average}
           />
           <Image
             alt=""
-            src={TMDB_POSTER_ORIGINAL + movie.poster_path}
+            src={TMDB_POSTER_ORIGINAL + posterImage}
           />
         </section>
         <motion.section
@@ -59,13 +69,13 @@ export default function MovieCard({ data }: { data: Movie }) {
             className="w-full text-center text-4xl font-medium"
             variants={h2}
           >
-            {movie.title}
+            {movie?.title || series?.name}
           </motion.h2>
           <motion.h3
             className="w-full text-center text-medium"
             variants={h3}
           >
-            &quot;{movie.tagline}&quot;
+            &quot;{movie?.tagline || series?.tagline}&quot;
           </motion.h3>
           <motion.div
             className="flex flex-col items-center gap-2 lg:items-start"
@@ -73,7 +83,7 @@ export default function MovieCard({ data }: { data: Movie }) {
           >
             <Chip color="primary">{releaseYear}</Chip>
             <ul className="flex gap-1">
-              {movie.genres.map((genre) => (
+              {movie?.genres.map((genre) => (
                 <Chip key={genre.id}>{genre.name}</Chip>
               ))}
             </ul>
@@ -82,7 +92,7 @@ export default function MovieCard({ data }: { data: Movie }) {
             className="flex max-w-[32rem] flex-col text-lg"
             variants={h3}
           >
-            <span>{movie.overview}</span>
+            <span>{movie?.overview || series?.overview}</span>
             <Button
               className="my-10 font-medium"
               color="secondary"
@@ -95,7 +105,7 @@ export default function MovieCard({ data }: { data: Movie }) {
       </div>
       <CardVideo
         {...{ isOpen, onOpenChange }}
-        data={movie.videos.results}
+        data={movie?.videos.results || series?.videos?.results}
       />
     </section>
   );

@@ -21,8 +21,11 @@ export type CastMember = {
   order: number;
 };
 
-export default async function getCast(id: string): Promise<Movie | undefined> {
-  const url = `https://api.themoviedb.org/3/movie/${id}/credits`;
+export default async function getCast(
+  category: string,
+  id: string
+): Promise<Movie | undefined> {
+  const url = `https://api.themoviedb.org/3/${category}/${id}/credits`;
   const options = {
     method: "GET",
     headers: {

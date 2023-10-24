@@ -4,11 +4,12 @@ import { AiFillStar } from "react-icons/ai";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  score: number;
+  score: number | undefined;
   className?: string;
 };
 
 export default function MovieRating({ score, className }: Props) {
+  if (!score) return null;
   return (
     <div
       className={cn(
@@ -17,7 +18,7 @@ export default function MovieRating({ score, className }: Props) {
       )}
     >
       <AiFillStar />
-      {score.toFixed(1)}
+      {score?.toFixed(1)}
     </div>
   );
 }

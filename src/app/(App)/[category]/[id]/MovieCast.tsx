@@ -36,13 +36,15 @@ export default function MovieCast({
           />
         ))}
       </motion.ul>
-      <Button
-        color="primary"
-        onClick={toggle}
-        size="lg"
-      >
-        {!on ? "View all casts" : "Collapse"}
-      </Button>
+      {data && data?.length > 10 && (
+        <Button
+          color="primary"
+          onClick={toggle}
+          size="lg"
+        >
+          {!on ? "View all casts" : "Collapse"}
+        </Button>
+      )}
     </motion.section>
   );
 }
