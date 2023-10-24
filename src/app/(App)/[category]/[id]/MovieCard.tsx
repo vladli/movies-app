@@ -35,6 +35,7 @@ export default function MovieCard({
   const releaseYear = new Date(
     movie?.release_date || (series?.first_air_date as string)
   ).getFullYear();
+  const genre = movie?.genres || series?.genres;
   const backDropImage = movie?.backdrop_path || series?.backdrop_path;
   const posterImage = movie?.poster_path || series?.poster_path;
   return (
@@ -83,7 +84,7 @@ export default function MovieCard({
           >
             <Chip color="primary">{releaseYear}</Chip>
             <ul className="flex gap-1">
-              {movie?.genres.map((genre) => (
+              {genre?.map((genre) => (
                 <Chip key={genre.id}>{genre.name}</Chip>
               ))}
             </ul>
