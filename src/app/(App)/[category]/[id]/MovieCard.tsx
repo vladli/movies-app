@@ -32,7 +32,6 @@ export default function MovieCard({ movie }: Props) {
   const releaseYear = new Date(
     (movie?.release_date || movie?.first_air_date) as string
   ).getFullYear();
-  const genres = movie?.genres;
   const backDropImage = movie?.backdrop_path;
   const posterImage = movie?.poster_path;
   return (

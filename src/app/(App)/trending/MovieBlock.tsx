@@ -19,7 +19,7 @@ export default function MovieBlock({ movie }: Props) {
   return (
     <Card
       as={Link}
-      className="h-[34rem] w-[18rem] hover:cursor-pointer"
+      className="h-[32rem] w-[19rem] hover:cursor-pointer"
       href={`/${movie.media_type}/${movie.id}`}
     >
       <CardHeader className="flex-col !items-start py-4">

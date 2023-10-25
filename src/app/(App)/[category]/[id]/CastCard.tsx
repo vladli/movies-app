@@ -16,13 +16,15 @@ export default function CastCard({ actor }: Props) {
       shadow="sm"
     >
       <CardBody className="overflow-visible p-0 ">
-        <Image
-          alt=""
-          className="select-none h-[16rem] w-[14rem] object-cover"
-          radius="lg"
-          shadow="sm"
-          src={TMDB_POSTER_500 + actor.profile_path}
-        />
+        {actor.profile_path && (
+          <Image
+            alt=""
+            className="select-none h-[16rem] w-[14rem] object-cover"
+            radius="lg"
+            shadow="sm"
+            src={TMDB_POSTER_500 + actor.profile_path}
+          />
+        )}
       </CardBody>
       <CardFooter className="justify-between text-small">
         <b>{actor.name}</b>

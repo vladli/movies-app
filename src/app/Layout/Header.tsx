@@ -12,7 +12,7 @@ export default function Header() {
   const { data: session } = useSession();
   const [visible, toggle] = useToggle();
   return (
-    <header className="select-none relative font-medium">
+    <header className="relative select-none font-medium">
       <nav className="relative flex h-[4rem] items-center bg-background text-foreground">
         <Link
           className="relative left-4"
@@ -49,7 +49,7 @@ export default function Header() {
           )}
         </div>
       </nav>
-      <nav className="fixed bottom-0 z-50 h-[3rem] opacity-90 bg-content2 w-full lg:hidden">
+      <nav className="fixed bottom-0 z-50 h-[3rem] w-full bg-content2 opacity-90 lg:hidden">
         <motion.div
           animate={{ opacity: 1 }}
           className="flex h-full w-full cursor-pointer select-none items-center justify-center"
@@ -63,14 +63,21 @@ export default function Header() {
           {visible && (
             <motion.ul
               animate={{ opacity: 1, y: 0 }}
-              className="fixed bottom-[3rem] w-full bg-content2 p-4 border-b border-foreground-200"
+              className="fixed bottom-[3rem] flex w-full flex-col gap-2 border-b border-foreground-200 bg-content2 p-1"
               exit={{ opacity: 0 }}
               initial={{ opacity: 1, y: 10 }}
               transition={{ type: "keyframes" }}
             >
-              <li>1</li>
-              <li>2</li>
-              <li>2</li>
+              {menu.map(({ url, name }) => (
+                <Link
+                  className="rounded-md border border-foreground-300 text-center"
+                  href={url}
+                  key={name}
+                  onClick={toggle}
+                >
+                  {name}
+                </Link>
+              ))}
             </motion.ul>
           )}
         </AnimatePresence>

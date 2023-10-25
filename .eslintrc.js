@@ -8,7 +8,6 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
     "plugin:tailwindcss/recommended",
     "next/core-web-vitals",
   ],
