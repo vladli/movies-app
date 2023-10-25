@@ -1,32 +1,18 @@
+import getPopularMovies from "@/actions/getPopularMovies";
 import React from "react";
+import PopularMovies from "./PopularMovies";
+import UpcomingMovies from "./UpcomingMovies";
+import getGenres from "@/actions/getGenres";
 
-import getMovies from "@/actions/getMovies";
-
-import MovieBlock from "./MovieBlock";
-import Pagination from "./Pagination";
-
-type Props = {
-  searchParams: {
-    [key: string]: string | string[] | undefined;
-  };
-};
-
-export default async function Home({ searchParams }: Props) {
-  const { page } = searchParams;
-  const movies = await getMovies(Number(page));
+export default async function page() {
+  const [movies, genres] = await Promise.all([getPopularMovies(), getGenres()]);
   return (
-    <section className="flex flex-col items-center gap-10 p-4">
-      <div className="flex flex-wrap justify-evenly gap-4">
-        {movies?.results?.map((movie) => (
-          <React.Fragment key={movie.id}>
-            <MovieBlock movie={movie} />
-          </React.Fragment>
-        ))}
-      </div>
-      <Pagination
-        currentPage={movies?.page}
-        totalPages={500}
+    <>
+      <PopularMovies
+        data={movies?.results}
+        genres={genres?.genres}
       />
-    </section>
+      <UpcomingMovies />
+    </>
   );
 }

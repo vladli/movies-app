@@ -8,7 +8,9 @@ export default function layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="grow bg-background text-foreground">{children}</main>
+      <main className="relative grow bg-background text-foreground ">
+        {children}
+      </main>
       <Footer />
     </div>
   );

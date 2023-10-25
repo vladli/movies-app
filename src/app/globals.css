@@ -1,3 +1,18 @@
+@import "swiper/css/bundle";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.swiper {
+  @apply flex-1;
+}
+.popularMovies .swiper-wrapper {
+}
+
+.popularMovies .swiper-slide {
+}
+
+.popularMovies .swiper-button-prev,
+.popularMovies .swiper-button-next {
+  @apply text-white;
+}

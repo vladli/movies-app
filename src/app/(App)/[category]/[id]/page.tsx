@@ -6,16 +6,11 @@ import getMovie from "@/actions/getMovie";
 import MovieCard from "./MovieCard";
 import MovieCast from "./MovieCast";
 import SimilarMovies from "./SimilarMovies";
-import getSeries from "@/actions/getSeries";
 
 export async function generateMetadata({ params }: Props) {
-  const isMovie = params.category === "movie";
-  const [movie, series] = await Promise.all([
-    isMovie ? getMovie(params.id) : undefined,
-    !isMovie ? getSeries(params.id) : undefined,
-  ]);
+  const movie = await getMovie(params.category, params.id);
   return {
-    title: movie?.title || series?.name || "Not Found",
+    title: movie?.title || movie?.name || "Not Found",
   };
 }
 
@@ -29,21 +24,16 @@ type Props = {
 export default async function page({ params }: Props) {
   if (!["movie", "tv"].includes(params.category)) return null;
 
-  const isMovie = params.category === "movie";
-  const [movie, series, cast] = await Promise.all([
-    isMovie ? getMovie(params.id) : undefined,
-    !isMovie ? getSeries(params.id) : undefined,
-    getCast(isMovie ? "movie" : "tv", params.id),
+  const [movie, cast] = await Promise.all([
+    getMovie(params.category, params.id),
+    getCast(params.category, params.id),
   ]);
-  if (!movie && !series) return null;
+  if (!movie) return null;
   return (
-    <>
-      <MovieCard
-        movie={movie}
-        series={series}
-      />
+    <section className="flex flex-col">
+      <MovieCard movie={movie} />
       <MovieCast data={cast?.cast} />
       <SimilarMovies data={movie} />
-    </>
+    </section>
   );
 }

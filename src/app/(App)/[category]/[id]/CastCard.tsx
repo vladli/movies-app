@@ -18,7 +18,7 @@ export default function CastCard({ actor }: Props) {
       <CardBody className="overflow-visible p-0 ">
         <Image
           alt=""
-          className="h-[16rem] w-[14rem] object-cover"
+          className="select-none h-[16rem] w-[14rem] object-cover"
           radius="lg"
           shadow="sm"
           src={TMDB_POSTER_500 + actor.profile_path}

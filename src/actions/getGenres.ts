@@ -1,12 +1,11 @@
 "use server";
 
-import { TCastMember } from "@/types/types";
+import { TGenre } from "@/types/types";
 
-export default async function getCast(
-  category: string,
-  id: string
-): Promise<{ id: number; cast: TCastMember[] } | undefined> {
-  const url = `https://api.themoviedb.org/3/${category}/${id}/credits`;
+export default async function getGenres(
+  category = "movie"
+): Promise<{ genres: TGenre[] } | undefined> {
+  const url = `https://api.themoviedb.org/3/genre/${category}/list`;
   const options = {
     method: "GET",
     headers: {

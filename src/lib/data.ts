@@ -4,7 +4,7 @@ export const menu = [
     url: "/",
   },
   {
-    name: "Movies",
-    url: "/movies",
+    name: "Trending",
+    url: "/trending",
   },
 ] as const;

@@ -12,7 +12,7 @@ type Props = {
 export default function Pagination({ currentPage, totalPages = 1 }: Props) {
   const router = useRouter();
   const handleChange = (page: number) => {
-    router.push("/?page=" + page, { scroll: false });
+    router.push("?page=" + page, { scroll: false });
   };
   return (
     <div>

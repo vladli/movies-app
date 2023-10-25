@@ -3,12 +3,11 @@ import { Button, Chip, Image, useDisclosure } from "@nextui-org/react";
 import { motion, Variants } from "framer-motion";
 import NextImage from "next/image";
 
-import type { Movie } from "@/actions/getMovie";
 import MovieRating from "@/components/MovieRating";
 import { TMDB_BACKDROP_PATH, TMDB_POSTER_ORIGINAL } from "@/lib/constants";
 
 import CardVideo from "./CardVideo";
-import type { TVShow } from "@/actions/getSeries";
+import { TMovieData } from "@/types/types";
 
 const h2: Variants = {
   visible: { opacity: 1, scale: 1 },
@@ -24,22 +23,21 @@ const h3: Variants = {
 };
 
 type Props = {
-  movie: Movie | undefined;
-  series: TVShow | undefined;
+  movie: TMovieData | undefined;
 };
 
-export default function MovieCard({ movie, series }: Props) {
+export default function MovieCard({ movie }: Props) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const releaseYear = new Date(
-    (movie?.release_date || series?.first_air_date) as string
+    (movie?.release_date || movie?.first_air_date) as string
   ).getFullYear();
-  const genres = movie?.genres || series?.genres;
-  const backDropImage = movie?.backdrop_path || series?.backdrop_path;
-  const posterImage = movie?.poster_path || series?.poster_path;
+  const genres = movie?.genres;
+  const backDropImage = movie?.backdrop_path;
+  const posterImage = movie?.poster_path;
   return (
     <section className="relative">
-      <div className="absolute left-0 top-0 z-0 h-full w-full">
+      <div className="select-none absolute left-0 top-0 z-0 h-full w-full">
         <div className="absolute z-10 h-full w-full bg-gradient-to-b from-background/95 via-background/50 to-background/95" />
         <NextImage
           alt=""
@@ -50,10 +48,10 @@ export default function MovieCard({ movie, series }: Props) {
         />
       </div>
       <div className="flex flex-col items-center justify-around gap-2 p-6 lg:flex-row-reverse lg:items-start">
-        <section className="relative min-h-[20rem] max-w-[28rem]">
+        <section className="select-none relative min-h-[20rem] max-w-[28rem]">
           <MovieRating
             className="rounded-tl-large"
-            score={movie?.vote_average || series?.vote_average}
+            score={movie?.vote_average}
           />
           <Image
             alt=""
@@ -69,21 +67,21 @@ export default function MovieCard({ movie, series }: Props) {
             className="w-full text-center text-4xl font-bold"
             variants={h2}
           >
-            {movie?.title || series?.name}
+            {movie?.title || movie?.name}
           </motion.h2>
           <motion.h3
             className="w-full text-center text-medium font-medium"
             variants={h3}
           >
-            &quot;{movie?.tagline || series?.tagline}&quot;
+            &quot;{movie?.tagline}&quot;
           </motion.h3>
           <motion.div
-            className="flex flex-col items-center gap-2 lg:items-start"
+            className="flex flex-col items-center gap-2 lg:items-start select-none"
             variants={h3}
           >
             <Chip color="primary">{releaseYear}</Chip>
             <ul className="flex gap-1">
-              {genres?.map((genre) => (
+              {movie?.genres.map((genre) => (
                 <Chip
                   variant="faded"
                   color="default"
@@ -98,7 +96,7 @@ export default function MovieCard({ movie, series }: Props) {
             className="flex max-w-[32rem] flex-col text-lg"
             variants={h3}
           >
-            <span>{movie?.overview || series?.overview}</span>
+            <span>{movie?.overview}</span>
             <Button
               className="my-10 font-medium"
               color="secondary"
@@ -111,7 +109,7 @@ export default function MovieCard({ movie, series }: Props) {
       </div>
       <CardVideo
         {...{ isOpen, onOpenChange }}
-        data={movie?.videos.results || series?.videos?.results}
+        data={movie?.videos.results}
       />
     </section>
   );

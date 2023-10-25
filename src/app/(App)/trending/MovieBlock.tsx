@@ -13,12 +13,14 @@ type Props = {
 };
 
 export default function MovieBlock({ movie }: Props) {
-  const releaseYear = new Date(movie.release_date).getFullYear();
+  const releaseYear = new Date(
+    (movie.release_date || movie.first_air_date) as string
+  ).getFullYear();
   return (
     <Card
       as={Link}
       className="h-[34rem] w-[18rem] hover:cursor-pointer"
-      href={`/movie/${movie.id}`}
+      href={`/${movie.media_type}/${movie.id}`}
     >
       <CardHeader className="flex-col !items-start py-4">
         <div className="flex items-center gap-1 text-tiny font-bold uppercase">
@@ -31,7 +33,7 @@ export default function MovieBlock({ movie }: Props) {
           </Chip>
         </div>
 
-        <h4 className="text-large font-bold">{movie.title}</h4>
+        <h4 className="text-large font-bold">{movie.title || movie.name}</h4>
       </CardHeader>
       {movie.poster_path ? (
         <div className="h-full w-full">

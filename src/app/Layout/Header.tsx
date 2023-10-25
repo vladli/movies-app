@@ -6,12 +6,13 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 
 import useToggle from "@/hooks/useToggle";
+import { menu } from "@/lib/data";
 
 export default function Header() {
   const { data: session } = useSession();
   const [visible, toggle] = useToggle();
   return (
-    <header className="relative font-medium">
+    <header className="select-none relative font-medium">
       <nav className="relative flex h-[4rem] items-center bg-background text-foreground">
         <Link
           className="relative left-4"
@@ -20,11 +21,14 @@ export default function Header() {
           Logo
         </Link>
         <ul className="absolute left-1/2 hidden -translate-x-1/2 gap-4 lg:flex">
-          <li>Title</li>
-          <li>Title2</li>
-          <li>Title3</li>
-          <li>Title4</li>
-          <li>Title5</li>
+          {menu.map(({ url, name }) => (
+            <Link
+              href={url}
+              key={name}
+            >
+              {name}
+            </Link>
+          ))}
         </ul>
         <div className="absolute right-4">
           {!session ? (
