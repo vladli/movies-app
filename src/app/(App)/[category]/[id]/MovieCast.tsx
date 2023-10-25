@@ -3,15 +3,15 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@nextui-org/react";
 import { motion } from "framer-motion";
 
-import type { CastMember } from "@/actions/getCast";
 import useToggle from "@/hooks/useToggle";
 
 import CastCard from "./CastCard";
+import { TCastMember } from "@/types/types";
 
 export default function MovieCast({
   data,
 }: {
-  data: CastMember[] | undefined;
+  data: TCastMember[] | undefined;
 }) {
   const [casts, setCasts] = useState(data);
   const [on, toggle] = useToggle();

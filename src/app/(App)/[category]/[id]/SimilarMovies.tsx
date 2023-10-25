@@ -1,8 +1,10 @@
+import { TMovieData } from "@/types/types";
 import React from "react";
 
-import type { Movie } from "@/actions/getMovie";
-import type { TVShow } from "@/actions/getSeries";
-
-export default function SimilarMovies({ data }: { data: Movie | undefined }) {
+export default function SimilarMovies({
+  data,
+}: {
+  data: TMovieData | undefined;
+}) {
   return <section className="my-4 p-4">SimilarMovies</section>;
 }

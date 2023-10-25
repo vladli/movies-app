@@ -1,12 +1,12 @@
 import React from "react";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 
-import type { CastMember } from "@/actions/getCast";
 import { TMDB_POSTER_500 } from "@/lib/constants";
+import { TCastMember } from "@/types/types";
 
 type Props = {
   key: number;
-  actor: CastMember;
+  actor: TCastMember;
 };
 
 export default function CastCard({ actor }: Props) {

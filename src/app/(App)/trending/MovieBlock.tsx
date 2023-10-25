@@ -4,12 +4,12 @@ import { Card, CardHeader, Chip, Image } from "@nextui-org/react";
 import NextImage from "next/image";
 import Link from "next/link";
 
-import { Movie } from "@/actions/getMovies";
 import MovieRating from "@/components/MovieRating";
 import { TMDB_POSTER_500 } from "@/lib/constants";
+import { TMovieData } from "@/types/types";
 
 type Props = {
-  movie: Movie;
+  movie: TMovieData;
 };
 
 export default function MovieBlock({ movie }: Props) {
