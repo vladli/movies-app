@@ -4,27 +4,30 @@ import { Card, CardHeader, Chip, Image } from "@nextui-org/react";
 import NextImage from "next/image";
 import Link from "next/link";
 
+import { TCategory } from "@/actions/fetchMovie";
 import MovieRating from "@/components/MovieRating";
 import { TMDB_POSTER_500 } from "@/lib/constants";
 import { TMovieData } from "@/types/types";
 
 type Props = {
+  category?: TCategory;
   movie: TMovieData;
 };
 
-export default function MovieBlock({ movie }: Props) {
+export default function MovieBlock({ category, movie }: Props) {
   const releaseYear = new Date(
     (movie.release_date || movie.first_air_date) as string
   ).getFullYear();
+  const categoryItem = movie.media_type || category;
   return (
     <Card
       as={Link}
       className="h-[32rem] w-[19rem] hover:cursor-pointer"
-      href={`/${movie.media_type}/${movie.id}`}
+      href={`/${categoryItem}/${movie.id}`}
     >
       <CardHeader className="flex-col !items-start py-4">
         <div className="flex items-center gap-1 text-tiny font-bold uppercase">
-          {movie.media_type}
+          {categoryItem}
           <Chip
             color="primary"
             size="sm"

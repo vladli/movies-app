@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header className="relative select-none font-medium">
       <nav className="relative flex h-[4rem] items-center bg-background text-foreground">
-        <Logo className="m-1" />
+        <Logo className="p-4" />
         <ul className="absolute left-1/2 hidden -translate-x-1/2 gap-4 lg:flex">
           {menu.map(({ url, name }) => (
             <Link

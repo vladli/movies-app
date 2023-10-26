@@ -1,9 +1,14 @@
 import React from "react";
+import { Metadata } from "next";
 
 import { getMovies } from "@/actions/fetchMovie";
 
-import MovieBlock from "./MovieBlock";
-import Pagination from "./Pagination";
+import MovieBlock from "../../../components/MovieBlock";
+import Pagination from "../../../components/Pagination";
+
+export const metadata: Metadata = {
+  title: "Trending",
+};
 
 type Props = {
   searchParams: {

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getCast, getMovie } from "@/actions/fetchMovie";
+import { getCast, getMovie, TCategory } from "@/actions/fetchMovie";
 import PageBack from "@/components/PageBack";
 
 import MovieCard from "./MovieCard";
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props) {
 
 type Props = {
   params: {
-    category: string;
+    category: TCategory;
     id: string;
   };
 };
