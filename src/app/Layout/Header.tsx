@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 
+import Logo from "@/components/Logo";
 import useToggle from "@/hooks/useToggle";
 import { menu } from "@/lib/data";
 
@@ -14,12 +15,7 @@ export default function Header() {
   return (
     <header className="relative select-none font-medium">
       <nav className="relative flex h-[4rem] items-center bg-background text-foreground">
-        <Link
-          className="relative left-4"
-          href="/"
-        >
-          Logo
-        </Link>
+        <Logo className="m-1" />
         <ul className="absolute left-1/2 hidden -translate-x-1/2 gap-4 lg:flex">
           {menu.map(({ url, name }) => (
             <Link

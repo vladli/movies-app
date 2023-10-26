@@ -40,7 +40,7 @@ export default function MovieCard({ movie }: Props) {
   return (
     <section className="relative">
       <div className="absolute left-0 top-0 z-0 h-full w-full select-none">
-        <div className="absolute z-10 h-full w-full bg-gradient-to-b from-background/95 via-background/50 to-background/95" />
+        <div className="absolute z-10 h-full w-full bg-gradient-to-b from-background via-background/50 to-background" />
         <NextImage
           alt=""
           className="object-cover"
