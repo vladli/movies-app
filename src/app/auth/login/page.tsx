@@ -1,11 +1,14 @@
 import React from "react";
 import { Card } from "@nextui-org/react";
-import { hash } from "argon2";
-import Link from "next/link";
+import { Metadata } from "next/types";
 
 import Logo from "@/components/Logo";
 
 import LoginForm from "./components/LoginForm";
+
+export const metadata: Metadata = {
+  title: "Authorization",
+};
 
 export default async function login() {
   return (

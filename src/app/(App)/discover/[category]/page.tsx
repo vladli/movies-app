@@ -1,11 +1,19 @@
 import React from "react";
 import { notFound } from "next/navigation";
+import { Metadata } from "next/types";
 
 import { getMovieList } from "@/actions/fetchMovie";
-import MovieBlock from "@/components/MovieBlock";
 import PageContainer from "@/components/PageContainer";
-import Pagination from "@/components/Pagination";
 import { TListType } from "@/types/types";
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const title: string = params.category
+    .replace("_", " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+  return {
+    title: title,
+  };
+}
 
 type Props = {
   params: {

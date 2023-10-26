@@ -4,9 +4,6 @@ import { Metadata } from "next";
 import { getMovies } from "@/actions/fetchMovie";
 import PageContainer from "@/components/PageContainer";
 
-import MovieBlock from "../../../components/MovieBlock";
-import Pagination from "../../../components/Pagination";
-
 export const metadata: Metadata = {
   title: "Trending",
 };

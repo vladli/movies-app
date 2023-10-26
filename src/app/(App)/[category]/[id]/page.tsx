@@ -1,7 +1,8 @@
 import React from "react";
 
-import { getCast, getMovie, TCategory } from "@/actions/fetchMovie";
+import { getCast, getMovie } from "@/actions/fetchMovie";
 import PageBack from "@/components/PageBack";
+import { TCategory } from "@/types/types";
 
 import MovieCard from "./MovieCard";
 import MovieCast from "./MovieCast";
