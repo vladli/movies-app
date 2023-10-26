@@ -2,9 +2,11 @@ import React from "react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getDiscover, TCategory } from "@/actions/fetchMovie";
+import { getDiscover } from "@/actions/fetchMovie";
 import MovieBlock from "@/components/MovieBlock";
+import PageContainer from "@/components/PageContainer";
 import Pagination from "@/components/Pagination";
+import { TCategory } from "@/types/types";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = params.category === "tv" ? "TV" : "Movies";
@@ -34,20 +36,10 @@ export default async function page({ params, searchParams }: Props) {
     Number(page)
   );
   return (
-    <section className="flex flex-col items-center gap-10 p-4">
-      <div className="flex flex-wrap justify-evenly gap-4">
-        {data?.results?.map((movie) => (
-          <MovieBlock
-            category="tv"
-            key={movie.id}
-            movie={movie}
-          />
-        ))}
-      </div>
-      <Pagination
-        currentPage={data?.page}
-        totalPages={500}
-      />
-    </section>
+    <PageContainer
+      category="tv"
+      data={data}
+      title="TV"
+    />
   );
 }

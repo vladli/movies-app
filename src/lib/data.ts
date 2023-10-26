@@ -20,15 +20,15 @@ export const menu: TMenu[] = [
     children: [
       {
         name: "Popular",
-        url: "/popular",
+        url: "/discover/popular",
       },
       {
         name: "Upcoming",
-        url: "/upcoming",
+        url: "/discover/upcoming",
       },
       {
         name: "Top Rated",
-        url: "/top-rated",
+        url: "/discover/top_rated",
       },
     ],
   },

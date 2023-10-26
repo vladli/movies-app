@@ -6,6 +6,17 @@ export type TResponse<T> = {
   total_results: number;
   total_pages: number;
 };
+export type TListType = "upcoming" | "top_rated" | "popular";
+export type TCategory = "movie" | "tv";
+export type TSortType =
+  | "popularity.desc"
+  | "popularity.asc"
+  | "release_date.desc"
+  | "release_date.asc"
+  | "vote_count.desc"
+  | "vote_count.asc"
+  | "original_title.asc"
+  | "original_title.desc";
 
 export type TMovieData = {
   adult?: boolean;

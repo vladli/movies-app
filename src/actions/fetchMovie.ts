@@ -1,17 +1,14 @@
 "use server";
 
-import { TCastMember, TGenre, TMovieData, TResponse } from "@/types/types";
-
-export type TCategory = "movie" | "tv";
-export type TSortType =
-  | "popularity.desc"
-  | "popularity.asc"
-  | "release_date.desc"
-  | "release_date.asc"
-  | "vote_count.desc"
-  | "vote_count.asc"
-  | "original_title.asc"
-  | "original_title.desc";
+import {
+  TCastMember,
+  TCategory,
+  TGenre,
+  TListType,
+  TMovieData,
+  TResponse,
+  TSortType,
+} from "@/types/types";
 
 export async function fetchData(
   url: string,
@@ -57,12 +54,15 @@ export async function getMovie(
   return fetchData(url);
 }
 
-type ListType = "upcoming" | "top_rated" | "popular";
 export async function getMovieList(
-  type: ListType
+  type: TListType,
+  page: number = 1
 ): Promise<TResponse<TMovieData[]> | undefined> {
+  if (isNaN(Number(page))) {
+    page = 1;
+  }
   const params = new URLSearchParams({
-    page: "1",
+    page: page.toString(),
   }).toString();
   const url = `https://api.themoviedb.org/3/movie/${type}?${params}`;
   return fetchData(url);
