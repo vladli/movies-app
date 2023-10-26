@@ -1,4 +1,12 @@
-export const menu = [
+export type TMenu = {
+  name: string;
+  url?: string;
+  children?: {
+    name: string;
+    url: string;
+  }[];
+};
+export const menu: TMenu[] = [
   {
     name: "Main",
     url: "/",
@@ -9,19 +17,18 @@ export const menu = [
   },
   {
     name: "Discover",
-    url: "/trending",
     children: [
       {
         name: "Popular",
-        url: "/trending",
+        url: "/popular",
       },
       {
         name: "Upcoming",
-        url: "/trending",
+        url: "/upcoming",
       },
       {
         name: "Top Rated",
-        url: "/trending",
+        url: "/top-rated",
       },
     ],
   },
@@ -33,4 +40,4 @@ export const menu = [
     name: "People",
     url: "/people",
   },
-] as const;
+];

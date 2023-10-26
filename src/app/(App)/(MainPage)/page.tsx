@@ -10,7 +10,7 @@ export default async function page() {
     getMovieList("popular"),
     getMovieList("upcoming"),
     getMovieList("top_rated"),
-    getGenres(),
+    getGenres("movie"),
   ]);
   return (
     <>

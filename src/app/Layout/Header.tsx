@@ -1,29 +1,38 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@nextui-org/react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 
 import Logo from "@/components/Logo";
 import useToggle from "@/hooks/useToggle";
 import { menu } from "@/lib/data";
+import { cn } from "@/lib/utils";
+
+import MenuItem from "./MenuItem";
 
 export default function Header() {
+  const pathname = usePathname();
   const { data: session } = useSession();
   const [visible, toggle] = useToggle();
+  const [hover, setHover] = useState<string | null>(null);
+  const hoverEnd = () => {
+    setTimeout(() => {
+      setHover(null);
+    }, 1000);
+  };
   return (
-    <header className="relative select-none font-medium">
+    <header className="relative z-50 select-none font-medium">
       <nav className="relative flex h-[4rem] items-center bg-background text-foreground">
         <Logo className="p-4" />
         <ul className="absolute left-1/2 hidden -translate-x-1/2 gap-4 lg:flex">
-          {menu.map(({ url, name }) => (
-            <Link
-              href={url}
+          {menu.map(({ url, name, children }) => (
+            <MenuItem
               key={name}
-            >
-              {name}
-            </Link>
+              {...{ url, name, children }}
+            />
           ))}
         </ul>
         <div className="absolute right-4">
@@ -64,16 +73,20 @@ export default function Header() {
               initial={{ opacity: 1, y: 10 }}
               transition={{ type: "keyframes" }}
             >
-              {menu.map(({ url, name }) => (
-                <Link
-                  className="rounded-md border border-foreground-300 text-center"
-                  href={url}
-                  key={name}
-                  onClick={toggle}
-                >
-                  {name}
-                </Link>
-              ))}
+              {menu.map(({ url, name }) =>
+                url ? (
+                  <Link
+                    className="rounded-md border border-foreground-300 text-center"
+                    href={url}
+                    key={name}
+                    onClick={toggle}
+                  >
+                    {name}
+                  </Link>
+                ) : (
+                  <div key={name}></div>
+                )
+              )}
             </motion.ul>
           )}
         </AnimatePresence>

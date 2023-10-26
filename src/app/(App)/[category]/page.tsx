@@ -1,5 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import { getDiscover, TCategory } from "@/actions/fetchMovie";
 import MovieBlock from "@/components/MovieBlock";
@@ -23,7 +24,7 @@ type Props = {
 };
 
 export default async function page({ params, searchParams }: Props) {
-  if (!["movie", "tv"].includes(params.category)) return null;
+  if (!["movie", "tv"].includes(params.category)) return notFound();
   const { page } = searchParams;
 
   const data = await getDiscover(
