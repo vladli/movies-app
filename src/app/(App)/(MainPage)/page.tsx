@@ -1,20 +1,31 @@
 import React from "react";
 
-import getGenres from "@/actions/getGenres";
-import getPopularMovies from "@/actions/getPopularMovies";
+import getGenres, { getMovieList } from "@/actions/fetchMovie";
 
+import MovieBlock from "./MovieBlock";
 import PopularMovies from "./PopularMovies";
-import UpcomingMovies from "./UpcomingMovies";
 
 export default async function page() {
-  const [movies, genres] = await Promise.all([getPopularMovies(), getGenres()]);
+  const [movies, upcoming, top, genres] = await Promise.all([
+    getMovieList("popular"),
+    getMovieList("upcoming"),
+    getMovieList("top_rated"),
+    getGenres(),
+  ]);
   return (
     <>
       <PopularMovies
         data={movies?.results}
         genres={genres?.genres}
       />
-      <UpcomingMovies />
+      <MovieBlock
+        data={upcoming?.results}
+        title="Upcoming Movies"
+      />
+      <MovieBlock
+        data={top?.results}
+        title="Top Rated"
+      />
     </>
   );
 }

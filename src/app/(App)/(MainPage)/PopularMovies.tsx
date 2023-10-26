@@ -1,9 +1,8 @@
 "use client";
-import React from "react";
 import { Button, Chip } from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
-import { Autoplay, EffectFade, Navigation } from "swiper/modules";
+import { Autoplay, EffectFade, Keyboard, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import MovieRating from "@/components/MovieRating";
@@ -23,7 +22,8 @@ export default function PopularMovies({ data, genres }: Props) {
         autoplay={{ delay: 5000 }}
         className="popularMovies"
         effect="fade"
-        modules={[Autoplay, EffectFade, Navigation]}
+        keyboard
+        modules={[Autoplay, EffectFade, Keyboard, Navigation]}
         navigation
         slidesPerView={1}
       >
@@ -37,10 +37,10 @@ export default function PopularMovies({ data, genres }: Props) {
                 priority
                 src={TMDB_BACKDROP_PATH + movie.backdrop_path}
               />
-              <div className="absolute h-full w-full bg-gradient-to-b from-background/95 via-background/50 to-background/95" />
+              <div className="absolute h-full w-full bg-gradient-to-b from-background via-background/40 to-background" />
             </div>
             <div className="flex h-full flex-col items-center gap-6 p-4 lg:flex-row-reverse lg:justify-around">
-              <section className="relative flex h-[28rem] w-[20rem]">
+              <section className="relative flex h-[30rem] w-[20rem]">
                 <MovieRating
                   className="rounded-tl-large"
                   score={movie?.vote_average}

@@ -1,6 +1,6 @@
 import React from "react";
 
-import getMovies from "@/actions/getMovies";
+import { getMovies } from "@/actions/fetchMovie";
 
 import MovieBlock from "./MovieBlock";
 import Pagination from "./Pagination";

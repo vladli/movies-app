@@ -1,13 +1,16 @@
 "use client";
+import { IoIosArrowBack } from "react-icons/io";
+import { MdOutlineArrowBack } from "react-icons/md";
 import { Button, Chip, Image, useDisclosure } from "@nextui-org/react";
 import { motion, Variants } from "framer-motion";
 import NextImage from "next/image";
 
 import MovieRating from "@/components/MovieRating";
+import PageBack from "@/components/PageBack";
 import { TMDB_BACKDROP_PATH, TMDB_POSTER_ORIGINAL } from "@/lib/constants";
+import { TMovieData } from "@/types/types";
 
 import CardVideo from "./CardVideo";
-import { TMovieData } from "@/types/types";
 
 const h2: Variants = {
   visible: { opacity: 1, scale: 1 },
@@ -36,7 +39,7 @@ export default function MovieCard({ movie }: Props) {
   const posterImage = movie?.poster_path;
   return (
     <section className="relative">
-      <div className="select-none absolute left-0 top-0 z-0 h-full w-full">
+      <div className="absolute left-0 top-0 z-0 h-full w-full select-none">
         <div className="absolute z-10 h-full w-full bg-gradient-to-b from-background/95 via-background/50 to-background/95" />
         <NextImage
           alt=""
@@ -46,8 +49,8 @@ export default function MovieCard({ movie }: Props) {
           src={TMDB_BACKDROP_PATH + backDropImage}
         />
       </div>
-      <div className="flex flex-col items-center justify-around gap-2 p-6 lg:flex-row-reverse lg:items-start">
-        <section className="select-none relative min-h-[20rem] max-w-[28rem]">
+      <div className="relative top-6 flex flex-col items-center justify-around gap-2 p-6 lg:flex-row-reverse lg:items-start">
+        <section className="relative min-h-[20rem] max-w-[28rem] select-none">
           <MovieRating
             className="rounded-tl-large"
             score={movie?.vote_average}
@@ -75,16 +78,16 @@ export default function MovieCard({ movie }: Props) {
             &quot;{movie?.tagline}&quot;
           </motion.h3>
           <motion.div
-            className="flex flex-col items-center gap-2 lg:items-start select-none"
+            className="flex select-none flex-col items-center gap-2 lg:items-start"
             variants={h3}
           >
             <Chip color="primary">{releaseYear}</Chip>
             <ul className="flex gap-1">
               {movie?.genres.map((genre) => (
                 <Chip
-                  variant="faded"
                   color="default"
                   key={genre.id}
+                  variant="faded"
                 >
                   {genre.name}
                 </Chip>

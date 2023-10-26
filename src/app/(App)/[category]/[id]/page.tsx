@@ -1,7 +1,7 @@
 import React from "react";
 
-import getCast from "@/actions/getCast";
-import getMovie from "@/actions/getMovie";
+import { getCast, getMovie } from "@/actions/fetchMovie";
+import PageBack from "@/components/PageBack";
 
 import MovieCard from "./MovieCard";
 import MovieCast from "./MovieCast";
@@ -31,6 +31,7 @@ export default async function page({ params }: Props) {
   if (!movie) return null;
   return (
     <section className="flex flex-col">
+      <PageBack />
       <MovieCard movie={movie} />
       <MovieCast data={cast?.cast} />
       <SimilarMovies data={movie} />
