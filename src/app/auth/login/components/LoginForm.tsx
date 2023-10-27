@@ -55,6 +55,7 @@ export default function LoginForm() {
           }
         />
         <Input
+          value="1"
           {...register("password")}
           errorMessage={errors.password ? errors.password.message : null}
           label="Password"

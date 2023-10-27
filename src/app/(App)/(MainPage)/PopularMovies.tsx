@@ -35,6 +35,7 @@ export default function PopularMovies({ data, genres }: Props) {
                 className="object-cover "
                 fill
                 priority
+                sizes="100vw"
                 src={TMDB_BACKDROP_PATH + movie.backdrop_path}
               />
               <div className="absolute h-full w-full bg-gradient-to-b from-background via-background/40 to-background" />

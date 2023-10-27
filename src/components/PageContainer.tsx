@@ -21,8 +21,8 @@ export default function PageContainer({
     : 0;
 
   return (
-    <section className="flex flex-col gap-10 p-4">
-      <div className="flex flex-col items-center pl-2 lg:items-start">
+    <section className="flex flex-col items-center gap-10 p-4">
+      <div className="flex flex-col place-self-center pl-2 lg:place-self-start">
         <h2 className="text-center text-4xl font-bold capitalize lg:text-start">
           {title}
         </h2>
