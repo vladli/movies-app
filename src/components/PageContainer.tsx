@@ -1,21 +1,16 @@
 import React from "react";
 
-import { TCategory, TMovieData, TResponse } from "@/types/types";
+import { TCastMember, TCategory, TMovieData, TResponse } from "@/types/types";
 
-import MovieBlock from "./MovieBlock";
 import Pagination from "./Pagination";
 
 type Props = {
+  children: React.ReactNode;
   title: string;
-  category?: TCategory;
-  data: TResponse<TMovieData[]> | undefined;
+  data?: TResponse<TMovieData[] | TCastMember[]> | undefined;
 };
 
-export default function PageContainer({
-  title,
-  category = "movie",
-  data,
-}: Props) {
+export default function PageContainer({ children, title, data }: Props) {
   const totalResults = data?.total_results
     ? new Intl.NumberFormat().format(data.total_results)
     : 0;
@@ -30,15 +25,7 @@ export default function PageContainer({
           Total: {totalResults}
         </h3>
       </div>
-      <div className="flex flex-wrap justify-evenly gap-4">
-        {data?.results?.map((movie) => (
-          <MovieBlock
-            category={category}
-            key={movie.id}
-            movie={movie}
-          />
-        ))}
-      </div>
+      <div className="flex flex-wrap justify-evenly gap-4">{children}</div>
       <Pagination
         currentPage={data?.page}
         totalPages={500}

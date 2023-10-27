@@ -2,6 +2,7 @@
 import React from "react";
 import YouTube, { YouTubeProps } from "react-youtube";
 import { Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/react";
+
 import { TVideo } from "@/types/types";
 
 type Props = {

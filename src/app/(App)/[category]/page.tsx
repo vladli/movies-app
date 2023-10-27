@@ -37,9 +37,16 @@ export default async function page({ params, searchParams }: Props) {
   );
   return (
     <PageContainer
-      category="tv"
       data={data}
       title="TV"
-    />
+    >
+      {data?.results?.map((movie) => (
+        <MovieBlock
+          category="tv"
+          key={movie.id}
+          movie={movie}
+        />
+      ))}
+    </PageContainer>
   );
 }

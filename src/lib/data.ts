@@ -37,7 +37,7 @@ export const menu: TMenu[] = [
     url: "/tv",
   },
   {
-    name: "People",
-    url: "/people",
+    name: "Actors",
+    url: "/actors",
   },
 ];

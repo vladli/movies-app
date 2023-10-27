@@ -23,6 +23,7 @@ export default function MovieBlock({ category, movie }: Props) {
       as={Link}
       className="h-[32rem] w-[19rem] hover:cursor-pointer"
       href={`/${categoryItem}/${movie.id}`}
+      isPressable
     >
       <CardHeader className="flex-col !items-start py-4">
         <div className="flex items-center gap-1 text-tiny font-bold uppercase">

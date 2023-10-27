@@ -1,6 +1,6 @@
 import React from "react";
 
-import getGenres, { getMovieList } from "@/actions/fetchMovie";
+import { getGenres, getMovieList } from "@/actions/fetchMovie";
 
 import MovieBlock from "./MovieBlock";
 import PopularMovies from "./PopularMovies";

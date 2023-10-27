@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next/types";
 
 import { getMovieList } from "@/actions/fetchMovie";
+import MovieBlock from "@/components/MovieBlock";
 import PageContainer from "@/components/PageContainer";
 import { TListType } from "@/types/types";
 
@@ -35,6 +36,14 @@ export default async function page({ params, searchParams }: Props) {
     <PageContainer
       data={data}
       title={title}
-    />
+    >
+      {data?.results?.map((movie) => (
+        <MovieBlock
+          category="movie"
+          key={movie.id}
+          movie={movie}
+        />
+      ))}
+    </PageContainer>
   );
 }

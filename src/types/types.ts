@@ -67,6 +67,16 @@ export type TCastMember = {
   order: number;
 };
 
+export type TActor = {
+  also_known_as: string[];
+  biography: string;
+  birthday: string;
+  deathday: string | null;
+  homepage: string | null;
+  imdb_id: string;
+  place_of_birth: string;
+} & TCastMember;
+
 export interface TGenre {
   id: number;
   name: string;

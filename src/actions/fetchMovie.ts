@@ -1,6 +1,7 @@
 "use server";
 
 import {
+  TActor,
   TCastMember,
   TCategory,
   TGenre,
@@ -94,10 +95,31 @@ export async function getCast(
   return fetchData(url);
 }
 
-export default async function getGenres(
+export async function getGenres(
   category: TCategory
 ): Promise<{ genres: TGenre[] } | undefined> {
   const url = `https://api.themoviedb.org/3/genre/${category}/list`;
+
+  return fetchData(url);
+}
+
+export async function getActors(
+  page: number = 1
+): Promise<TResponse<TCastMember[]> | undefined> {
+  if (isNaN(Number(page))) {
+    page = 1;
+  }
+  const params = new URLSearchParams({
+    page: page.toString(),
+  }).toString();
+  const url = `https://api.themoviedb.org/3/person/popular?${params}`;
+
+  return fetchData(url);
+}
+
+export async function getActor(personId: string): Promise<TActor | undefined> {
+  const params = new URLSearchParams({}).toString();
+  const url = `https://api.themoviedb.org/3/person/${personId}?${params}`;
 
   return fetchData(url);
 }
