@@ -14,7 +14,6 @@ const MenuItemMobile = React.memo(({ url, name, children }: TMenu) => {
   const pathname = usePathname();
 
   const handleToggle = () => {
-    console.log(name);
     if (toggled === null) setToggled(name);
     else setToggled(null);
   };

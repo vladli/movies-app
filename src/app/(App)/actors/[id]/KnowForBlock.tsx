@@ -28,9 +28,9 @@ export default function KnowForBlock({ data }: Props) {
         Known For
       </h2>
       <motion.div className="flex flex-wrap justify-around gap-4">
-        {casts?.map((movie) => (
+        {casts?.map((movie, i) => (
           <MovieCard
-            key={movie.id}
+            key={i}
             movie={movie}
           />
         ))}

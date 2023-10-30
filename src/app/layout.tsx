@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { getServerSession } from "next-auth";
+
+import { authOptions } from "@/lib/authOptions";
 
 import ThemeSwitcher from "./Layout/ThemeSwitcher";
 import Providers from "./providers";
 
 import "./globals.css";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/authOptions";
 
 const inter = Inter({ subsets: ["latin"] });
 

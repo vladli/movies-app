@@ -18,6 +18,8 @@ export type TSortType =
   | "original_title.asc"
   | "original_title.desc";
 
+export type TSearchResult = TMovieData & TCastMember;
+
 export type TMovieData = {
   adult?: boolean;
   name?: string;

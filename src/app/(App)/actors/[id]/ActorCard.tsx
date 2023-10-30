@@ -1,4 +1,6 @@
 "use client";
+import { FcCalendar } from "react-icons/fc";
+import { MdOutlineCalendarMonth, MdOutlinePlace } from "react-icons/md";
 import { Button, Chip, useDisclosure } from "@nextui-org/react";
 import { motion, Variants } from "framer-motion";
 import NextImage from "next/image";
@@ -68,10 +70,16 @@ export default function ActorCard({ actor }: Props) {
             {actor?.name}
           </motion.h2>
           <div className="flex gap-2">
-            <Chip color="primary">{birthDateFormat}</Chip>
+            <Chip
+              color="primary"
+              startContent={<MdOutlineCalendarMonth size={16} />}
+            >
+              {birthDateFormat}
+            </Chip>
             {actor?.place_of_birth && (
               <Chip
                 color="default"
+                startContent={<MdOutlinePlace size={16} />}
                 variant="faded"
               >
                 {actor?.place_of_birth}

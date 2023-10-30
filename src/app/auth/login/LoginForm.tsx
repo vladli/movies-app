@@ -3,8 +3,17 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdMail } from "react-icons/md";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, CardBody, Divider, Input, Spinner } from "@nextui-org/react";
+import {
+  Button,
+  CardBody,
+  CardHeader,
+  Divider,
+  Input,
+  Link,
+  Spinner,
+} from "@nextui-org/react";
 import Image from "next/image";
+import NextLink from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { z } from "zod";
@@ -39,12 +48,14 @@ export default function LoginForm() {
   };
   return (
     <CardBody className="flex flex-col gap-4">
+      <CardHeader className="flex justify-center text-xl font-medium">
+        Authorization
+      </CardHeader>
       <form
         className="flex flex-col gap-4"
         onSubmit={handleSubmit(onSubmit)}
       >
         <Input
-          value="dev.vladli@gmail.com"
           {...register("email")}
           errorMessage={errors.email ? errors.email.message : null}
           label="Email"
@@ -55,7 +66,6 @@ export default function LoginForm() {
           }
         />
         <Input
-          value="1"
           {...register("password")}
           errorMessage={errors.password ? errors.password.message : null}
           label="Password"
@@ -103,6 +113,15 @@ export default function LoginForm() {
       >
         Sign in with Google
       </Button>
+      <p className="flex gap-2">
+        Do not have an account?
+        <Link
+          as={NextLink}
+          href="/auth/register"
+        >
+          Sign Up
+        </Link>
+      </p>
     </CardBody>
   );
 }

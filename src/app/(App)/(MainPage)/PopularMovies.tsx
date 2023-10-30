@@ -1,8 +1,15 @@
 "use client";
-import { Button, Chip } from "@nextui-org/react";
+import { useRef, useState } from "react";
+import { Button, Chip, CircularProgress } from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
-import { Autoplay, EffectFade, Keyboard, Navigation } from "swiper/modules";
+import {
+  Autoplay,
+  EffectFade,
+  Keyboard,
+  Navigation,
+  Virtual,
+} from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import MovieRating from "@/components/MovieRating";
@@ -25,14 +32,18 @@ export default function PopularMovies({ data, genres }: Props) {
       <Swiper
         autoplay={{ delay: 5000 }}
         className="popularMovies"
-        effect="fade"
         keyboard
-        modules={[Autoplay, EffectFade, Keyboard, Navigation]}
+        loop
+        modules={[Autoplay, Keyboard, Navigation, Virtual]}
         navigation
         slidesPerView={1}
+        virtual
       >
-        {data?.map((movie) => (
-          <SwiperSlide key={movie.id}>
+        {data?.map((movie, index) => (
+          <SwiperSlide
+            key={movie.id}
+            virtualIndex={index}
+          >
             <div className="absolute h-full w-full">
               <Image
                 alt=""
@@ -58,7 +69,7 @@ export default function PopularMovies({ data, genres }: Props) {
                   width={500}
                 />
               </section>
-              <section className="relative flex flex-col gap-6">
+              <section className="relative flex max-w-[32rem] flex-col gap-6">
                 <h2 className="text-center text-4xl font-bold lg:text-left">
                   {movie?.title}
                 </h2>
@@ -74,7 +85,7 @@ export default function PopularMovies({ data, genres }: Props) {
                       </Chip>
                     ))}
                 </div>
-                <div className="flex max-w-[32rem] flex-col gap-6 text-lg font-medium">
+                <div className="flex flex-col gap-6 text-lg font-medium">
                   <span>{movie?.overview}</span>
                   <Button
                     as={Link}

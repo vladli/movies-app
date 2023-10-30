@@ -7,13 +7,13 @@ import { getServerSession } from "next-auth";
 import Logo from "@/components/Logo";
 import { authOptions } from "@/lib/authOptions";
 
-import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
 
 export const metadata: Metadata = {
-  title: "Authorization",
+  title: "Sign Up",
 };
 
-export default async function login() {
+export default async function page() {
   const session = await getServerSession(authOptions);
   if (session) redirect("/");
   return (
@@ -21,7 +21,7 @@ export default async function login() {
       <Logo className="relative top-5" />
       <div className="flex h-full items-center justify-center">
         <Card className="w-[85dvw] sm:w-[30rem]">
-          <LoginForm />
+          <RegisterForm />
         </Card>
       </div>
     </section>

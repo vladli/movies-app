@@ -13,17 +13,12 @@ import { cn } from "@/lib/utils";
 
 import MenuItem from "./MenuItem";
 import MenuItemMobile from "./MenuItemMobile";
+import Search from "./Search";
 
 export default function Header() {
-  const pathname = usePathname();
   const { data: session } = useSession();
   const [visible, toggle] = useToggle();
-  const [hover, setHover] = useState<string | null>(null);
-  const hoverEnd = () => {
-    setTimeout(() => {
-      setHover(null);
-    }, 1000);
-  };
+
   return (
     <header className="relative z-50 select-none font-medium">
       <nav className="relative flex h-[4rem] items-center bg-background text-foreground">
@@ -36,7 +31,8 @@ export default function Header() {
             />
           ))}
         </ul>
-        <div className="absolute right-4">
+        <div className="absolute right-4 flex items-center gap-2">
+          <Search />
           {!session ? (
             <Button
               as={Link}
