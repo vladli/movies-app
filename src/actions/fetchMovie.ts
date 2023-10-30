@@ -41,7 +41,7 @@ export async function getMovies(
     page: page.toString(),
   }).toString();
   const url = `https://api.themoviedb.org/3/trending/all/week?${params}`;
-  return fetchData(url, { next: { revalidate: 60 } });
+  return fetchData(url, { next: { revalidate: 88400 } });
 }
 
 export async function getMovie(
@@ -74,7 +74,7 @@ export async function getMovieList(
     page: page.toString(),
   }).toString();
   const url = `https://api.themoviedb.org/3/movie/${type}?${params}`;
-  return fetchData(url, { next: { revalidate: 88400 } });
+  return fetchData(url, { next: { revalidate: 60 } });
 }
 
 export async function getDiscover(
