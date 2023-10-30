@@ -41,7 +41,7 @@ export async function getMovies(
     page: page.toString(),
   }).toString();
   const url = `https://api.themoviedb.org/3/trending/all/week?${params}`;
-  return fetchData(url);
+  return fetchData(url, { next: { revalidate: 88400 } });
 }
 
 export async function getMovie(
@@ -52,7 +52,7 @@ export async function getMovie(
     append_to_response: "videos",
   }).toString();
   const url = `https://api.themoviedb.org/3/${category}/${id}?${params}`;
-  return fetchData(url);
+  return fetchData(url, { next: { revalidate: 88400 } });
 }
 
 export async function getSimilarMovie(
@@ -60,7 +60,7 @@ export async function getSimilarMovie(
   id: string
 ): Promise<TResponse<TMovieData[]> | undefined> {
   const url = `https://api.themoviedb.org/3/${category}/${id}/similar`;
-  return fetchData(url);
+  return fetchData(url, { next: { revalidate: 88400 } });
 }
 
 export async function getMovieList(
@@ -74,7 +74,7 @@ export async function getMovieList(
     page: page.toString(),
   }).toString();
   const url = `https://api.themoviedb.org/3/movie/${type}?${params}`;
-  return fetchData(url, { next: { revalidate: 60000 } });
+  return fetchData(url, { next: { revalidate: 88400 } });
 }
 
 export async function getDiscover(
@@ -92,7 +92,7 @@ export async function getDiscover(
     with_genres: genre?.toString() || "undefined",
   }).toString();
   const url = `https://api.themoviedb.org/3/discover/${category}?${params}`;
-  return fetchData(url);
+  return fetchData(url, { next: { revalidate: 88400 } });
 }
 
 export async function getCast(
@@ -122,7 +122,7 @@ export async function getActors(
   }).toString();
   const url = `https://api.themoviedb.org/3/person/popular?${params}`;
 
-  return fetchData(url);
+  return fetchData(url, { next: { revalidate: 88400 } });
 }
 
 export async function getActor(personId: string): Promise<TActor | undefined> {

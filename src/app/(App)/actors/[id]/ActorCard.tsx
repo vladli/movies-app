@@ -69,25 +69,29 @@ export default function ActorCard({ actor }: Props) {
           </motion.h2>
           <div className="flex gap-2">
             <Chip color="primary">{birthDateFormat}</Chip>
-            <Chip
-              color="default"
-              variant="faded"
-            >
-              {actor?.place_of_birth}
-            </Chip>
+            {actor?.place_of_birth && (
+              <Chip
+                color="default"
+                variant="faded"
+              >
+                {actor?.place_of_birth}
+              </Chip>
+            )}
           </div>
           <motion.div
             className="flex max-w-[32rem] flex-col gap-2 font-medium "
             variants={h3}
           >
             <p className="line-clamp-[10]">{actor?.biography}</p>
-            <Button
-              className="font-medium capitalize"
-              color="secondary"
-              onPress={onOpen}
-            >
-              Full biography
-            </Button>
+            {actor?.biography && (
+              <Button
+                className="font-medium capitalize"
+                color="secondary"
+                onPress={onOpen}
+              >
+                Full biography
+              </Button>
+            )}
           </motion.div>
         </motion.section>
       </div>
