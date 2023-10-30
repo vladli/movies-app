@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+import NextImage from "next/image";
 import Link from "next/link";
 
 import { TMDB_POSTER_500 } from "@/lib/constants";
@@ -23,10 +24,13 @@ export default function CastCard({ actor }: Props) {
         {actor.profile_path && (
           <Image
             alt=""
+            as={NextImage}
             className="h-[16rem] w-[14rem] select-none object-cover"
+            height={750}
             radius="lg"
             shadow="sm"
             src={TMDB_POSTER_500 + actor.profile_path}
+            width={500}
           />
         )}
       </CardBody>

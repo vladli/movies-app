@@ -21,6 +21,7 @@ const config: Config = {
         },
       },
     }),
+    require("@tailwindcss/typography"),
   ],
   darkMode: "class",
 };

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next/types";
 
 import { getMovieList } from "@/actions/fetchMovie";
-import MovieBlock from "@/components/MovieBlock";
+import MovieBlock from "@/components/MovieCard";
 import PageContainer from "@/components/PageContainer";
 import { TListType } from "@/types/types";
 

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+import NextImage from "next/image";
 import Link from "next/link";
 
 import MovieRating from "@/components/MovieRating";
@@ -33,11 +34,13 @@ export default function MovieCard({ movie, type }: Props) {
         />
         <Image
           alt=""
+          as={NextImage}
           className="h-[18rem] w-full object-cover lg:h-[20rem]"
+          height={1170}
           radius="lg"
           shadow="sm"
           src={TMDB_POSTER_500 + movie.poster_path}
-          width="100%"
+          width={500}
         />
       </CardBody>
       <CardFooter className=" justify-between text-small">

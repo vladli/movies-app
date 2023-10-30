@@ -1,6 +1,6 @@
 import React from "react";
 
-import { TCastMember, TCategory, TMovieData, TResponse } from "@/types/types";
+import { TCastMember, TMovieData, TResponse } from "@/types/types";
 
 import Pagination from "./Pagination";
 

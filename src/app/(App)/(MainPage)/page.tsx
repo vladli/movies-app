@@ -21,6 +21,7 @@ export default async function page() {
       <MovieBlock
         data={upcoming?.results}
         title="Upcoming Movies"
+        type="upcoming"
       />
       <MovieBlock
         data={top?.results}

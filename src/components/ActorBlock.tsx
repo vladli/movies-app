@@ -1,12 +1,11 @@
 "use client";
 import React from "react";
-import { Card, CardHeader, Chip, Image } from "@nextui-org/react";
+import { Card, CardHeader, Image } from "@nextui-org/react";
 import NextImage from "next/image";
 import Link from "next/link";
 
-import MovieRating from "@/components/MovieRating";
 import { TMDB_POSTER_500 } from "@/lib/constants";
-import { TCastMember, TCategory, TMovieData } from "@/types/types";
+import { TCastMember, TCategory } from "@/types/types";
 
 type Props = {
   category?: TCategory;

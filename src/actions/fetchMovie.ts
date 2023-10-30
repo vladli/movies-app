@@ -55,6 +55,14 @@ export async function getMovie(
   return fetchData(url);
 }
 
+export async function getSimilarMovie(
+  category: TCategory,
+  id: string
+): Promise<TResponse<TMovieData[]> | undefined> {
+  const url = `https://api.themoviedb.org/3/${category}/${id}/similar`;
+  return fetchData(url);
+}
+
 export async function getMovieList(
   type: TListType,
   page: number = 1
@@ -66,7 +74,7 @@ export async function getMovieList(
     page: page.toString(),
   }).toString();
   const url = `https://api.themoviedb.org/3/movie/${type}?${params}`;
-  return fetchData(url);
+  return fetchData(url, { next: { revalidate: 60000 } });
 }
 
 export async function getDiscover(
@@ -120,6 +128,14 @@ export async function getActors(
 export async function getActor(personId: string): Promise<TActor | undefined> {
   const params = new URLSearchParams({}).toString();
   const url = `https://api.themoviedb.org/3/person/${personId}?${params}`;
+
+  return fetchData(url);
+}
+
+export async function getCombinedCredits(
+  personId: string
+): Promise<{ cast: TMovieData[] } | undefined> {
+  const url = `https://api.themoviedb.org/3/person/${personId}/combined_credits`;
 
   return fetchData(url);
 }

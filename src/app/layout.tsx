@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Image from "next/image";
 
-import Footer from "./Layout/Footer";
-import Header from "./Layout/Header";
 import ThemeSwitcher from "./Layout/ThemeSwitcher";
 import Providers from "./providers";
 

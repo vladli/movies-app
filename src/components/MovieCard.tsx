@@ -11,9 +11,10 @@ import { TCategory, TMovieData } from "@/types/types";
 type Props = {
   category?: TCategory;
   movie: TMovieData;
+  type?: "upcoming" | "top";
 };
 
-export default function MovieBlock({ category, movie }: Props) {
+export default function MovieCard({ category, movie }: Props) {
   const releaseYear = new Date(
     (movie.release_date || movie.first_air_date) as string
   ).getFullYear();
@@ -21,7 +22,7 @@ export default function MovieBlock({ category, movie }: Props) {
   return (
     <Card
       as={Link}
-      className="h-[32rem] w-[19rem] hover:cursor-pointer"
+      className="h-[26rem] w-[14rem] hover:cursor-pointer"
       href={`/${categoryItem}/${movie.id}`}
       isPressable
     >
@@ -48,11 +49,11 @@ export default function MovieBlock({ category, movie }: Props) {
             alt="Card background"
             as={NextImage}
             className="h-full w-full object-cover"
-            height={800}
+            height={750}
             radius="none"
             removeWrapper
             src={TMDB_POSTER_500 + movie.poster_path}
-            width={400}
+            width={500}
           />
         </div>
       ) : null}

@@ -15,18 +15,18 @@ export default function Logo({ className }: Props) {
         <Image
           alt=""
           className="block dark:hidden"
-          height={200}
+          height={150}
           priority
           src="/logo.png"
-          width={400}
+          width={500}
         />
         <Image
           alt=""
           className="hidden dark:block"
-          height={200}
+          height={150}
           priority
           src="/logo_dark.png"
-          width={400}
+          width={500}
         />
       </Link>
     </div>

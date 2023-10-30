@@ -7,7 +7,7 @@ import { TVideo } from "@/types/types";
 
 type Props = {
   isOpen: boolean;
-  onOpenChange: any;
+  onOpenChange: () => void;
   data: TVideo[] | undefined;
 };
 

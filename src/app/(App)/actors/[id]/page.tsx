@@ -1,9 +1,9 @@
 import React from "react";
 
-import { getActor } from "@/actions/fetchMovie";
-import { TCastMember } from "@/types/types";
+import { getActor, getCombinedCredits } from "@/actions/fetchMovie";
 
 import ActorCard from "./ActorCard";
+import KnowForBlock from "./KnowForBlock";
 
 export async function generateMetadata({ params }: Props) {
   const actor = await getActor(params.id);
@@ -19,10 +19,14 @@ type Props = {
 };
 
 export default async function page({ params }: Props) {
-  const actor = await getActor(params.id);
+  const [actor, knownFor] = await Promise.all([
+    getActor(params.id),
+    getCombinedCredits(params.id),
+  ]);
   return (
-    <div>
+    <>
       <ActorCard actor={actor} />
-    </div>
+      <KnowForBlock data={knownFor?.cast} />
+    </>
   );
 }

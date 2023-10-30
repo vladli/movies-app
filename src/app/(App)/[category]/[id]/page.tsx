@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getCast, getMovie } from "@/actions/fetchMovie";
+import { getCast, getMovie, getSimilarMovie } from "@/actions/fetchMovie";
 import PageBack from "@/components/PageBack";
 import { TCategory } from "@/types/types";
 
@@ -25,9 +25,10 @@ type Props = {
 export default async function page({ params }: Props) {
   if (!["movie", "tv"].includes(params.category)) return null;
 
-  const [movie, cast] = await Promise.all([
+  const [movie, cast, similar] = await Promise.all([
     getMovie(params.category, params.id),
     getCast(params.category, params.id),
+    getSimilarMovie(params.category, params.id),
   ]);
   if (!movie) return null;
   return (
@@ -35,7 +36,10 @@ export default async function page({ params }: Props) {
       <PageBack />
       <MovieCard movie={movie} />
       <MovieCast data={cast?.cast} />
-      <SimilarMovies data={movie} />
+      <SimilarMovies
+        category={params.category}
+        data={similar?.results}
+      />
     </section>
   );
 }

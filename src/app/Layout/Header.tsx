@@ -12,6 +12,7 @@ import { menu } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
 import MenuItem from "./MenuItem";
+import MenuItemMobile from "./MenuItemMobile";
 
 export default function Header() {
   const pathname = usePathname();
@@ -68,25 +69,17 @@ export default function Header() {
           {visible && (
             <motion.ul
               animate={{ opacity: 1, y: 0 }}
-              className="fixed bottom-[3rem] flex w-full flex-col gap-2 border-b border-foreground-200 bg-content2 p-1"
+              className="fixed bottom-[3rem] flex w-full flex-col items-center gap-2 border-b border-foreground-200 bg-content2 p-1"
               exit={{ opacity: 0 }}
               initial={{ opacity: 1, y: 10 }}
               transition={{ type: "keyframes" }}
             >
-              {menu.map(({ url, name }) =>
-                url ? (
-                  <Link
-                    className="rounded-md border border-foreground-300 text-center"
-                    href={url}
-                    key={name}
-                    onClick={toggle}
-                  >
-                    {name}
-                  </Link>
-                ) : (
-                  <div key={name}></div>
-                )
-              )}
+              {menu.map(({ url, name, children }) => (
+                <MenuItemMobile
+                  key={name}
+                  {...{ url, name, children }}
+                />
+              ))}
             </motion.ul>
           )}
         </AnimatePresence>

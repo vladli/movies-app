@@ -1,11 +1,14 @@
 "use client";
-import { Button, Chip, Image, useDisclosure } from "@nextui-org/react";
+import { Button, Chip, useDisclosure } from "@nextui-org/react";
 import { motion, Variants } from "framer-motion";
 import NextImage from "next/image";
 
-import MovieRating from "@/components/MovieRating";
-import { TMDB_BACKDROP_PATH, TMDB_POSTER_ORIGINAL } from "@/lib/constants";
-import { TActor, TCastMember, TMovieData } from "@/types/types";
+import { TMDB_POSTER_780 } from "@/lib/constants";
+import { TActor } from "@/types/types";
+
+import FullBiography from "./FullBiography";
+
+import BackdropImage from "/public/bio.jpg";
 
 const h2: Variants = {
   visible: { opacity: 1, scale: 1 },
@@ -26,7 +29,11 @@ type Props = {
 
 export default function ActorCard({ actor }: Props) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
+  const birthDate = new Date(actor?.birthday as string);
+  const birthDateFormat = `${birthDate.getDate()} ${birthDate.toLocaleString(
+    "en-US",
+    { month: "long" }
+  )} ${birthDate.getFullYear()}`;
   return (
     <section className="relative">
       <div className="absolute left-0 top-0 z-0 h-full w-full select-none">
@@ -36,14 +43,17 @@ export default function ActorCard({ actor }: Props) {
           className="object-cover"
           fill
           priority
-          src={TMDB_BACKDROP_PATH}
+          src={BackdropImage}
         />
       </div>
       <div className="relative top-6 flex flex-col items-center justify-around gap-2 p-6 lg:flex-row-reverse lg:items-start">
-        <section className="relative min-h-[20rem] max-w-[28rem] select-none">
-          <Image
+        <section className="relative max-w-[18rem] select-none">
+          <NextImage
             alt=""
-            src={TMDB_POSTER_ORIGINAL + actor?.profile_path}
+            className="rounded-large"
+            height={1170}
+            src={TMDB_POSTER_780 + actor?.profile_path}
+            width={780}
           />
         </section>
         <motion.section
@@ -57,22 +67,34 @@ export default function ActorCard({ actor }: Props) {
           >
             {actor?.name}
           </motion.h2>
-
+          <div className="flex gap-2">
+            <Chip color="primary">{birthDateFormat}</Chip>
+            <Chip
+              color="default"
+              variant="faded"
+            >
+              {actor?.place_of_birth}
+            </Chip>
+          </div>
           <motion.div
-            className="flex max-w-[32rem] flex-col text-lg"
+            className="flex max-w-[32rem] flex-col gap-2 font-medium "
             variants={h3}
           >
-            <span>{actor?.biography}</span>
+            <p className="line-clamp-[10]">{actor?.biography}</p>
             <Button
-              className="my-10 font-medium"
+              className="font-medium capitalize"
               color="secondary"
               onPress={onOpen}
             >
-              Watch Trailer
+              Full biography
             </Button>
           </motion.div>
         </motion.section>
       </div>
+      <FullBiography
+        {...{ isOpen, onOpenChange }}
+        data={actor?.biography}
+      />
     </section>
   );
 }

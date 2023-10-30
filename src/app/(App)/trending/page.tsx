@@ -2,7 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 
 import { getMovies } from "@/actions/fetchMovie";
-import MovieBlock from "@/components/MovieBlock";
+import MovieBlock from "@/components/MovieCard";
 import PageContainer from "@/components/PageContainer";
 
 export const metadata: Metadata = {

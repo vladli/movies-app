@@ -7,6 +7,7 @@ import MovieRating from "@/components/MovieRating";
 import {
   TMDB_BACKDROP_PATH,
   TMDB_POSTER_500,
+  TMDB_POSTER_780,
   TMDB_POSTER_ORIGINAL,
 } from "@/lib/constants";
 import { TMovieData } from "@/types/types";
@@ -56,10 +57,14 @@ export default function MovieCard({ movie }: Props) {
             className="rounded-tl-large"
             score={movie?.vote_average}
           />
-          <Image
+          <NextImage
             alt=""
-            className="min-h-[42rem] min-w-[28rem]"
-            src={TMDB_POSTER_ORIGINAL + posterImage}
+            className="rounded-large"
+            height={1170}
+            priority
+            quality={100}
+            src={TMDB_POSTER_780 + posterImage}
+            width={780}
           />
         </section>
         <motion.section
@@ -85,8 +90,8 @@ export default function MovieCard({ movie }: Props) {
             className="flex select-none flex-col items-center gap-2 lg:items-start"
             variants={h3}
           >
-            <Chip color="primary">{releaseYear}</Chip>
-            <ul className="flex gap-1">
+            <div className="flex gap-2">
+              <Chip color="primary">{releaseYear}</Chip>
               {movie?.genres.map((genre) => (
                 <Chip
                   color="default"
@@ -96,13 +101,13 @@ export default function MovieCard({ movie }: Props) {
                   {genre.name}
                 </Chip>
               ))}
-            </ul>
+            </div>
           </motion.div>
           <motion.div
-            className="flex max-w-[32rem] flex-col text-lg"
+            className="flex max-w-[32rem] flex-col text-lg font-medium"
             variants={h3}
           >
-            <span>{movie?.overview}</span>
+            <p>{movie?.overview}</p>
             <Button
               className="my-10 font-medium"
               color="secondary"

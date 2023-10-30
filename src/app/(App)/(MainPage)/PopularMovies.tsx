@@ -6,7 +6,11 @@ import { Autoplay, EffectFade, Keyboard, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import MovieRating from "@/components/MovieRating";
-import { TMDB_BACKDROP_PATH, TMDB_POSTER_ORIGINAL } from "@/lib/constants";
+import {
+  TMDB_BACKDROP_PATH,
+  TMDB_POSTER_500,
+  TMDB_POSTER_ORIGINAL,
+} from "@/lib/constants";
 import { filterGenreNamesByIDs } from "@/lib/utils";
 import { TGenre, TMovieData } from "@/types/types";
 
@@ -34,7 +38,6 @@ export default function PopularMovies({ data, genres }: Props) {
                 alt=""
                 className="object-cover "
                 fill
-                priority
                 sizes="100vw"
                 src={TMDB_BACKDROP_PATH + movie.backdrop_path}
               />
@@ -49,16 +52,17 @@ export default function PopularMovies({ data, genres }: Props) {
                 <Image
                   alt=""
                   className="rounded-large"
-                  height={600}
-                  src={TMDB_POSTER_ORIGINAL + movie?.poster_path}
-                  width={400}
+                  height={750}
+                  quality={90}
+                  src={TMDB_POSTER_500 + movie?.poster_path}
+                  width={500}
                 />
               </section>
               <section className="relative flex flex-col gap-6">
                 <h2 className="text-center text-4xl font-bold lg:text-left">
                   {movie?.title}
                 </h2>
-                <ul className="flex gap-1">
+                <div className="flex gap-2">
                   {genres &&
                     movie.genre_ids?.map((genre) => (
                       <Chip
@@ -69,8 +73,8 @@ export default function PopularMovies({ data, genres }: Props) {
                         {filterGenreNamesByIDs(genre, genres)}
                       </Chip>
                     ))}
-                </ul>
-                <div className="flex max-w-[32rem] flex-col gap-6 text-lg">
+                </div>
+                <div className="flex max-w-[32rem] flex-col gap-6 text-lg font-medium">
                   <span>{movie?.overview}</span>
                   <Button
                     as={Link}

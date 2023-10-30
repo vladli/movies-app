@@ -50,7 +50,7 @@ const MenuItem = React.memo(({ url, name, children }: TMenu) => {
     >
       {url ? (
         <Link
-          className="relative p-1"
+          className="relative p-1 transition-colors hover:text-foreground-500"
           href={url}
         >
           {isActive && (

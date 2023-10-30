@@ -14,12 +14,12 @@ export default function ThemeSwitcher() {
   }, []);
   if (!mounted)
     return (
-      <div className="absolute bottom-3 right-2">
+      <div className="absolute bottom-1 right-2 lg:bottom-3">
         <Skeleton className="h-10 w-10 rounded-medium"></Skeleton>
       </div>
     );
   return (
-    <div className="fixed bottom-3 right-2 z-50">
+    <div className="fixed bottom-1 right-2 z-50 lg:bottom-3">
       <Button
         isIconOnly
         onClick={() => setTheme(switchTheme)}
