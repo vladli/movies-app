@@ -1,7 +1,5 @@
 "use client";
-import React from "react";
-import { Button, Pagination as NextPagination } from "@nextui-org/react";
-import Link from "next/link";
+import { Pagination as NextPagination } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -12,16 +10,20 @@ type Props = {
 export default function Pagination({ currentPage, totalPages = 1 }: Props) {
   const router = useRouter();
   const handleChange = (page: number) => {
-    router.push("?page=" + page, { scroll: false });
+    router.replace("?page=" + page, { scroll: false });
+    window.scrollTo(0, 0);
   };
+
   return (
-    <div>
+    <>
       <NextPagination
+        boundaries={3}
         color="secondary"
         onChange={handleChange}
         page={currentPage}
+        showControls
         total={totalPages}
       />
-    </div>
+    </>
   );
 }

@@ -7,6 +7,8 @@ import MovieBlock from "@/components/MovieCard";
 import PageContainer from "@/components/PageContainer";
 import { TListType } from "@/types/types";
 
+export const revalidate = 3600;
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title: string = params.category
     .replace("_", " ")

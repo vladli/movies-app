@@ -1,9 +1,9 @@
-import React from "react";
-
 import { getGenres, getMovieList } from "@/actions/fetchMovie";
 
 import MovieBlock from "./MovieBlock";
 import PopularMovies from "./PopularMovies";
+
+export const revalidate = 3600;
 
 export default async function page() {
   const [movies, upcoming, top, genres] = await Promise.all([

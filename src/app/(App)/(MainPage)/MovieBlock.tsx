@@ -1,5 +1,3 @@
-import React from "react";
-
 import { TMovieData } from "@/types/types";
 
 import MovieCard from "./MovieCard";

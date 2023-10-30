@@ -5,6 +5,8 @@ import { getMovies } from "@/actions/fetchMovie";
 import MovieBlock from "@/components/MovieCard";
 import PageContainer from "@/components/PageContainer";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Trending",
 };

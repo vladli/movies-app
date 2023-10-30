@@ -9,6 +9,8 @@ import { authOptions } from "@/lib/authOptions";
 
 import RegisterForm from "./RegisterForm";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Sign Up",
 };

@@ -4,6 +4,8 @@ import { getActors } from "@/actions/fetchMovie";
 import ActorBlock from "@/components/ActorBlock";
 import PageContainer from "@/components/PageContainer";
 
+export const revalidate = 3600;
+
 type Props = {
   searchParams: {
     [key: string]: string | string[] | undefined;

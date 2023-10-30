@@ -5,8 +5,9 @@ import { notFound } from "next/navigation";
 import { getDiscover } from "@/actions/fetchMovie";
 import MovieBlock from "@/components/MovieCard";
 import PageContainer from "@/components/PageContainer";
-import Pagination from "@/components/Pagination";
 import { TCategory } from "@/types/types";
+
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = params.category === "tv" ? "TV" : "Movies";

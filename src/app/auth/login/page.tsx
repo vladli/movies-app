@@ -9,6 +9,8 @@ import { authOptions } from "@/lib/authOptions";
 
 import LoginForm from "./LoginForm";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Authorization",
 };

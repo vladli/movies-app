@@ -1,15 +1,8 @@
 "use client";
-import { useRef, useState } from "react";
-import { Button, Chip, CircularProgress } from "@nextui-org/react";
-import Image from "next/image";
+import { Button, Chip, Image } from "@nextui-org/react";
+import NextImage from "next/image";
 import Link from "next/link";
-import {
-  Autoplay,
-  EffectFade,
-  Keyboard,
-  Navigation,
-  Virtual,
-} from "swiper/modules";
+import { Autoplay, Keyboard, Navigation, Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import MovieRating from "@/components/MovieRating";
@@ -41,9 +34,9 @@ export default function PopularMovies({ data, genres }: Props) {
             virtualIndex={index}
           >
             <div className="absolute h-full w-full">
-              <Image
+              <NextImage
                 alt=""
-                className="object-cover "
+                className="object-cover"
                 fill
                 sizes="100vw"
                 src={TMDB_BACKDROP_PATH + movie.backdrop_path}
@@ -58,9 +51,9 @@ export default function PopularMovies({ data, genres }: Props) {
                 />
                 <Image
                   alt=""
+                  as={NextImage}
                   className="rounded-large"
                   height={1170}
-                  quality={90}
                   src={TMDB_POSTER_780 + movie?.poster_path}
                   width={780}
                 />
