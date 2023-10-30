@@ -5,7 +5,7 @@ import NextImage from "next/image";
 import Link from "next/link";
 
 import MovieRating from "@/components/MovieRating";
-import { TMDB_POSTER_500 } from "@/lib/constants";
+import { TMDB_POSTER_780 } from "@/lib/constants";
 import { TMovieData } from "@/types/types";
 
 type Props = {
@@ -39,8 +39,8 @@ export default function MovieCard({ movie, type }: Props) {
           height={1170}
           radius="lg"
           shadow="sm"
-          src={TMDB_POSTER_500 + movie.poster_path}
-          width={500}
+          src={TMDB_POSTER_780 + movie.poster_path}
+          width={780}
         />
       </CardBody>
       <CardFooter className=" justify-between text-small">

@@ -4,12 +4,7 @@ import { motion, Variants } from "framer-motion";
 import NextImage from "next/image";
 
 import MovieRating from "@/components/MovieRating";
-import {
-  TMDB_BACKDROP_PATH,
-  TMDB_POSTER_500,
-  TMDB_POSTER_780,
-  TMDB_POSTER_ORIGINAL,
-} from "@/lib/constants";
+import { TMDB_BACKDROP_PATH, TMDB_POSTER_780 } from "@/lib/constants";
 import { TMovieData } from "@/types/types";
 
 import CardVideo from "./CardVideo";

@@ -5,7 +5,7 @@ import NextImage from "next/image";
 import Link from "next/link";
 
 import MovieRating from "@/components/MovieRating";
-import { TMDB_POSTER_500 } from "@/lib/constants";
+import { TMDB_POSTER_780 } from "@/lib/constants";
 import { TCategory, TMovieData } from "@/types/types";
 
 type Props = {
@@ -49,11 +49,11 @@ export default function MovieCard({ category, movie }: Props) {
             alt="Card background"
             as={NextImage}
             className="h-full w-full object-cover"
-            height={750}
+            height={780}
             radius="none"
             removeWrapper
-            src={TMDB_POSTER_500 + movie.poster_path}
-            width={500}
+            src={TMDB_POSTER_780 + movie.poster_path}
+            width={1170}
           />
         </div>
       ) : null}

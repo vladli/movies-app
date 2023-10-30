@@ -13,11 +13,7 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import MovieRating from "@/components/MovieRating";
-import {
-  TMDB_BACKDROP_PATH,
-  TMDB_POSTER_500,
-  TMDB_POSTER_ORIGINAL,
-} from "@/lib/constants";
+import { TMDB_BACKDROP_PATH, TMDB_POSTER_780 } from "@/lib/constants";
 import { filterGenreNamesByIDs } from "@/lib/utils";
 import { TGenre, TMovieData } from "@/types/types";
 
@@ -63,10 +59,10 @@ export default function PopularMovies({ data, genres }: Props) {
                 <Image
                   alt=""
                   className="rounded-large"
-                  height={750}
+                  height={1170}
                   quality={90}
-                  src={TMDB_POSTER_500 + movie?.poster_path}
-                  width={500}
+                  src={TMDB_POSTER_780 + movie?.poster_path}
+                  width={780}
                 />
               </section>
               <section className="relative flex max-w-[32rem] flex-col gap-6">

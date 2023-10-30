@@ -4,7 +4,7 @@ import { Card, CardHeader, Image } from "@nextui-org/react";
 import NextImage from "next/image";
 import Link from "next/link";
 
-import { TMDB_POSTER_500 } from "@/lib/constants";
+import { TMDB_POSTER_780 } from "@/lib/constants";
 import { TCastMember, TCategory } from "@/types/types";
 
 type Props = {
@@ -29,11 +29,11 @@ export default function ActorBlock({ category, actor }: Props) {
             alt="Card background"
             as={NextImage}
             className="h-full w-full object-cover"
-            height={800}
+            height={1170}
             radius="none"
             removeWrapper
-            src={TMDB_POSTER_500 + actor.profile_path}
-            width={400}
+            src={TMDB_POSTER_780 + actor.profile_path}
+            width={780}
           />
         </div>
       ) : null}
