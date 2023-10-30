@@ -51,7 +51,7 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      //@ts-expect-error
+      //@ts-ignore
       async authorize(credentials: any) {
         const user = await prisma.user.findUnique({
           where: {
