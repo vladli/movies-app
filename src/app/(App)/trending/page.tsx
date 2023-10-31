@@ -2,7 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 
 import { getMovies } from "@/actions/fetchMovie";
-import MovieBlock from "@/components/MovieCard";
+import MovieCard from "@/components/MovieCard";
 import PageContainer from "@/components/PageContainer";
 
 export const revalidate = 3600;
@@ -26,7 +26,7 @@ export default async function Home({ searchParams }: Props) {
       title="Trending"
     >
       {data?.results?.map((movie) => (
-        <MovieBlock
+        <MovieCard
           category={movie.media_type}
           key={movie.id}
           movie={movie}

@@ -17,7 +17,6 @@ export default function Pagination({ currentPage, totalPages = 1 }: Props) {
   return (
     <>
       <NextPagination
-        boundaries={3}
         color="secondary"
         onChange={handleChange}
         page={currentPage}

@@ -19,7 +19,7 @@ export default function PopularMovies({ data, genres }: Props) {
   return (
     <section className="flex min-h-[calc(100vh-4rem)] w-full">
       <Swiper
-        autoplay={{ delay: 5000 }}
+        // autoplay={{ delay: 5000 }}
         className="popularMovies"
         keyboard
         loop
@@ -62,7 +62,7 @@ export default function PopularMovies({ data, genres }: Props) {
                 <h2 className="text-center text-4xl font-bold lg:text-left">
                   {movie?.title}
                 </h2>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   {genres &&
                     movie.genre_ids?.map((genre) => (
                       <Chip

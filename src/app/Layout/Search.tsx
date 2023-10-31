@@ -34,7 +34,7 @@ export default function Search({ className }: Props) {
   return (
     <div className={cn("relative", className)}>
       <Input
-        className="w-[10rem]"
+        className="w-[7rem] sm:w-[10rem]"
         isClearable
         onBlur={() => setActive(false)}
         onChange={(e) => setSearch(e.target.value)}

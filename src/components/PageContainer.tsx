@@ -22,7 +22,7 @@ export default function PageContainer({ children, title, data }: Props) {
         <h2 className="text-center text-4xl font-bold capitalize lg:text-start">
           {title}
         </h2>
-        <h3 className="font-medium text-foreground-500">
+        <h3 className="text-center font-medium text-foreground-500 lg:text-start">
           Total: {totalResults}
         </h3>
       </div>
