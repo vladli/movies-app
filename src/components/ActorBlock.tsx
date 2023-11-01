@@ -33,6 +33,7 @@ export default function ActorBlock({ category, actor }: Props) {
             radius="none"
             removeWrapper
             src={TMDB_POSTER_780 + actor.profile_path}
+            unoptimized
             width={780}
           />
         </div>

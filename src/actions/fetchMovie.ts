@@ -32,7 +32,7 @@ export async function fetchData(
   }
 }
 
-export async function getMovies(
+export async function getTrendingMovies(
   page: number | undefined = 1
 ): Promise<TResponse<TMovieData[]> | undefined> {
   if (isNaN(Number(page))) {

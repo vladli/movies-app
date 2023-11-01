@@ -1,4 +1,3 @@
-import React from "react";
 import { Card } from "@nextui-org/react";
 import { redirect } from "next/navigation";
 import { Metadata } from "next/types";
@@ -8,8 +7,6 @@ import Logo from "@/components/Logo";
 import { authOptions } from "@/lib/authOptions";
 
 import LoginForm from "./LoginForm";
-
-export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Authorization",

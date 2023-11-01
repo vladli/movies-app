@@ -34,7 +34,10 @@ export default async function page({ params }: Props) {
   return (
     <section className="flex flex-col">
       <PageBack />
-      <MovieCard movie={movie} />
+      <MovieCard
+        category={params.category}
+        movie={movie}
+      />
       <MovieCast data={cast?.cast} />
       <SimilarMovies
         category={params.category}

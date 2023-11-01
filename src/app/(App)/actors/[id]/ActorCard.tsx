@@ -55,6 +55,7 @@ export default function ActorCard({ actor }: Props) {
             className="rounded-large"
             height={1170}
             src={TMDB_POSTER_780 + actor?.profile_path}
+            unoptimized
             width={780}
           />
         </section>
@@ -90,7 +91,9 @@ export default function ActorCard({ actor }: Props) {
             className="flex max-w-[32rem] flex-col gap-2 font-medium "
             variants={h3}
           >
-            <p className="line-clamp-[10]">{actor?.biography}</p>
+            <p className="line-clamp-[10]">
+              {actor?.biography || "No biography for this person."}
+            </p>
             {actor?.biography && (
               <Button
                 className="font-medium capitalize"

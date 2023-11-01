@@ -8,6 +8,8 @@ import MovieRating from "@/components/MovieRating";
 import { TMDB_POSTER_780 } from "@/lib/constants";
 import { TCategory, TMovieData } from "@/types/types";
 
+import MovieFavorite from "./MovieFavorite";
+
 type Props = {
   category?: TCategory;
   movie: TMovieData;
@@ -39,12 +41,14 @@ export default function MovieCard({ category, movie }: Props) {
 
         <h4 className="text-large font-bold">{movie.title || movie.name}</h4>
       </CardHeader>
-      {movie.poster_path ? (
-        <div className="h-full w-full">
-          <MovieRating
-            className=""
-            score={movie.vote_average}
-          />
+
+      <div className="h-full w-full">
+        <MovieRating score={movie.vote_average} />
+        <MovieFavorite
+          mediaType={category}
+          movie={movie}
+        />
+        {movie.poster_path ? (
           <Image
             alt="Card background"
             as={NextImage}
@@ -53,10 +57,11 @@ export default function MovieCard({ category, movie }: Props) {
             radius="none"
             removeWrapper
             src={TMDB_POSTER_780 + movie.poster_path}
+            unoptimized
             width={1170}
           />
-        </div>
-      ) : null}
+        ) : null}
+      </div>
     </Card>
   );
 }

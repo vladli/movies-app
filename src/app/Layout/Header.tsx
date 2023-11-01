@@ -1,19 +1,17 @@
 "use client";
-import React, { useState } from "react";
 import { Button } from "@nextui-org/react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 import Logo from "@/components/Logo";
 import useToggle from "@/hooks/useToggle";
 import { menu } from "@/lib/data";
-import { cn } from "@/lib/utils";
 
 import MenuItem from "./MenuItem";
 import MenuItemMobile from "./MenuItemMobile";
 import Search from "./Search";
+import UserMenu from "./UserMenu";
 
 export default function Header() {
   const { data: session } = useSession();
@@ -42,12 +40,7 @@ export default function Header() {
               Sign In
             </Button>
           ) : (
-            <Button
-              color="secondary"
-              onClick={() => signOut()}
-            >
-              Sign Out
-            </Button>
+            <UserMenu />
           )}
         </div>
       </nav>

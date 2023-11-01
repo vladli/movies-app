@@ -8,6 +8,9 @@ interface IUser extends DefaultUser {
   id: string;
   role?: Role;
   provider?: string;
+  favoriteMovies?: {
+    [key: string]: string;
+  }[];
 }
 declare module "next-auth" {
   interface User extends IUser {}

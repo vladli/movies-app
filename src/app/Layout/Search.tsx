@@ -53,6 +53,7 @@ export default function Search({ className }: Props) {
           <Listbox
             aria-label="Actions"
             disabledKeys={["unknown"]}
+            onAction={() => setActive(false)}
           >
             <ListboxSection
               showDivider

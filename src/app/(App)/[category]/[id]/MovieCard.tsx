@@ -3,9 +3,10 @@ import { Button, Chip, Image, useDisclosure } from "@nextui-org/react";
 import { motion, Variants } from "framer-motion";
 import NextImage from "next/image";
 
+import MovieFavorite from "@/components/MovieFavorite";
 import MovieRating from "@/components/MovieRating";
 import { TMDB_BACKDROP_PATH, TMDB_POSTER_780 } from "@/lib/constants";
-import { TMovieData } from "@/types/types";
+import { TCategory, TMovieData } from "@/types/types";
 
 import CardVideo from "./CardVideo";
 
@@ -23,10 +24,11 @@ const h3: Variants = {
 };
 
 type Props = {
+  category?: TCategory;
   movie: TMovieData | undefined;
 };
 
-export default function MovieCard({ movie }: Props) {
+export default function MovieCard({ category, movie }: Props) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const releaseYear = new Date(
@@ -52,6 +54,12 @@ export default function MovieCard({ movie }: Props) {
             className="rounded-tl-large"
             score={movie?.vote_average}
           />
+          {movie ? (
+            <MovieFavorite
+              mediaType={category}
+              movie={movie}
+            />
+          ) : null}
           <NextImage
             alt=""
             className="rounded-large"
@@ -59,6 +67,7 @@ export default function MovieCard({ movie }: Props) {
             priority
             quality={100}
             src={TMDB_POSTER_780 + posterImage}
+            unoptimized
             width={780}
           />
         </section>
@@ -102,14 +111,16 @@ export default function MovieCard({ movie }: Props) {
             className="flex max-w-[32rem] flex-col text-lg font-medium"
             variants={h3}
           >
-            <p>{movie?.overview}</p>
-            <Button
-              className="my-10 font-medium"
-              color="secondary"
-              onPress={onOpen}
-            >
-              Watch Trailer
-            </Button>
+            <p>{movie?.overview || "No information about this title."}</p>
+            {movie?.videos.results.length ? (
+              <Button
+                className="my-10 font-medium"
+                color="secondary"
+                onPress={onOpen}
+              >
+                Watch Trailer
+              </Button>
+            ) : null}
           </motion.div>
         </motion.section>
       </div>

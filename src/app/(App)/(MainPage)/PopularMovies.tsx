@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Autoplay, Keyboard, Navigation, Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import MovieFavorite from "@/components/MovieFavorite";
 import MovieRating from "@/components/MovieRating";
 import { TMDB_BACKDROP_PATH, TMDB_POSTER_780 } from "@/lib/constants";
 import { filterGenreNamesByIDs } from "@/lib/utils";
@@ -49,6 +50,7 @@ export default function PopularMovies({ data, genres }: Props) {
                   className="rounded-tl-large"
                   score={movie?.vote_average}
                 />
+                <MovieFavorite movie={movie} />
                 <Image
                   alt=""
                   as={NextImage}

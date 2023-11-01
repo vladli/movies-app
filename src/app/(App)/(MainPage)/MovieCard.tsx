@@ -3,6 +3,7 @@ import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import NextImage from "next/image";
 import Link from "next/link";
 
+import MovieFavorite from "@/components/MovieFavorite";
 import MovieRating from "@/components/MovieRating";
 import { TMDB_POSTER_780 } from "@/lib/constants";
 import { TMovieData } from "@/types/types";
@@ -31,6 +32,10 @@ export default function MovieCard({ movie, type }: Props) {
           className="rounded-tl-large"
           score={movie?.vote_average}
         />
+        <MovieFavorite
+          mediaType="movie"
+          movie={movie}
+        />
         <Image
           alt=""
           as={NextImage}
@@ -39,6 +44,7 @@ export default function MovieCard({ movie, type }: Props) {
           radius="lg"
           shadow="sm"
           src={TMDB_POSTER_780 + movie.poster_path}
+          unoptimized
           width={780}
         />
       </CardBody>

@@ -15,7 +15,7 @@ import {
 import Image from "next/image";
 import NextLink from "next/link";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { z } from "zod";
 
 export const loginSchema = z.object({

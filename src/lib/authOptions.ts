@@ -25,11 +25,15 @@ export const authOptions: NextAuthOptions = {
       }
       return true;
     },
-    async jwt({ token, user, profile }) {
+    async jwt({ token, user, session, profile, trigger }) {
       if (user) {
         token.id = user.id;
         token.role = user.role;
         token.provider = user.provider;
+        token.favoriteMovies = user.favoriteMovies;
+      }
+      if (trigger === "update") {
+        token.favoriteMovies = session.favoriteMovies;
       }
       return token;
     },
@@ -38,6 +42,7 @@ export const authOptions: NextAuthOptions = {
         session.user.id = token.id;
         session.user.role = token.role;
         session.user.provider = token.provider;
+        session.user.favoriteMovies = token.favoriteMovies;
       }
       return session;
     },

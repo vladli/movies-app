@@ -6,6 +6,10 @@
 html {
   scroll-behavior: smooth;
 }
+
+.react-toast {
+  @apply bg-content1 text-foreground !important;
+}
 .swiper {
   @apply flex-1;
 }

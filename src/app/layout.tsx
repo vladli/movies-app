@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { getServerSession } from "next-auth";
@@ -35,6 +36,7 @@ export default async function RootLayout({
           {children}
           <ThemeSwitcher />
         </Providers>
+        <Toaster toastOptions={{ className: "react-toast" }} />
       </body>
     </html>
   );

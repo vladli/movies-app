@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 
-import { getMovies } from "@/actions/fetchMovie";
+import { getTrendingMovies } from "@/actions/fetchMovie";
 import MovieCard from "@/components/MovieCard";
 import PageContainer from "@/components/PageContainer";
 
@@ -19,7 +19,7 @@ type Props = {
 
 export default async function Home({ searchParams }: Props) {
   const { page } = searchParams;
-  const data = await getMovies(Number(page));
+  const data = await getTrendingMovies(Number(page));
   return (
     <PageContainer
       data={data}

@@ -30,6 +30,7 @@ export default function CastCard({ actor }: Props) {
             radius="lg"
             shadow="sm"
             src={TMDB_POSTER_780 + actor.profile_path}
+            unoptimized
             width={780}
           />
         )}
