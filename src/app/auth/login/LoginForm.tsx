@@ -98,21 +98,39 @@ export default function LoginForm() {
         ) : null}
       </form>
       <Divider />
-      <Button
-        className="bg-gray-200 font-medium text-black"
-        isDisabled={isSubmitting}
-        onClick={() => signIn("google")}
-        startContent={
-          <Image
-            alt=""
-            height={20}
-            src="/socials/google.svg"
-            width={20}
-          />
-        }
-      >
-        Sign in with Google
-      </Button>
+      <div className="flex flex-col gap-2">
+        <Button
+          className="bg-gray-200 font-medium text-black"
+          isDisabled={isSubmitting}
+          onClick={() => signIn("google")}
+          startContent={
+            <Image
+              alt=""
+              height={20}
+              src="/socials/google.svg"
+              width={20}
+            />
+          }
+        >
+          Sign in with Google
+        </Button>
+        <Button
+          className="bg-[#2DB400] font-medium text-white"
+          isDisabled={isSubmitting}
+          onClick={() => signIn("naver")}
+          startContent={
+            <Image
+              alt=""
+              className=""
+              height={20}
+              src="/socials/naver.svg"
+              width={20}
+            />
+          }
+        >
+          Sign in with Naver
+        </Button>
+      </div>
       <p className="flex gap-2">
         Do not have an account?
         <Link
