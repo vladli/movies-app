@@ -116,7 +116,7 @@ export default function LoginForm() {
           <div className="text-danger">{errorMessage}</div>
         ) : null}
       </form>
-      <p className="flex gap-2">
+      <p className="flex justify-center gap-2">
         Already have an account?
         <Link
           as={NextLink}

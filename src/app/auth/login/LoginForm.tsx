@@ -24,6 +24,21 @@ export const loginSchema = z.object({
 });
 type User = z.infer<typeof loginSchema>;
 
+const socials = [
+  {
+    id: "google",
+    name: "Google",
+    icon: "/socials/google.svg",
+    className: "bg-gray-200 font-medium text-black",
+  },
+  {
+    id: "kakao",
+    name: "Kakao",
+    icon: "/socials/kakao.svg",
+    className: "bg-[#FEE500] font-medium text-black",
+  },
+];
+
 export default function LoginForm() {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
@@ -99,55 +114,26 @@ export default function LoginForm() {
       </form>
       <Divider />
       <div className="flex flex-col gap-2">
-        <Button
-          className="bg-gray-200 font-medium text-black"
-          isDisabled={isSubmitting}
-          onClick={() => signIn("google")}
-          startContent={
-            <Image
-              alt=""
-              height={20}
-              src="/socials/google.svg"
-              width={20}
-            />
-          }
-        >
-          Sign in with Google
-        </Button>
-        <Button
-          className="bg-[#FEE500] font-medium text-black"
-          isDisabled={isSubmitting}
-          onClick={() => signIn("kakao")}
-          startContent={
-            <Image
-              alt=""
-              className=""
-              height={20}
-              src="/socials/kakao.svg"
-              width={20}
-            />
-          }
-        >
-          Sign in with Kakao
-        </Button>
-        <Button
-          className="bg-[#2DB400] font-medium text-white"
-          isDisabled={isSubmitting}
-          onClick={() => signIn("naver")}
-          startContent={
-            <Image
-              alt=""
-              className=""
-              height={20}
-              src="/socials/naver.svg"
-              width={20}
-            />
-          }
-        >
-          Sign in with Naver
-        </Button>
+        {socials.map((social) => (
+          <Button
+            className={social.className}
+            isDisabled={isSubmitting}
+            key={social.id}
+            onClick={() => signIn(social.id)}
+            startContent={
+              <Image
+                alt=""
+                height={20}
+                src={social.icon}
+                width={20}
+              />
+            }
+          >
+            Sign in with {social.name}
+          </Button>
+        ))}
       </div>
-      <p className="flex gap-2">
+      <p className="flex justify-center gap-2">
         Do not have an account?
         <Link
           as={NextLink}
