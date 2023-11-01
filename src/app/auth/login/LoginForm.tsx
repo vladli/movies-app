@@ -32,6 +32,12 @@ const socials = [
     className: "bg-gray-200 font-medium text-black",
   },
   {
+    id: "github",
+    name: "GitHub",
+    icon: "/socials/github.svg",
+    className: "bg-[#333] font-medium text-white",
+  },
+  {
     id: "kakao",
     name: "Kakao",
     icon: "/socials/kakao.svg",

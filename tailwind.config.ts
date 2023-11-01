@@ -9,7 +9,7 @@ const config: Config = {
 
   plugins: [
     nextui({
-      defaultTheme: "dark",
+      defaultTheme: "light",
       themes: {
         light: {
           colors: {},

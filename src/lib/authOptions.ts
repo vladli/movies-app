@@ -2,9 +2,9 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { verify } from "argon2";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import KakaoProvider from "next-auth/providers/kakao";
-import NaverProvider from "next-auth/providers/naver";
 
 import { prisma } from "@/lib/prisma";
 
@@ -79,7 +79,10 @@ export const authOptions: NextAuthOptions = {
         return user;
       },
     }),
-
+    GitHubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID as string,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+    }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
@@ -87,10 +90,6 @@ export const authOptions: NextAuthOptions = {
     KakaoProvider({
       clientId: process.env.KAKAO_CLIENT_ID as string,
       clientSecret: process.env.KAKAO_CLIENT_SECRET as string,
-    }),
-    NaverProvider({
-      clientId: process.env.NAVER_CLIENT_ID as string,
-      clientSecret: process.env.NAVER_CLIENT_SECRET as string,
     }),
   ],
   pages: {
