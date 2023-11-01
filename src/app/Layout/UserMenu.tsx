@@ -12,9 +12,7 @@ import {
 } from "@nextui-org/react";
 import { signOut, useSession } from "next-auth/react";
 
-type Props = {};
-
-export default function UserMenu({}: Props) {
+export default function UserMenu() {
   const { data: session } = useSession();
   return (
     <div className="flex items-center gap-4">
@@ -37,7 +35,9 @@ export default function UserMenu({}: Props) {
             key="profile"
           >
             <p className="font-semibold">Signed in as</p>
-            <p className="font-semibold">{session?.user?.email}</p>
+            <p className="font-semibold">
+              {session?.user?.email || session?.user?.name}
+            </p>
           </DropdownItem>
 
           <DropdownItem
