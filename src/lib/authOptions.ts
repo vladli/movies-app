@@ -3,6 +3,7 @@ import { verify } from "argon2";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import KakaoProvider from "next-auth/providers/kakao";
 import NaverProvider from "next-auth/providers/naver";
 
 import { prisma } from "@/lib/prisma";
@@ -82,6 +83,11 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    }),
+    KakaoProvider({
+      clientId: process.env.KAKAO_CLIENT_ID as string,
+      clientSecret: process.env
+        .KAKAO_CLIENT_SECRETKAKAO_CLIENT_SECRET as string,
     }),
     NaverProvider({
       clientId: process.env.NAVER_CLIENT_ID as string,

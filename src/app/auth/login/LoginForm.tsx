@@ -115,6 +115,22 @@ export default function LoginForm() {
           Sign in with Google
         </Button>
         <Button
+          className="bg-[#FEE500] font-medium text-black"
+          isDisabled={isSubmitting}
+          onClick={() => signIn("kakao")}
+          startContent={
+            <Image
+              alt=""
+              className=""
+              height={20}
+              src="/socials/kakao.svg"
+              width={20}
+            />
+          }
+        >
+          Sign in with Kakao
+        </Button>
+        <Button
           className="bg-[#2DB400] font-medium text-white"
           isDisabled={isSubmitting}
           onClick={() => signIn("naver")}
