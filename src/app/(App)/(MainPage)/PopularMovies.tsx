@@ -20,7 +20,7 @@ export default function PopularMovies({ data, genres }: Props) {
   return (
     <section className="flex min-h-[calc(100vh-4rem)] w-full">
       <Swiper
-        autoplay={{ delay: 5000 }}
+        // autoplay={{ delay: 5000 }}
         className="popularMovies"
         keyboard
         loop
@@ -50,7 +50,6 @@ export default function PopularMovies({ data, genres }: Props) {
                   className="rounded-tl-large"
                   score={movie?.vote_average}
                 />
-                <MovieFavorite movie={movie} />
                 <Image
                   alt=""
                   as={NextImage}

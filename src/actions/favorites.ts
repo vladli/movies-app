@@ -14,11 +14,15 @@ export async function editFavorites(
   data: TMovieData
 ) {
   const session = await getServerSession(authOptions);
+  if (!session) throw "Error.";
+
   const addMovie = {
-    movieId: data.id,
-    dataType: mediaType,
+    id: data.id,
+    media_type: mediaType,
     title: data.title || data.name,
-    image: data.poster_path,
+    poster_path: data.poster_path,
+    release_date: data.release_date || data.first_air_date,
+    vote_average: data.vote_average,
   };
   try {
     if (action == "add") {
@@ -30,6 +34,7 @@ export async function editFavorites(
           },
         },
       });
+
       return "success";
     } else if (action == "delete") {
       const user = await prisma.user.findUnique({
@@ -38,7 +43,7 @@ export async function editFavorites(
 
       const findMovie = user?.favoriteMovies.filter(
         //@ts-ignore
-        (movie) => movie?.movieId !== data.id
+        (movie) => movie?.id !== data.id
       ) as Prisma.InputJsonValue[];
       await prisma.user.update({
         where: { id: session?.user?.id },

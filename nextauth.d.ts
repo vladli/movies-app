@@ -1,5 +1,7 @@
 import { DefaultSession, DefaultUser } from "next-auth";
 
+import { TMovieData } from "@/types/types";
+
 export enum Role {
   user = "user",
   admin = "admin",
@@ -8,9 +10,7 @@ interface IUser extends DefaultUser {
   id: string;
   role?: Role;
   provider?: string;
-  favoriteMovies?: {
-    [key: string]: string;
-  }[];
+  favoriteMovies?: TMovieData[];
 }
 declare module "next-auth" {
   interface User extends IUser {}

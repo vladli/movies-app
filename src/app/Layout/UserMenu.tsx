@@ -10,6 +10,7 @@ import {
   DropdownTrigger,
   User,
 } from "@nextui-org/react";
+import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 
 export default function UserMenu() {
@@ -41,7 +42,9 @@ export default function UserMenu() {
           </DropdownItem>
 
           <DropdownItem
-            key="system"
+            as={Link}
+            href="/profile/favorites"
+            key="favorites"
             startContent={<AiFillHeart />}
           >
             My Favorites

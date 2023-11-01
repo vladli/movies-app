@@ -8,14 +8,24 @@ type Props = {
   children: React.ReactNode;
   title: string;
   data?: TResponse<TMovieData[] | TCastMember[]> | undefined;
+  total_results?: number;
+  pages?: number;
+  showPagination?: boolean;
 };
 
-export default function PageContainer({ children, title, data }: Props) {
+export default function PageContainer({
+  children,
+  title,
+  data,
+  total_results = 0,
+  pages = 1,
+  showPagination = true,
+}: Props) {
   const totalResults = data?.total_results
     ? new Intl.NumberFormat().format(data.total_results)
-    : 0;
+    : new Intl.NumberFormat().format(total_results);
   const totalPages =
-    data && data?.total_pages >= 500 ? 500 : data?.total_pages || 1;
+    data && data?.total_pages >= 500 ? 500 : data?.total_pages || pages;
   return (
     <section className="flex flex-col items-center gap-10 p-4">
       <div className="flex flex-col place-self-center pl-2 lg:place-self-start">
@@ -27,10 +37,12 @@ export default function PageContainer({ children, title, data }: Props) {
         </h3>
       </div>
       <div className="flex flex-wrap justify-evenly gap-4">{children}</div>
-      <Pagination
-        currentPage={data?.page}
-        totalPages={totalPages}
-      />
+      {showPagination ? (
+        <Pagination
+          currentPage={data?.page}
+          totalPages={totalPages}
+        />
+      ) : null}
     </section>
   );
 }
