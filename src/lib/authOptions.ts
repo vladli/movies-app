@@ -1,12 +1,13 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { verify } from "argon2";
 import { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import EmailProvider from "next-auth/providers/email";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import KakaoProvider from "next-auth/providers/kakao";
 
 import { prisma } from "@/lib/prisma";
+
+import { sendVerificationRequest } from "./resend";
 
 export const authOptions: NextAuthOptions = {
   debug: false,
@@ -14,6 +15,7 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   adapter: PrismaAdapter(prisma),
+
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
       if (account?.provider === "google") {
@@ -25,13 +27,21 @@ export const authOptions: NextAuthOptions = {
           });
         }
       }
+      if (account?.provider === "kakao") {
+        //@ts-ignore
+        if (user.image !== profile.kakao_account.profile.profile_image_url) {
+          await prisma.user.update({
+            where: { id: user.id }, //@ts-ignore
+            data: { image: profile.kakao_account.profile.profile_image_url },
+          });
+        }
+      }
       return true;
     },
     async jwt({ token, user, session, profile, trigger }) {
       if (user) {
         token.id = user.id;
         token.role = user.role;
-        token.provider = user.provider;
         token.favoriteMovies = user.favoriteMovies;
       }
       if (trigger === "update") {
@@ -43,41 +53,14 @@ export const authOptions: NextAuthOptions = {
       if (session?.user) {
         session.user.id = token.id;
         session.user.role = token.role;
-        session.user.provider = token.provider;
         session.user.favoriteMovies = token.favoriteMovies;
       }
       return session;
     },
   },
   providers: [
-    CredentialsProvider({
-      id: "emailAuth",
-      name: "Credentials",
-      type: "credentials",
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
-      },
-      //@ts-ignore
-      async authorize(credentials: any) {
-        const user = await prisma.user.findUnique({
-          where: {
-            provider: "email",
-            email: credentials.email,
-          },
-        });
-        if (!user) {
-          throw new Error("Please check your email and password");
-        }
-
-        const isValidPassword = user.password
-          ? await verify(user.password, credentials.password)
-          : false;
-        if (!isValidPassword) {
-          throw new Error("Please check your email and password");
-        }
-        return user;
-      },
+    EmailProvider({
+      sendVerificationRequest,
     }),
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID as string,
@@ -94,5 +77,6 @@ export const authOptions: NextAuthOptions = {
   ],
   pages: {
     signIn: "/auth/login",
+    verifyRequest: "/auth/verify-request",
   },
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { notFound } from "next/navigation";
 
 import { getCast, getMovie, getSimilarMovie } from "@/actions/fetchMovie";
 import PageBack from "@/components/PageBack";
@@ -23,7 +24,7 @@ type Props = {
 };
 
 export default async function page({ params }: Props) {
-  if (!["movie", "tv"].includes(params.category)) return null;
+  if (!["movie", "tv"].includes(params.category)) return notFound();
 
   const [movie, cast, similar] = await Promise.all([
     getMovie(params.category, params.id),
