@@ -54,12 +54,7 @@ export default function MovieCard({ category, movie }: Props) {
             className="rounded-tl-large"
             score={movie?.vote_average}
           />
-          {movie ? (
-            <MovieFavorite
-              mediaType={category}
-              movie={movie}
-            />
-          ) : null}
+
           <NextImage
             alt=""
             className="rounded-large"
@@ -77,10 +72,17 @@ export default function MovieCard({ category, movie }: Props) {
           initial="hidden"
         >
           <motion.h2
-            className="w-full text-center text-4xl font-bold"
+            className="flex w-full items-center justify-center gap-2 text-center text-4xl font-bold"
             variants={h2}
           >
             {movie?.title || movie?.name}
+            {movie ? (
+              <MovieFavorite
+                className="relative"
+                mediaType={category}
+                movie={movie}
+              />
+            ) : null}
           </motion.h2>
           {movie?.tagline && (
             <motion.h3

@@ -33,6 +33,7 @@ export default function MovieCard({ movie, type }: Props) {
           score={movie?.vote_average}
         />
         <MovieFavorite
+          className="right-1 mt-1"
           mediaType="movie"
           movie={movie}
         />

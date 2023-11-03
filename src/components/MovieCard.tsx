@@ -45,6 +45,7 @@ export default function MovieCard({ category, movie }: Props) {
       <div className="h-full w-full">
         <MovieRating score={movie.vote_average} />
         <MovieFavorite
+          className="right-1 mt-1"
           mediaType={category}
           movie={movie}
         />

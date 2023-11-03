@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Button, Tooltip } from "@nextui-org/react";
 import { motion } from "framer-motion";
@@ -89,16 +90,16 @@ export default function MovieFavorite({
       >
         <Button
           className={cn(
-            "absolute right-1 mt-1 z-20 flex items-center gap-1",
+            "absolute right-0 z-20 flex items-center gap-1 ",
             className
           )}
-          color="danger"
+          color="warning"
           disabled={!session || loading}
           isIconOnly
           radius="full"
           size="sm"
           type="submit"
-          variant="ghost"
+          variant="flat"
         >
           {on ? (
             <motion.i
@@ -108,7 +109,10 @@ export default function MovieFavorite({
               key={1}
               variants={iconVariants}
             >
-              <MdFavorite size="1.5rem" />
+              <AiFillStar
+                className="text-warning"
+                size="1.5rem"
+              />
             </motion.i>
           ) : (
             <motion.i
@@ -118,7 +122,10 @@ export default function MovieFavorite({
               key={2}
               variants={iconVariants}
             >
-              <MdFavoriteBorder size="1.5rem" />
+              <AiOutlineStar
+                className="text-warning"
+                size="1.5rem"
+              />
             </motion.i>
           )}
         </Button>
