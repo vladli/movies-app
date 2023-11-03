@@ -1,9 +1,10 @@
+"use server";
 import type { SendVerificationRequestParams } from "next-auth/providers/email";
 import { Resend } from "resend";
 
-import MagicLinkEmail from "./email/MagicLinkEmail";
+import MagicLinkEmail from "./MagicLinkEmail";
 
-export const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function sendVerificationRequest(
   params: SendVerificationRequestParams
@@ -17,7 +18,7 @@ export async function sendVerificationRequest(
       to: [identifier],
       subject: `Sign in to Movie App | vladli.dev`,
       text: text({ url, host }),
-      react: MagicLinkEmail({ url, host }),
+      react: MagicLinkEmail({ url }),
     });
   } catch (error) {
     throw new Error("Failed to send the verification Email.");

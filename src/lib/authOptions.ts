@@ -7,7 +7,7 @@ import KakaoProvider from "next-auth/providers/kakao";
 
 import { prisma } from "@/lib/prisma";
 
-import { sendVerificationRequest } from "./resend";
+import { sendVerificationRequest } from "./email/resend";
 
 export const authOptions: NextAuthOptions = {
   debug: false,
