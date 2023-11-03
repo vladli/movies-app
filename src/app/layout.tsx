@@ -5,7 +5,8 @@ import { getServerSession } from "next-auth";
 
 import { authOptions } from "@/lib/authOptions";
 
-import ThemeSwitcher from "./Layout/ThemeSwitcher";
+import ThemeSwitcher from "../components/ThemeSwitcher";
+
 import Providers from "./providers";
 
 import "./globals.css";

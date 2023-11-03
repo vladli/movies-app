@@ -13,7 +13,7 @@ export default function MovieRating({ score, className }: Props) {
   return (
     <div
       className={cn(
-        "absolute left-0 h-8 z-20 bg-red-500 py-1 px-2 flex items-center gap-1",
+        "absolute left-0 h-8 z-20 bg-danger py-1 px-2 flex items-center gap-1",
         className
       )}
     >

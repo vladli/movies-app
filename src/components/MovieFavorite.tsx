@@ -2,9 +2,8 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
-import { Tooltip } from "@nextui-org/react";
+import { Button, Tooltip } from "@nextui-org/react";
 import { motion } from "framer-motion";
-import { revalidatePath } from "next/cache";
 import { useSession } from "next-auth/react";
 
 import { editFavorites } from "@/actions/favorites";
@@ -38,6 +37,7 @@ export default function MovieFavorite({
 
   const handleToggleFavorite = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    e.stopPropagation();
     if (!session || loading) return;
     setLoading(true);
 
@@ -87,13 +87,18 @@ export default function MovieFavorite({
         }
         showArrow={true}
       >
-        <button
+        <Button
           className={cn(
-            "absolute outline-none right-0 z-20 h-8 py-1 px-2 flex items-center gap-1",
+            "absolute right-1 mt-1 z-20 flex items-center gap-1",
             className
           )}
+          color="danger"
           disabled={!session || loading}
+          isIconOnly
+          radius="full"
+          size="sm"
           type="submit"
+          variant="ghost"
         >
           {on ? (
             <motion.i
@@ -103,10 +108,7 @@ export default function MovieFavorite({
               key={1}
               variants={iconVariants}
             >
-              <MdFavorite
-                color="#f31260"
-                size="1.5rem"
-              />
+              <MdFavorite size="1.5rem" />
             </motion.i>
           ) : (
             <motion.i
@@ -116,13 +118,10 @@ export default function MovieFavorite({
               key={2}
               variants={iconVariants}
             >
-              <MdFavoriteBorder
-                color="#f31260"
-                size="1.5rem"
-              />
+              <MdFavoriteBorder size="1.5rem" />
             </motion.i>
           )}
-        </button>
+        </Button>
       </Tooltip>
     </form>
   );
