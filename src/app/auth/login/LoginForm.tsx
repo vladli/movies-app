@@ -62,7 +62,7 @@ export default function LoginForm() {
       <CardHeader className="flex justify-center text-xl font-medium">
         Sign in with
       </CardHeader>
-      <form
+      {/* <form
         className="flex flex-col gap-4"
         onSubmit={handleSubmit(onSubmit)}
       >
@@ -96,7 +96,7 @@ export default function LoginForm() {
         </Button>
       </form>
       <Divider />
-      <p className="flex justify-center font-medium">OR</p>
+      <p className="flex justify-center font-medium">OR</p> */}
       <div className="flex flex-col gap-2">
         {socials.map((social) => (
           <Button
