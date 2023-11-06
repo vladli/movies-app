@@ -2,14 +2,14 @@ import { Toaster } from "react-hot-toast";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { getServerSession } from "next-auth";
-
+import getRequestConfig from "../../../i18n";
 import { authOptions } from "@/lib/authOptions";
-
-import ThemeSwitcher from "../components/ThemeSwitcher";
 
 import Providers from "./providers";
 
 import "./globals.css";
+import BottomTools from "../Layout/BottomTools";
+import { NextIntlClientProvider } from "next-intl";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,22 +21,37 @@ export const metadata: Metadata = {
   description: "Movie App project created for vladli.dev portfolio.",
 };
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+async function SessionProvider({ children }: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
   return (
+    <Providers session={session}>
+      {children}
+      <BottomTools />
+    </Providers>
+  );
+}
+
+export default async function RootLayout({
+  children,
+  params: { locale },
+}: {
+  children: React.ReactNode;
+  params: { locale: string };
+}) {
+  const { messages } = await getRequestConfig({ locale: locale });
+  return (
     <html
-      lang="en"
+      lang={locale}
       suppressHydrationWarning
     >
       <body className={`${inter.className} relative`}>
-        <Providers session={session}>
-          {children}
-          <ThemeSwitcher />
-        </Providers>
+        <NextIntlClientProvider
+          locale={locale}
+          messages={messages}
+          timeZone="Asia/Seoul"
+        >
+          <SessionProvider>{children}</SessionProvider>
+        </NextIntlClientProvider>
         <Toaster toastOptions={{ className: "react-toast" }} />
       </body>
     </html>

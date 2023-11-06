@@ -1,6 +1,7 @@
 import { TMovieData } from "@/types/types";
 
 import MovieCard from "./MovieCard";
+import { useTranslations } from "next-intl";
 
 type Props = {
   title: string;

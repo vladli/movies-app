@@ -68,10 +68,10 @@ export default function MovieFavorite({
       }
 
       toast.success(!on ? "Added to favorites." : "Removed from favorites.");
+      toggle();
     } catch (error) {
       toast.error("Something went wrong...");
     } finally {
-      toggle();
       setLoading(false);
     }
   };

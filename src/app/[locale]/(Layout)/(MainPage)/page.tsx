@@ -1,15 +1,11 @@
-import { getServerSession } from "next-auth";
-
 import { getGenres, getMovieList } from "@/actions/fetchMovie";
-import { authOptions } from "@/lib/authOptions";
-
+import { useTranslations } from "next-intl";
 import MovieBlock from "./MovieBlock";
 import PopularMovies from "./PopularMovies";
 
 export const revalidate = 3600;
 
 export default async function page() {
-  const session = await getServerSession(authOptions);
   const [movies, upcoming, top, genres] = await Promise.all([
     getMovieList("popular"),
     getMovieList("upcoming"),

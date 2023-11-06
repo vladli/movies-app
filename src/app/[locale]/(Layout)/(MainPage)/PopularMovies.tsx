@@ -5,11 +5,11 @@ import Link from "next/link";
 import { Autoplay, Keyboard, Navigation, Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import MovieFavorite from "@/components/MovieFavorite";
 import MovieRating from "@/components/MovieRating";
 import { TMDB_BACKDROP_PATH, TMDB_POSTER_780 } from "@/lib/constants";
 import { filterGenreNamesByIDs } from "@/lib/utils";
 import { TGenre, TMovieData } from "@/types/types";
+import { useTranslations } from "next-intl";
 
 type Props = {
   data: TMovieData[] | undefined;
@@ -17,6 +17,7 @@ type Props = {
 };
 
 export default function PopularMovies({ data, genres }: Props) {
+  const t = useTranslations();
   return (
     <section className="flex min-h-[calc(100vh-4rem)] w-full">
       <Swiper
@@ -83,7 +84,7 @@ export default function PopularMovies({ data, genres }: Props) {
                     color="secondary"
                     href={`/movie/${movie.id}`}
                   >
-                    View Movie
+                    {t("MainPage.viewMovieButton")}
                   </Button>
                 </div>
               </section>
