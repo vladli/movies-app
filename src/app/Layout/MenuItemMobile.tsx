@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
@@ -7,9 +7,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { TMenu } from "@/lib/data";
-import { cn } from "@/lib/utils";
 
-const MenuItemMobile = React.memo(({ url, name, children }: TMenu) => {
+const MenuItemMobile = React.memo(({ toggle, url, name, children }: TMenu) => {
   const [toggled, setToggled] = useState<string | null>(null);
   const pathname = usePathname();
 
@@ -26,6 +25,7 @@ const MenuItemMobile = React.memo(({ url, name, children }: TMenu) => {
         <Link
           className="relative p-1"
           href={url}
+          onClick={toggle}
         >
           {isActive && (
             <motion.span
@@ -59,7 +59,7 @@ const MenuItemMobile = React.memo(({ url, name, children }: TMenu) => {
             {children && toggled && (
               <motion.ul
                 animate={{ opacity: 1, height: "auto" }}
-                className={cn("left-10 relative flex flex-col gap-2")}
+                className="left-4 relative flex flex-col gap-2 list-disc"
                 exit={{ opacity: 0, height: 0 }}
                 initial={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.2 }}

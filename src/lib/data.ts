@@ -1,4 +1,5 @@
 export type TMenu = {
+  toggle?: () => void;
   name: string;
   url?: string;
   children?: {

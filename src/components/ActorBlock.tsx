@@ -16,12 +16,12 @@ export default function ActorBlock({ category, actor }: Props) {
   return (
     <Card
       as={Link}
-      className="h-[20rem] w-[12rem] hover:cursor-pointer"
+      className="h-[20rem] w-[12rem]"
       href={`/actors/${actor.id}`}
       isPressable
     >
-      <CardHeader className="flex-col !items-start py-4">
-        <h4 className="text-large font-bold">{actor.name}</h4>
+      <CardHeader className="flex-col !items-start py-4 text-large font-bold">
+        {actor.name}
       </CardHeader>
       {actor.profile_path ? (
         <div className="h-full w-full">

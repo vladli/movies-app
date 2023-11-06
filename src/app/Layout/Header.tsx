@@ -12,13 +12,26 @@ import MenuItem from "./MenuItem";
 import MenuItemMobile from "./MenuItemMobile";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
+import { useEffect } from "react";
 
 export default function Header() {
   const { data: session } = useSession();
   const [visible, toggle] = useToggle();
+  useEffect(() => {
+    if (visible) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "unset";
+  }, [visible]);
 
   return (
     <header className="relative z-50 select-none font-medium">
+      {visible && (
+        <motion.div
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          className="fixed w-screen bg-black/50 h-screen z-50"
+          onClick={toggle}
+        />
+      )}
       <nav className="relative flex h-[4rem] items-center bg-background text-foreground">
         <Logo className="p-4" />
         <ul className="absolute left-1/2 hidden -translate-x-1/2 gap-4 lg:flex">
@@ -44,7 +57,7 @@ export default function Header() {
           )}
         </div>
       </nav>
-      <nav className="fixed bottom-0 z-50 h-[3rem] w-full bg-content2 opacity-90 lg:hidden">
+      <nav className="fixed bottom-0 z-50 h-12 w-full bg-content2 opacity-90 lg:hidden">
         <motion.div
           animate={{ opacity: 1 }}
           className="flex h-full w-full cursor-pointer select-none items-center justify-center"
@@ -66,7 +79,7 @@ export default function Header() {
               {menu.map(({ url, name, children }) => (
                 <MenuItemMobile
                   key={name}
-                  {...{ url, name, children }}
+                  {...{ toggle, url, name, children }}
                 />
               ))}
             </motion.ul>

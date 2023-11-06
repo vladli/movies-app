@@ -14,6 +14,7 @@ export default function FullBiography({ isOpen, onOpenChange, data }: Props) {
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       size="2xl"
+      scrollBehavior="inside"
     >
       <ModalContent>
         <>

@@ -70,7 +70,7 @@ export default function ActorCard({ actor }: Props) {
           >
             {actor?.name}
           </motion.h2>
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             <Chip
               color="primary"
               startContent={<MdOutlineCalendarMonth size={16} />}

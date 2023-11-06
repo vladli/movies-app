@@ -34,6 +34,7 @@ export default function Search({ className }: Props) {
   return (
     <div className={cn("relative", className)}>
       <Input
+        size="sm"
         className="w-[7rem] sm:w-[10rem]"
         isClearable
         onBlur={() => setActive(false)}
