@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next/types";
-import { getTranslator } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 import { getActors } from "@/actions/fetchMovie";
 import ActorBlock from "@/components/ActorBlock";
@@ -8,9 +8,10 @@ import PageContainer from "@/components/PageContainer";
 
 export const revalidate = 3600;
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const t = await getTranslator(params.locale, "Actors");
-
+export async function generateMetadata({
+  params: { locale },
+}: Props): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: "Actors" });
   return {
     title: t("title"),
   };

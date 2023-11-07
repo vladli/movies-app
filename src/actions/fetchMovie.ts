@@ -24,7 +24,10 @@ export async function fetchData(
   };
   try {
     const response = await fetch(url, { ...options, ...opt });
-    if (response.status === 200) return response.json();
+    if (response.status === 200) {
+      return response.json();
+    }
+    console.error("Fetch error.");
     return undefined;
   } catch (error) {
     console.error(error);

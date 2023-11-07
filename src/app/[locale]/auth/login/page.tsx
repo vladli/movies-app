@@ -2,7 +2,7 @@ import { Card } from "@nextui-org/react";
 import { redirect } from "next/navigation";
 import { Metadata } from "next/types";
 import { getServerSession } from "next-auth";
-import { getTranslator } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 import Logo from "@/components/Logo";
 import { authOptions } from "@/lib/authOptions";
@@ -14,7 +14,10 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  const t = await getTranslator(params.locale, "ROOT");
+  const t = await getTranslations({
+    locale: params.locale,
+    namespace: "ROOT",
+  });
   return {
     title: t("Header.Auth.title"),
   };

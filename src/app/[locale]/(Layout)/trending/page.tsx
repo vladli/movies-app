@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import { getTranslator } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 import { getTrendingMovies } from "@/actions/fetchMovie";
 import MovieCard from "@/components/MovieCard";
@@ -13,7 +13,10 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  const t = await getTranslator(params.locale, "Trending");
+  const t = await getTranslations({
+    locale: params.locale,
+    namespace: "Trending",
+  });
   return {
     title: t("title"),
   };

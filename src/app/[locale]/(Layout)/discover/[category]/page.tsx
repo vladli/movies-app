@@ -1,7 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next/types";
-import { getTranslator } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 import { getMovieList } from "@/actions/fetchMovie";
 import MovieBlock from "@/components/MovieCard";
@@ -11,7 +11,10 @@ import { TListType } from "@/types/types";
 export const revalidate = 3600;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const t = await getTranslator(params.locale, "Discover");
+  const t = await getTranslations({
+    locale: params.locale,
+    namespace: "Discover",
+  });
   const title = {
     popular: t("Popular.title"),
     top_rated: t("Top Rated.title"),

@@ -1,12 +1,15 @@
 import { Toaster } from "react-hot-toast";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { notFound } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { NextIntlClientProvider } from "next-intl";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 import { authOptions } from "@/lib/authOptions";
+import { locales } from "@/navigation";
 
-import getRequestConfig from "../../../i18n";
+import getRequestConfig from "../../i18n";
 import BottomTools from "../Layout/BottomTools";
 
 import Providers from "./providers";
@@ -22,6 +25,10 @@ export const metadata: Metadata = {
   },
   description: "Movie App project created for vladli.dev portfolio.",
 };
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 async function SessionProvider({ children }: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
@@ -40,7 +47,12 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const { messages } = await getRequestConfig({ locale: locale });
+  let messages;
+  try {
+    messages = (await import(`/dictionaries/${locale}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
   return (
     <html
       lang={locale}

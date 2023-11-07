@@ -2,11 +2,11 @@ import { NextRequest } from "next/server";
 import { withAuth } from "next-auth/middleware";
 import createMiddleware from "next-intl/middleware";
 
-export const locales = ["en", "kr", "ru"] as const;
+import { locales } from "./navigation";
 
 const intlMiddleware = createMiddleware({
-  locales: locales,
   defaultLocale: "en",
+  locales: locales,
   localeDetection: false,
 });
 

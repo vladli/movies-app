@@ -78,7 +78,7 @@ export default function PopularMovies({ data, genres }: Props) {
                     ))}
                 </div>
                 <div className="flex flex-col gap-6 text-lg font-medium">
-                  <span>{movie?.overview}</span>
+                  <span>{movie?.overview || t("MoviePage.noInfoError")}</span>
                   <Button
                     as={Link}
                     className="font-medium"
