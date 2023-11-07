@@ -1,9 +1,9 @@
 "use client";
-import { FcCalendar } from "react-icons/fc";
 import { MdOutlineCalendarMonth, MdOutlinePlace } from "react-icons/md";
 import { Button, Chip, useDisclosure } from "@nextui-org/react";
 import { motion, Variants } from "framer-motion";
 import NextImage from "next/image";
+import { useTranslations } from "next-intl";
 
 import { TMDB_POSTER_780 } from "@/lib/constants";
 import { TActor } from "@/types/types";
@@ -11,7 +11,6 @@ import { TActor } from "@/types/types";
 import FullBiography from "./FullBiography";
 
 import BackdropImage from "/public/bio.jpg";
-import { useTranslations } from "next-intl";
 
 const h2: Variants = {
   visible: { opacity: 1, scale: 1 },
@@ -72,7 +71,7 @@ export default function ActorCard({ actor }: Props) {
           >
             {actor?.name}
           </motion.h2>
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex flex-wrap gap-2">
             <Chip
               color="primary"
               startContent={<MdOutlineCalendarMonth size={16} />}

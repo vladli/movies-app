@@ -29,7 +29,7 @@ export default function MovieCard({ category, movie }: Props) {
   return (
     <Card
       as={Link}
-      className="h-[26rem] w-[14rem] hover:cursor-pointer"
+      className="h-[27rem] w-[15rem] hover:cursor-pointer"
       href={`/${categoryItem}/${movie.id}`}
       isPressable
     >
@@ -44,7 +44,9 @@ export default function MovieCard({ category, movie }: Props) {
           </Chip>
         </div>
 
-        <h4 className="text-large font-bold">{movie.title || movie.name}</h4>
+        <h4 className="line-clamp-2 text-large font-bold">
+          {movie.title || movie.name}
+        </h4>
       </CardHeader>
 
       <div className="h-full w-full">

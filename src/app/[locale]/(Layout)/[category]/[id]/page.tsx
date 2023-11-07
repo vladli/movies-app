@@ -9,6 +9,13 @@ import MovieCard from "./MovieCard";
 import MovieCast from "./MovieCast";
 import SimilarMovies from "./SimilarMovies";
 
+export async function generateMetadata({ params }: Props) {
+  const movie = await getMovie(params.category, params.id, params.locale);
+  return {
+    title: movie?.title || movie?.name || "Not Found",
+  };
+}
+
 type Props = {
   params: {
     category: TCategory;

@@ -1,12 +1,21 @@
 import React from "react";
 import { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { createTranslator } from "next-intl";
 
 import { getTrendingMovies } from "@/actions/fetchMovie";
 import MovieCard from "@/components/MovieCard";
 import PageContainer from "@/components/PageContainer";
 
 export const revalidate = 3600;
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const messages = (await import(`/dictionaries/${params.locale}.json`))
+    .default;
+  const t = createTranslator({ locale: params.locale, messages });
+  return {
+    title: t("Trending.title"),
+  };
+}
 
 type Props = {
   params: { locale: string };
