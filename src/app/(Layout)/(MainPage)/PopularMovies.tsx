@@ -1,10 +1,12 @@
 "use client";
 import { Button, Chip, Image } from "@nextui-org/react";
+import { useQuery } from "@tanstack/react-query";
 import NextImage from "next/image";
 import Link from "next/link";
 import { Autoplay, Keyboard, Navigation, Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { getGenres } from "@/actions/fetchMovie";
 import MovieRating from "@/components/MovieRating";
 import { TMDB_BACKDROP_PATH, TMDB_POSTER_780 } from "@/lib/constants";
 import { filterGenreNamesByIDs } from "@/lib/utils";

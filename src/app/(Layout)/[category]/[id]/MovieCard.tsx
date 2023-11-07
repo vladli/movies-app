@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import { Button, Chip, Image, useDisclosure } from "@nextui-org/react";
 import { motion, Variants } from "framer-motion";
 import NextImage from "next/image";
@@ -35,6 +36,10 @@ export default function MovieCard({ category, movie }: Props) {
   ).getFullYear();
   const backDropImage = movie?.backdrop_path;
   const posterImage = movie?.poster_path;
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
+
   return (
     <section className="relative">
       <div className="absolute left-0 top-0 z-0 h-full w-full select-none">

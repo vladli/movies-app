@@ -1,16 +1,22 @@
 "use client";
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 
+import { getSimilarMovie } from "@/actions/fetchMovie";
 import MovieCard from "@/components/MovieCard";
 import { TCategory, TMovieData } from "@/types/types";
 
 type Props = {
-  data: TMovieData[] | undefined;
-  category?: TCategory;
+  id: string;
+  category: TCategory;
 };
 
-export default function SimilarMovies({ data, category }: Props) {
+export default function SimilarMovies({ id, category }: Props) {
+  const { data } = useQuery({
+    queryKey: ["similarMovies", id, category],
+    queryFn: () => getSimilarMovie(category, id),
+  });
   return (
     <motion.section
       animate={{ opacity: 1, x: 0, transition: { delay: 0.6 } }}
@@ -21,7 +27,7 @@ export default function SimilarMovies({ data, category }: Props) {
         Similar Titles
       </h2>
       <motion.ul className="flex flex-wrap justify-around gap-4">
-        {data?.map((movie) => (
+        {data?.results.map((movie) => (
           <MovieCard
             category={category}
             key={movie.id}

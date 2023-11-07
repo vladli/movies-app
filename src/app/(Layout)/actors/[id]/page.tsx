@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getActor, getCombinedCredits } from "@/actions/fetchMovie";
+import { getActor } from "@/actions/fetchMovie";
 import PageBack from "@/components/PageBack";
 
 import ActorCard from "./ActorCard";
@@ -20,15 +20,12 @@ type Props = {
 };
 
 export default async function page({ params }: Props) {
-  const [actor, knownFor] = await Promise.all([
-    getActor(params.id),
-    getCombinedCredits(params.id),
-  ]);
+  const actor = await getActor(params.id);
   return (
     <>
       <PageBack />
       <ActorCard actor={actor} />
-      <KnowForBlock data={knownFor?.cast} />
+      <KnowForBlock id={params.id} />
     </>
   );
 }

@@ -1,22 +1,32 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Button } from "@nextui-org/react";
+import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 
+import { getCombinedCredits } from "@/actions/fetchMovie";
 import MovieCard from "@/components/MovieCard";
 import useToggle from "@/hooks/useToggle";
-import { TMovieData } from "@/types/types";
 
 type Props = {
-  data: TMovieData[] | undefined;
+  id: string;
 };
 
-export default function KnowForBlock({ data }: Props) {
-  const [casts, setCasts] = useState(data);
+export default function KnowForBlock({ id }: Props) {
+  const { data } = useQuery({
+    queryKey: ["actorKnownFor", id],
+    queryFn: () => getCombinedCredits(id),
+    refetchOnWindowFocus: false,
+  });
+  const [casts, setCasts] = useState(data?.cast);
   const [on, toggle] = useToggle();
   useEffect(() => {
-    if (!on) setCasts(data?.slice(0, 10));
-    else setCasts(data);
+    setCasts(data?.cast);
+  }, [data]);
+
+  useEffect(() => {
+    if (!on) setCasts(data?.cast.slice(0, 10));
+    else setCasts(data?.cast);
   }, [on]);
   return (
     <motion.section
@@ -35,7 +45,7 @@ export default function KnowForBlock({ data }: Props) {
           />
         ))}
       </motion.div>
-      {data && data?.length > 10 && (
+      {data && data?.cast.length > 10 && (
         <Button
           color="primary"
           onPress={toggle}

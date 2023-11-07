@@ -1,23 +1,35 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Button } from "@nextui-org/react";
+import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 
+import { getCast } from "@/actions/fetchMovie";
 import useToggle from "@/hooks/useToggle";
-import { TCastMember } from "@/types/types";
+import { TCategory } from "@/types/types";
 
 import CastCard from "./CastCard";
 
 export default function MovieCast({
-  data,
+  category,
+  id,
 }: {
-  data: TCastMember[] | undefined;
+  category: TCategory;
+  id: string;
 }) {
-  const [casts, setCasts] = useState(data);
+  const { data } = useQuery({
+    queryKey: ["movieCast", category, id],
+    queryFn: () => getCast(category, id),
+  });
+  const [casts, setCasts] = useState(data?.cast);
   const [on, toggle] = useToggle();
   useEffect(() => {
-    if (!on) setCasts(data?.slice(0, 10));
-    else setCasts(data);
+    setCasts(data?.cast?.slice(0, 10));
+  }, [data]);
+
+  useEffect(() => {
+    if (!on) setCasts(data?.cast?.slice(0, 10));
+    else setCasts(data?.cast);
   }, [on]);
   return (
     <motion.section
@@ -36,7 +48,7 @@ export default function MovieCast({
           />
         ))}
       </motion.ul>
-      {data && data?.length > 10 && (
+      {data && data?.cast.length > 10 && (
         <Button
           color="primary"
           onClick={toggle}
