@@ -2,14 +2,16 @@
 import { useEffect, useRef, useState } from "react";
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 import { TMenu } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import { Link } from "@/navigation";
 
 const MenuItem = React.memo(({ url, name, children }: TMenu) => {
   const pathname = usePathname();
+  const t = useTranslations();
   const [hover, setHoveredItem] = useState<string | null>(null);
   const timeoutRef = useRef<number | null>(null);
 
@@ -64,10 +66,10 @@ const MenuItem = React.memo(({ url, name, children }: TMenu) => {
               }}
             />
           )}
-          {name}
+          {t(name)}
         </Link>
       ) : (
-        <span className="cursor-pointer">{name}</span>
+        <span className="cursor-pointer">{t(name)}</span>
       )}
       <AnimatePresence>
         {children && isHovered && (

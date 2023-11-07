@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@nextui-org/react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 import useToggle from "@/hooks/useToggle";
 import { TCastMember } from "@/types/types";
@@ -13,6 +14,7 @@ export default function MovieCast({
 }: {
   data: TCastMember[] | undefined;
 }) {
+  const t = useTranslations();
   const [casts, setCasts] = useState(data);
   const [on, toggle] = useToggle();
   useEffect(() => {
@@ -26,7 +28,7 @@ export default function MovieCast({
       initial={{ opacity: 0, x: -200 }}
     >
       <h2 className="my-4 text-center text-3xl font-bold lg:text-left">
-        Main Cast
+        {t("MoviePage.MainCast")}
       </h2>
       <motion.ul className="flex flex-wrap justify-around gap-4">
         {casts?.map((actor) => (
@@ -42,7 +44,7 @@ export default function MovieCast({
           onClick={toggle}
           size="lg"
         >
-          {!on ? "View all casts" : "Collapse"}
+          {!on ? t("ROOT.viewAllButton") : t("ROOT.collapseButton")}
         </Button>
       )}
     </motion.section>

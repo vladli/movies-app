@@ -10,7 +10,7 @@ import MovieCast from "./MovieCast";
 import SimilarMovies from "./SimilarMovies";
 
 export async function generateMetadata({ params }: Props) {
-  const movie = await getMovie(params.category, params.id);
+  const movie = await getMovie(params.category, params.id, params.locale);
   return {
     title: movie?.title || movie?.name || "Not Found",
   };
@@ -20,6 +20,7 @@ type Props = {
   params: {
     category: TCategory;
     id: string;
+    locale: string;
   };
 };
 
@@ -27,9 +28,9 @@ export default async function page({ params }: Props) {
   if (!["movie", "tv"].includes(params.category)) return notFound();
 
   const [movie, cast, similar] = await Promise.all([
-    getMovie(params.category, params.id),
-    getCast(params.category, params.id),
-    getSimilarMovie(params.category, params.id),
+    getMovie(params.category, params.id, params.locale),
+    getCast(params.category, params.id, params.locale),
+    getSimilarMovie(params.category, params.id, params.locale),
   ]);
   if (!movie) return null;
   return (

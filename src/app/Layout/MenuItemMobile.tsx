@@ -3,15 +3,16 @@ import { useState } from "react";
 import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 import { TMenu } from "@/lib/data";
+import { Link } from "@/navigation";
 
 const MenuItemMobile = React.memo(({ toggle, url, name, children }: TMenu) => {
   const [toggled, setToggled] = useState<string | null>(null);
   const pathname = usePathname();
-
+  const t = useTranslations();
   const handleToggle = () => {
     if (toggled === null) setToggled(name);
     else setToggled(null);
@@ -38,7 +39,7 @@ const MenuItemMobile = React.memo(({ toggle, url, name, children }: TMenu) => {
               }}
             />
           )}
-          {name}
+          {t(name)}
         </Link>
       ) : (
         <div className="flex flex-col items-center">
@@ -46,7 +47,7 @@ const MenuItemMobile = React.memo(({ toggle, url, name, children }: TMenu) => {
             className="flex cursor-pointer items-center gap-1"
             onClick={handleToggle}
           >
-            {name}
+            {t(name)}
             <motion.span
               animate={{ rotate: toggled ? 90 : 0 }}
               initial={{ rotate: 0 }}
@@ -59,7 +60,7 @@ const MenuItemMobile = React.memo(({ toggle, url, name, children }: TMenu) => {
             {children && toggled && (
               <motion.ul
                 animate={{ opacity: 1, height: "auto" }}
-                className="left-4 relative flex flex-col gap-2 list-disc"
+                className="relative left-4 flex list-disc flex-col gap-2"
                 exit={{ opacity: 0, height: 0 }}
                 initial={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.2 }}

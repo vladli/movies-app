@@ -2,6 +2,7 @@
 import { Button, Chip, Image, useDisclosure } from "@nextui-org/react";
 import { motion, Variants } from "framer-motion";
 import NextImage from "next/image";
+import { useTranslations } from "next-intl";
 
 import MovieFavorite from "@/components/MovieFavorite";
 import MovieRating from "@/components/MovieRating";
@@ -30,7 +31,7 @@ type Props = {
 
 export default function MovieCard({ category, movie }: Props) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
+  const t = useTranslations();
   const releaseYear = new Date(
     (movie?.release_date || movie?.first_air_date) as string
   ).getFullYear();
@@ -100,6 +101,7 @@ export default function MovieCard({ category, movie }: Props) {
               <Chip color="primary">{releaseYear}</Chip>
               {movie?.genres.map((genre) => (
                 <Chip
+                  className="capitalize"
                   color="default"
                   key={genre.id}
                   variant="faded"
@@ -113,14 +115,14 @@ export default function MovieCard({ category, movie }: Props) {
             className="flex max-w-[32rem] flex-col text-lg font-medium"
             variants={h3}
           >
-            <p>{movie?.overview || "No information about this title."}</p>
+            <p>{movie?.overview || t("MoviePage.noInfoError")}</p>
             {movie?.videos.results.length ? (
               <Button
                 className="my-10 font-medium"
                 color="secondary"
                 onPress={onOpen}
               >
-                Watch Trailer
+                {t("ROOT.watchTrailerButton")}
               </Button>
             ) : null}
           </motion.div>

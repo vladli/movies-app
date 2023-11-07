@@ -1,27 +1,20 @@
-"use client";
 import React from "react";
-import { useSession } from "next-auth/react";
+import { Metadata } from "next/types";
+import { getTranslator } from "next-intl/server";
 
-import MovieCard from "@/components/MovieCard";
-import PageContainer from "@/components/PageContainer";
+import Container from "./Container";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const t = await getTranslator(params.locale, "ROOT");
+  return {
+    title: t("Favorites.Profile.Favorites.title"),
+  };
+}
 
 export default function Page() {
-  const { data: session } = useSession();
-
-  return (
-    <PageContainer
-      showPagination={false}
-      title="Favorites"
-      total_results={session?.user?.favoriteMovies?.length}
-    >
-      {!session?.user?.favoriteMovies?.length
-        ? "You did not add any movies to favorites yet."
-        : session?.user?.favoriteMovies.map((movie) => (
-            <MovieCard
-              key={movie.id}
-              movie={movie}
-            />
-          ))}
-    </PageContainer>
-  );
+  return <Container />;
 }

@@ -1,9 +1,9 @@
 import React from "react";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import NextImage from "next/image";
-import Link from "next/link";
 
 import { TMDB_POSTER_780 } from "@/lib/constants";
+import { Link } from "@/navigation";
 import { TCastMember } from "@/types/types";
 
 type Props = {

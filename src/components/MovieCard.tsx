@@ -2,10 +2,11 @@
 import React from "react";
 import { Card, CardHeader, Chip, Image } from "@nextui-org/react";
 import NextImage from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 import MovieRating from "@/components/MovieRating";
 import { TMDB_POSTER_780 } from "@/lib/constants";
+import { Link } from "@/navigation";
 import { TCategory, TMovieData } from "@/types/types";
 
 import MovieFavorite from "./MovieFavorite";
@@ -17,10 +18,14 @@ type Props = {
 };
 
 export default function MovieCard({ category, movie }: Props) {
+  const t = useTranslations();
+
   const releaseYear = new Date(
     (movie.release_date || movie.first_air_date) as string
   ).getFullYear();
   const categoryItem = movie.media_type || category;
+  const categoryTranslate =
+    categoryItem === "movie" ? t("ROOT.movie") : t("ROOT.tv");
   return (
     <Card
       as={Link}
@@ -30,7 +35,7 @@ export default function MovieCard({ category, movie }: Props) {
     >
       <CardHeader className="flex-col !items-start py-4">
         <div className="flex items-center gap-1 text-tiny font-bold uppercase">
-          {categoryItem}
+          {categoryTranslate}
           <Chip
             color="primary"
             size="sm"

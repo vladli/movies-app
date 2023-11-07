@@ -16,13 +16,14 @@ export async function generateMetadata({ params }: Props) {
 type Props = {
   params: {
     id: string;
+    locale: string;
   };
 };
 
 export default async function page({ params }: Props) {
   const [actor, knownFor] = await Promise.all([
-    getActor(params.id),
-    getCombinedCredits(params.id),
+    getActor(params.id, params.locale),
+    getCombinedCredits(params.id, params.locale),
   ]);
   return (
     <>

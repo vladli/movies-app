@@ -1,5 +1,73 @@
 {
+	"Actors": {
+		"fullBioButton": "Full Biography",
+		"KnownFor": "Known For",
+		"noBioError": "No biography for this person.",
+		"title": "Actors"
+	},
+	"Discover": {
+		"Popular": {
+			"title": "Popular"
+		},
+		"title": "Discover",
+		"Top Rated": {
+			"title": "Top Rated"
+		},
+		"Upcoming": {
+			"title": "Upcoming"
+		}
+	},
 	"MainPage": {
+		"title": "Main page",
 		"viewMovieButton": "View Movie"
+	},
+	"MoviePage": {
+		"MainCast": "Main Cast",
+		"noInfoError": "No information about this title.",
+		"SimilarTitles": "Similar Titles"
+	},
+	"ROOT": {
+		"actors": "Actors",
+		"backButton": "Back",
+		"collapseButton": "Collapse",
+		"Favorites": {
+			"added": "Added to favorites.",
+			"addTo": "Add to favorites",
+			"Profile": {
+				"Favorites": {
+					"empty": "You did not add any movies to favorites yet.",
+					"title": "Favorites"
+				}
+			},
+			"removed": "Removed from favorites.",
+			"removeFrom": "Remove from favorites",
+			"signInToAdd": "Sign in to add to favorites"
+		},
+		"Header": {
+			"Auth": {
+				"Sign in with": "Sign in with",
+				"title": "Authorization"
+			},
+			"Profile": {
+				"LogOut": "Log Out",
+				"MyFavorites": "My Favorites",
+				"MySettings": "My Settings",
+				"signedInAs": "Signed in as"
+			},
+			"signIn": "Sign In"
+		},
+		"movie": "Movies",
+		"SearchNoResults": "No items",
+		"SearchText": "Search...",
+		"Total": "Total: {results}",
+		"tv": "TV",
+		"viewAllButton": "View all",
+		"watchTrailerButton": "Watch Trailer"
+	},
+	"Trending": {
+		"title": "Trending"
+	},
+	"TV Series": {
+		"title": "TV Series"
 	}
 }

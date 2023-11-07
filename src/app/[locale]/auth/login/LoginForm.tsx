@@ -1,18 +1,11 @@
 "use client";
 import { useForm } from "react-hook-form";
-import { MdMail } from "react-icons/md";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Button,
-  CardBody,
-  CardHeader,
-  Divider,
-  Input,
-  Spinner,
-} from "@nextui-org/react";
+import { Button, CardBody, CardHeader } from "@nextui-org/react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { z } from "zod";
 
 export const loginSchema = z.object({
@@ -42,6 +35,7 @@ const socials = [
 ];
 
 export default function LoginForm() {
+  const t = useTranslations();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
   const {
@@ -60,7 +54,7 @@ export default function LoginForm() {
   return (
     <CardBody className="flex flex-col gap-4">
       <CardHeader className="flex justify-center text-xl font-medium">
-        Sign in with
+        {t("ROOT.Header.Auth.title")}
       </CardHeader>
       {/* <form
         className="flex flex-col gap-4"
@@ -113,7 +107,7 @@ export default function LoginForm() {
               />
             }
           >
-            Sign in with {social.name}
+            {t("ROOT.Header.Auth.Sign in with")} {social.name}
           </Button>
         ))}
       </div>

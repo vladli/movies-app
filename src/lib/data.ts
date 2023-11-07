@@ -1,6 +1,6 @@
 export type TMenu = {
   toggle?: () => void;
-  name: string;
+  name: any;
   url?: string;
   children?: {
     name: string;
@@ -9,36 +9,36 @@ export type TMenu = {
 };
 export const menu: TMenu[] = [
   {
-    name: "Main",
+    name: "MainPage.title",
     url: "/",
   },
   {
-    name: "Trending",
+    name: "Trending.title",
     url: "/trending",
   },
   {
-    name: "Discover",
+    name: "Discover.title",
     children: [
       {
-        name: "Popular",
+        name: "Discover.Popular.title",
         url: "/discover/popular",
       },
       {
-        name: "Upcoming",
+        name: "Discover.Upcoming.title",
         url: "/discover/upcoming",
       },
       {
-        name: "Top Rated",
+        name: "Discover.Top Rated.title",
         url: "/discover/top_rated",
       },
     ],
   },
   {
-    name: "TV Series",
+    name: "TV Series.title",
     url: "/tv",
   },
   {
-    name: "Actors",
+    name: "Actors.title",
     url: "/actors",
   },
 ];

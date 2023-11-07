@@ -11,6 +11,7 @@ import { TActor } from "@/types/types";
 import FullBiography from "./FullBiography";
 
 import BackdropImage from "/public/bio.jpg";
+import { useTranslations } from "next-intl";
 
 const h2: Variants = {
   visible: { opacity: 1, scale: 1 },
@@ -30,6 +31,7 @@ type Props = {
 };
 
 export default function ActorCard({ actor }: Props) {
+  const t = useTranslations();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const birthDate = new Date(actor?.birthday as string);
   const birthDateFormat = `${birthDate.getDate()} ${birthDate.toLocaleString(
@@ -92,7 +94,7 @@ export default function ActorCard({ actor }: Props) {
             variants={h3}
           >
             <p className="line-clamp-[10]">
-              {actor?.biography || "No biography for this person."}
+              {actor?.biography || t("Actors.noBioError")}
             </p>
             {actor?.biography && (
               <Button
@@ -100,7 +102,7 @@ export default function ActorCard({ actor }: Props) {
                 color="secondary"
                 onPress={onOpen}
               >
-                Full biography
+                {t("Actors.fullBioButton")}
               </Button>
             )}
           </motion.div>

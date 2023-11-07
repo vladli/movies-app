@@ -2,14 +2,16 @@ import { Toaster } from "react-hot-toast";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { getServerSession } from "next-auth";
-import getRequestConfig from "../../../i18n";
+import { NextIntlClientProvider } from "next-intl";
+
 import { authOptions } from "@/lib/authOptions";
+
+import getRequestConfig from "../../../i18n";
+import BottomTools from "../Layout/BottomTools";
 
 import Providers from "./providers";
 
 import "./globals.css";
-import BottomTools from "../Layout/BottomTools";
-import { NextIntlClientProvider } from "next-intl";
 
 const inter = Inter({ subsets: ["latin"] });
 

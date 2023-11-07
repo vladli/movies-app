@@ -1,11 +1,11 @@
 import React from "react";
 import { Card, CardBody, CardHeader } from "@nextui-org/react";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 
 import Logo from "@/components/Logo";
 import { authOptions } from "@/lib/authOptions";
+import { Link } from "@/navigation";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);

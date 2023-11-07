@@ -1,16 +1,18 @@
+import { MessageKeys, useTranslations } from "next-intl";
+
 import { getGenres, getMovieList } from "@/actions/fetchMovie";
-import { useTranslations } from "next-intl";
+
 import MovieBlock from "./MovieBlock";
 import PopularMovies from "./PopularMovies";
 
 export const revalidate = 3600;
 
-export default async function page() {
+async function PageData({ locale, t }: { locale: string; t: any }) {
   const [movies, upcoming, top, genres] = await Promise.all([
-    getMovieList("popular"),
-    getMovieList("upcoming"),
-    getMovieList("top_rated"),
-    getGenres("movie"),
+    getMovieList("popular", locale),
+    getMovieList("upcoming", locale),
+    getMovieList("top_rated", locale),
+    getGenres("movie", locale),
   ]);
   return (
     <>
@@ -20,13 +22,24 @@ export default async function page() {
       />
       <MovieBlock
         data={upcoming?.results}
-        title="Upcoming Movies"
+        title={t("Discover.Upcoming.title")}
         type="upcoming"
       />
       <MovieBlock
         data={top?.results}
-        title="Top Rated"
+        title={t("Discover.Top Rated.title")}
       />
     </>
+  );
+}
+
+export default function Page({ params }: { params: { locale: string } }) {
+  const t = useTranslations();
+
+  return (
+    <PageData
+      locale={params.locale}
+      t={t}
+    />
   );
 }

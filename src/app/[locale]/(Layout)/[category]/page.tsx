@@ -1,16 +1,17 @@
 import React from "react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getTranslator } from "next-intl/server";
 
 import { getDiscover } from "@/actions/fetchMovie";
 import MovieBlock from "@/components/MovieCard";
 import PageContainer from "@/components/PageContainer";
-import { TCategory } from "@/types/types";
 
 export const revalidate = 3600;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const title = params.category === "tv" ? "TV" : "Movies";
+  const t = await getTranslator(params.locale, "ROOT");
+  const title = params.category === "tv" ? t("tv") : t("movie");
   return {
     title: title,
   };
@@ -18,8 +19,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 type Props = {
   params: {
-    category: TCategory;
+    category: "tv";
     id: string;
+    locale: string;
   };
   searchParams: {
     [key: string]: string | string[] | undefined;
@@ -27,11 +29,14 @@ type Props = {
 };
 
 export default async function page({ params, searchParams }: Props) {
-  if (!["movie", "tv"].includes(params.category)) return notFound();
+  if (!["tv"].includes(params.category)) return notFound();
   const { page } = searchParams;
-
+  const title = {
+    tv: "TV Series.title",
+  };
   const data = await getDiscover(
     params.category,
+    params.locale,
     undefined,
     undefined,
     Number(page)
@@ -39,7 +44,7 @@ export default async function page({ params, searchParams }: Props) {
   return (
     <PageContainer
       data={data}
-      title="TV"
+      title={title[params.category]}
     >
       {data?.results?.map((movie) => (
         <MovieBlock
