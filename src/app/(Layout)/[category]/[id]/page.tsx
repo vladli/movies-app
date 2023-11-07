@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 
 import { getCast, getMovie, getSimilarMovie } from "@/actions/fetchMovie";
 import PageBack from "@/components/PageBack";
 import { TCategory } from "@/types/types";
 
+import Loading from "./loading";
 import MovieCard from "./MovieCard";
 import MovieCast from "./MovieCast";
 import SimilarMovies from "./SimilarMovies";
@@ -32,19 +33,20 @@ export default async function page({ params }: Props) {
     getCast(params.category, params.id),
     getSimilarMovie(params.category, params.id),
   ]);
-  if (!movie) return null;
   return (
     <section className="flex flex-col">
       <PageBack />
-      <MovieCard
-        category={params.category}
-        movie={movie}
-      />
-      <MovieCast data={cast?.cast} />
-      <SimilarMovies
-        category={params.category}
-        data={similar?.results}
-      />
+      <Suspense fallback={<Loading />}>
+        <MovieCard
+          category={params.category}
+          movie={movie}
+        />
+        <MovieCast data={cast?.cast} />
+        <SimilarMovies
+          category={params.category}
+          data={similar?.results}
+        />
+      </Suspense>
     </section>
   );
 }
