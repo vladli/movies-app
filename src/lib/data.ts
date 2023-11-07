@@ -9,36 +9,36 @@ export type TMenu = {
 };
 export const menu: TMenu[] = [
   {
-    name: "MainPage.title",
+    name: "Main page",
     url: "/",
   },
   {
-    name: "Trending.title",
+    name: "Trending",
     url: "/trending",
   },
   {
-    name: "Discover.title",
+    name: "Discover",
     children: [
       {
-        name: "Discover.Popular.title",
+        name: "Popular",
         url: "/discover/popular",
       },
       {
-        name: "Discover.Upcoming.title",
+        name: "Upcoming",
         url: "/discover/upcoming",
       },
       {
-        name: "Discover.Top Rated.title",
+        name: "Top Rated",
         url: "/discover/top_rated",
       },
     ],
   },
   {
-    name: "TV Series.title",
+    name: "TV Series",
     url: "/tv",
   },
   {
-    name: "Actors.title",
+    name: "Actors",
     url: "/actors",
   },
 ];

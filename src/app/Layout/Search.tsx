@@ -3,26 +3,23 @@ import React, { useState } from "react";
 import { MdSearch } from "react-icons/md";
 import { Input, Listbox, ListboxItem, ListboxSection } from "@nextui-org/react";
 import { useQuery } from "@tanstack/react-query";
-import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 import { getSearchResults } from "@/actions/fetchMovie";
 import useDebounce from "@/hooks/useDebounce";
 import { cn } from "@/lib/utils";
-import { Link } from "@/navigation";
 
 type Props = {
-  locale: string;
   className?: string;
 };
 
-export default function Search({ locale, className }: Props) {
-  const t = useTranslations();
+export default function Search({ className }: Props) {
   const [active, setActive] = useState(false);
   const [search, setSearch] = useState("");
   const value = useDebounce(search, 500);
   const { data } = useQuery({
-    queryKey: ["search", value, locale],
-    queryFn: () => getSearchResults(value, locale),
+    queryKey: ["search", value],
+    queryFn: () => getSearchResults(value),
     enabled: !!value,
   });
   const actors = data?.results
@@ -43,7 +40,7 @@ export default function Search({ locale, className }: Props) {
         onChange={(e) => setSearch(e.target.value)}
         onClear={() => setSearch("")}
         onFocus={() => setActive(true)}
-        placeholder={t("ROOT.SearchText")}
+        placeholder="Search..."
         size="sm"
         startContent={<MdSearch />}
         value={search}
@@ -61,7 +58,7 @@ export default function Search({ locale, className }: Props) {
           >
             <ListboxSection
               showDivider
-              title={t("ROOT.actors")}
+              title="Actors"
             >
               {actors?.length ? (
                 actors.map((actor) => (
@@ -74,14 +71,12 @@ export default function Search({ locale, className }: Props) {
                   </ListboxItem>
                 ))
               ) : (
-                <ListboxItem key="unknown">
-                  {t("ROOT.SearchNoResults")}
-                </ListboxItem>
+                <ListboxItem key="unknown">No items</ListboxItem>
               )}
             </ListboxSection>
             <ListboxSection
               showDivider
-              title={t("ROOT.movie")}
+              title="Movies"
             >
               {movies?.length ? (
                 movies.map((movie) => (
@@ -94,12 +89,10 @@ export default function Search({ locale, className }: Props) {
                   </ListboxItem>
                 ))
               ) : (
-                <ListboxItem key="unknown">
-                  {t("ROOT.SearchNoResults")}
-                </ListboxItem>
+                <ListboxItem key="unknown">No items</ListboxItem>
               )}
             </ListboxSection>
-            <ListboxSection title={t("ROOT.tv")}>
+            <ListboxSection title="TV">
               {tvSeries?.length ? (
                 tvSeries.map((movie) => (
                   <ListboxItem
@@ -111,9 +104,7 @@ export default function Search({ locale, className }: Props) {
                   </ListboxItem>
                 ))
               ) : (
-                <ListboxItem key="unknown">
-                  {t("ROOT.SearchNoResults")}
-                </ListboxItem>
+                <ListboxItem key="unknown">No items</ListboxItem>
               )}
             </ListboxSection>
           </Listbox>

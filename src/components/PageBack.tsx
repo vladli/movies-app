@@ -3,10 +3,8 @@ import React from "react";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
 
 export default function PageBack() {
-  const t = useTranslations();
   const router = useRouter();
   return (
     <motion.button
@@ -18,7 +16,7 @@ export default function PageBack() {
         whileHover={{ x: -3 }}
       >
         <MdOutlineKeyboardDoubleArrowLeft size="1.1rem" />
-        {t("ROOT.backButton")}
+        Back
       </motion.div>
     </motion.button>
   );

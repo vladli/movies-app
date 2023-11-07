@@ -2,21 +2,19 @@
 import { useEffect } from "react";
 import { Button } from "@nextui-org/react";
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { useTranslations } from "next-intl";
 
 import Logo from "@/components/Logo";
 import useToggle from "@/hooks/useToggle";
 import { menu } from "@/lib/data";
-import { Link } from "@/navigation";
 
 import MenuItem from "./MenuItem";
 import MenuItemMobile from "./MenuItemMobile";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
 
-export default function Header({ locale }: { locale: string }) {
-  const t = useTranslations();
+export default function Header() {
   const { data: session } = useSession();
   const [visible, toggle] = useToggle();
   useEffect(() => {
@@ -45,14 +43,14 @@ export default function Header({ locale }: { locale: string }) {
           ))}
         </ul>
         <div className="absolute right-4 flex items-center gap-2">
-          <Search locale={locale} />
+          <Search />
           {!session ? (
             <Button
               as={Link}
               color="primary"
               href="/auth/login"
             >
-              {t("ROOT.Header.signIn")}
+              Sign In
             </Button>
           ) : (
             <UserMenu />

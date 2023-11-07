@@ -1,12 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Button, Tooltip } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
-import { useTranslations } from "next-intl";
 
 import { editFavorites } from "@/actions/favorites";
 import useToggle from "@/hooks/useToggle";
@@ -30,7 +28,6 @@ export default function MovieFavorite({
   mediaType = "movie",
   className,
 }: Props) {
-  const t = useTranslations();
   const { data: session, update } = useSession();
   const isFavorite = session?.user?.favoriteMovies?.some(
     (favorite) => +favorite.id === movie.id
@@ -69,9 +66,7 @@ export default function MovieFavorite({
         });
       }
 
-      toast.success(
-        !on ? t("ROOT.Favorites.added") : t("ROOT.Favorites.removed")
-      );
+      toast.success(!on ? "Added to favorites." : "Removed from favorites.");
       toggle();
     } catch (error) {
       toast.error("Something went wrong...");
@@ -85,10 +80,10 @@ export default function MovieFavorite({
       <Tooltip
         content={
           !session
-            ? t("ROOT.Favorites.signInToAdd")
+            ? "Sign in to add to favorites"
             : !on
-            ? t("ROOT.Favorites.addTo")
-            : t("ROOT.Favorites.removeFrom")
+            ? "Add to favorites"
+            : "Remove from favorites"
         }
         showArrow={true}
       >

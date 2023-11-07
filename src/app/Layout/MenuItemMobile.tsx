@@ -3,16 +3,14 @@ import { useState } from "react";
 import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
 
 import { TMenu } from "@/lib/data";
-import { Link } from "@/navigation";
 
 const MenuItemMobile = React.memo(({ toggle, url, name, children }: TMenu) => {
   const [toggled, setToggled] = useState<string | null>(null);
   const pathname = usePathname();
-  const t = useTranslations();
   const handleToggle = () => {
     if (toggled === null) setToggled(name);
     else setToggled(null);
@@ -39,7 +37,7 @@ const MenuItemMobile = React.memo(({ toggle, url, name, children }: TMenu) => {
               }}
             />
           )}
-          {t(name)}
+          {name}
         </Link>
       ) : (
         <div className="flex flex-col items-center">
@@ -47,7 +45,7 @@ const MenuItemMobile = React.memo(({ toggle, url, name, children }: TMenu) => {
             className="flex cursor-pointer items-center gap-1"
             onClick={handleToggle}
           >
-            {t(name)}
+            {name}
             <motion.span
               animate={{ rotate: toggled ? 90 : 0 }}
               initial={{ rotate: 0 }}
