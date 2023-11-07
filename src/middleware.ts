@@ -1,13 +1,13 @@
-import createMiddleware from "next-intl/middleware";
-import { withAuth } from "next-auth/middleware";
 import { NextRequest } from "next/server";
+import { withAuth } from "next-auth/middleware";
+import createMiddleware from "next-intl/middleware";
 
 export const locales = ["en", "kr", "ru"] as const;
 
 const intlMiddleware = createMiddleware({
   locales: locales,
   defaultLocale: "en",
-  localeDetection: true,
+  localeDetection: false,
 });
 
 const authMiddleware = withAuth(
@@ -31,9 +31,8 @@ export default function middleware(req: NextRequest) {
 
   if (isPublicPage) {
     return intlMiddleware(req);
-  } else {
-    return (authMiddleware as any)(req);
   }
+  return (authMiddleware as any)(req);
 }
 
 export const config = {
