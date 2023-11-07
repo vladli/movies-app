@@ -33,10 +33,8 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
   let messages;
   try {
-    console.log("LOADING...");
     const importedModule = await import(`/dictionaries/${locale}.json`);
     messages = importedModule.default;
-    console.log("LOADED");
   } catch (error) {
     notFound();
   }

@@ -8,20 +8,6 @@ import PageContainer from "@/components/PageContainer";
 
 export const revalidate = 3600;
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
-  const t = await getTranslations({
-    locale: params.locale,
-    namespace: "Trending",
-  });
-  return {
-    title: t("title"),
-  };
-}
-
 type Props = {
   params: { locale: string };
   searchParams: {

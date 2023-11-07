@@ -9,20 +9,6 @@ import { authOptions } from "@/lib/authOptions";
 
 import LoginForm from "./LoginForm";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
-  const t = await getTranslations({
-    locale: params.locale,
-    namespace: "ROOT",
-  });
-  return {
-    title: t("Header.Auth.title"),
-  };
-}
-
 export default async function login() {
   const session = await getServerSession(authOptions);
   if (session) redirect("/");

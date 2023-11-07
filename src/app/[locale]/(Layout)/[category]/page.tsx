@@ -9,17 +9,6 @@ import PageContainer from "@/components/PageContainer";
 
 export const revalidate = 3600;
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const t = await getTranslations({
-    locale: params.locale,
-    namespace: "ROOT",
-  });
-  const title = params.category === "tv" ? t("tv") : t("movie");
-  return {
-    title: title,
-  };
-}
-
 type Props = {
   params: {
     category: "tv";

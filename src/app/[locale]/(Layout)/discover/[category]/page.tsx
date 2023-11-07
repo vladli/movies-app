@@ -10,21 +10,6 @@ import { TListType } from "@/types/types";
 
 export const revalidate = 3600;
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const t = await getTranslations({
-    locale: params.locale,
-    namespace: "Discover",
-  });
-  const title = {
-    popular: t("Popular.title"),
-    top_rated: t("Top Rated.title"),
-    upcoming: t("Upcoming.title"),
-  };
-  return {
-    title: title[params.category],
-  };
-}
-
 type Props = {
   params: {
     category: TListType;
