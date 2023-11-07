@@ -14,7 +14,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     locale: params.locale,
     namespace: "ROOT",
   });
-  console.log("METADATA");
   const title = params.category === "tv" ? t("tv") : t("movie");
   return {
     title: title,

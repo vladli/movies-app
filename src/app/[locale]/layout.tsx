@@ -4,12 +4,9 @@ import { Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { NextIntlClientProvider } from "next-intl";
-import { unstable_setRequestLocale } from "next-intl/server";
 
 import { authOptions } from "@/lib/authOptions";
-import { locales } from "@/navigation";
 
-import getRequestConfig from "../../i18n";
 import BottomTools from "../Layout/BottomTools";
 
 import Providers from "./providers";
@@ -26,20 +23,6 @@ export const metadata: Metadata = {
   description: "Movie App project created for vladli.dev portfolio.",
 };
 
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
-
-async function SessionProvider({ children }: { children: React.ReactNode }) {
-  const session = await getServerSession(authOptions);
-  return (
-    <Providers session={session}>
-      {children}
-      <BottomTools />
-    </Providers>
-  );
-}
-
 export default async function RootLayout({
   children,
   params: { locale },
@@ -47,12 +30,17 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  const session = await getServerSession(authOptions);
   let messages;
   try {
-    messages = (await import(`/dictionaries/${locale}.json`)).default;
+    console.log("LOADING...");
+    const importedModule = await import(`/dictionaries/${locale}.json`);
+    messages = importedModule.default;
+    console.log("LOADED");
   } catch (error) {
     notFound();
   }
+
   return (
     <html
       lang={locale}
@@ -64,7 +52,9 @@ export default async function RootLayout({
           messages={messages}
           timeZone="Asia/Seoul"
         >
-          <SessionProvider>{children}</SessionProvider>
+          <Providers session={session}>
+            {children} <BottomTools />
+          </Providers>
         </NextIntlClientProvider>
         <Toaster toastOptions={{ className: "react-toast" }} />
       </body>
