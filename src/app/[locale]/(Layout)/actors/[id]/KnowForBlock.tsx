@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@nextui-org/react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 import { getCombinedCredits } from "@/actions/fetchMovie";
 import MovieCard from "@/components/MovieCard";
 import useToggle from "@/hooks/useToggle";
-import { useTranslations } from "next-intl";
 import { TLocales } from "@/navigation";
 
 type Props = {
@@ -24,7 +24,7 @@ export default function KnowForBlock({ id, locale }: Props) {
   const [casts, setCasts] = useState(data?.cast);
   const [on, toggle] = useToggle();
   useEffect(() => {
-    setCasts(data?.cast);
+    setCasts(data?.cast.slice(0, 10));
   }, [data]);
 
   useEffect(() => {
