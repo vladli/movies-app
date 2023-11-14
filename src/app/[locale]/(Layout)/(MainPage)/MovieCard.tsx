@@ -2,6 +2,7 @@
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import NextImage from "next/image";
 import Link from "next/link";
+import { useLocale } from "next-intl";
 
 import MovieFavorite from "@/components/MovieFavorite";
 import MovieRating from "@/components/MovieRating";
@@ -14,11 +15,15 @@ type Props = {
 };
 
 export default function MovieCard({ movie, type }: Props) {
+  let locale = useLocale();
+  locale = locale === "kr" ? "ko" : locale;
   const releaseDate = new Date(movie.release_date);
   const year = releaseDate.getFullYear();
-  const month = releaseDate.toLocaleString("en-US", { month: "short" });
-  const day = releaseDate.getDate();
-  const date = type === "upcoming" ? `${month}. ${day}` : `${year}`;
+  const monthDay = releaseDate.toLocaleString(locale, {
+    month: "short",
+    day: "numeric",
+  });
+  const date = type === "upcoming" ? monthDay : `${year}`;
   return (
     <Card
       as={Link}

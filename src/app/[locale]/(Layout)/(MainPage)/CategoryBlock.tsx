@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslations } from "next-intl";
 
 import { getMovieList } from "@/actions/fetchMovie";
+import { TLocales } from "@/navigation";
 
 import MovieBlock from "./MovieBlock";
-import { useTranslations } from "next-intl";
-import { TLocales } from "@/navigation";
 
 export default function CategoryBlock({ locale }: { locale: TLocales }) {
   const t = useTranslations();
