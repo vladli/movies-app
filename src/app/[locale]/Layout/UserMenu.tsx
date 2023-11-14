@@ -12,8 +12,10 @@ import {
 } from "@nextui-org/react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 
 export default function UserMenu() {
+  const t = useTranslations();
   const { data: session } = useSession();
   return (
     <div className="flex items-center gap-4">
@@ -35,9 +37,11 @@ export default function UserMenu() {
             className="h-14 gap-2"
             key="profile"
           >
-            <p className="font-semibold">Signed in as</p>
             <p className="font-semibold">
-              {session?.user?.email || session?.user?.name}
+              {t("#ROOT.Header.Profile.signedInAs")}
+            </p>
+            <p className="font-semibold">
+              {session?.user?.name || session?.user?.email}
             </p>
           </DropdownItem>
 

@@ -13,6 +13,8 @@ datasource db {
 model Account {
   id                       String  @id @default(auto()) @map("_id") @db.ObjectId
   userId                   String  @db.ObjectId
+  user_id                  Int?    @unique //VKontakte
+  email                    String? @unique //VKontakte
   type                     String
   provider                 String
   providerAccountId        String

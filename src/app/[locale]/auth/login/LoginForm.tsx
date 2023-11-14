@@ -23,6 +23,18 @@ const socials = [
     icon: "/socials/kakao.svg",
     className: "bg-[#FEE500] font-medium text-black",
   },
+  {
+    id: "yandex",
+    name: "Yandex",
+    icon: "/socials/yandex.svg",
+    className: "bg-[#000] font-medium text-white",
+  },
+  {
+    id: "vk",
+    name: "VKontakte",
+    icon: "/socials/vk.svg",
+    className: "bg-[#4C75A3] font-medium text-white",
+  },
 ];
 
 export default function LoginForm() {
