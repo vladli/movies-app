@@ -1,8 +1,9 @@
 "use client";
 import { useEffect } from "react";
-import { Button, Chip, Image, useDisclosure } from "@nextui-org/react";
+import { Button, Chip, useDisclosure } from "@nextui-org/react";
 import { motion, Variants } from "framer-motion";
 import NextImage from "next/image";
+import { useTranslations } from "next-intl";
 
 import MovieFavorite from "@/components/MovieFavorite";
 import MovieRating from "@/components/MovieRating";
@@ -10,7 +11,6 @@ import { TMDB_BACKDROP_PATH, TMDB_POSTER_780 } from "@/lib/constants";
 import { TCategory, TMovieData } from "@/types/types";
 
 import CardVideo from "./CardVideo";
-import { useTranslations } from "next-intl";
 
 const h2: Variants = {
   visible: { opacity: 1, scale: 1 },
@@ -102,7 +102,7 @@ export default function MovieCard({ category, movie }: Props) {
             className="flex select-none flex-col items-center gap-2 lg:items-start"
             variants={h3}
           >
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <Chip color="primary">{releaseYear}</Chip>
               {movie?.genres.map((genre) => (
                 <Chip
