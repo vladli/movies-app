@@ -1,35 +1,9 @@
 {
-	"Actors": {
-		"fullBioButton": "상전",
-		"KnownFor": "유명 분야",
-		"noBioError": "이 사람의 자기소개가 없습니다.",
-		"title": "인기 인물"
-	},
-	"Discover": {
-		"Popular": {
-			"title": "인기"
-		},
-		"title": "발견하다",
-		"Top Rated": {
-			"title": "높은 평점"
-		},
-		"Upcoming": {
-			"title": "개봉 예정"
-		}
-	},
-	"MainPage": {
-		"title": "메인 페이지",
-		"viewMovieButton": "자세한 내용은"
-	},
-	"MoviePage": {
-		"MainCast": "주요 출연진",
-		"noInfoError": "이 제목에 대한 정보가 없습니다.",
-		"SimilarTitles": "추천"
-	},
-	"ROOT": {
-		"actors": "배우",
-		"backButton": "뒤로",
-		"collapseButton": "무너짐",
+	"#ROOT": {
+		"ButtonBack": "뒤로",
+		"ButtonCollapse": "무너짐",
+		"ButtonViewAll": "모든 보기",
+		"ButtonWatchTrailer": "트레일러 재생",
 		"Favorites": {
 			"added": "즐겨찾기에 추가되었습니다.",
 			"addTo": "즐겨 찾기에 추가",
@@ -44,25 +18,53 @@
 			"signInToAdd": "즐겨찾기에 추가하려면 로그인하세요"
 		},
 		"Header": {
-			"Auth": {
-				"Sign in with": "로그인",
-				"title": "권한 부여"
-			},
 			"Profile": {
 				"LogOut": "로그 아웃",
 				"MyFavorites": "내가 좋아하는 것들",
 				"MySettings": "내 설정",
 				"signedInAs": "로그인됨"
 			},
+			"Search": {
+				"Actors": "배우",
+				"movie": "영화",
+				"SearchNoResults": "항목이 없습니다",
+				"SearchText": "검색...",
+				"tv": "TV"
+			},
 			"signIn": "로그인"
 		},
-		"movie": "영화",
-		"SearchNoResults": "항목이 없습니다",
-		"SearchText": "검색...",
-		"Total": "합계: {results}",
-		"tv": "TV",
-		"viewAllButton": "모든 보기",
-		"watchTrailerButton": "트레일러 재생"
+		"Total": "합계: {results}"
+	},
+	"Actors": {
+		"ButtonFullBio": "상전",
+		"ErrorNoBio": "이 사람의 자기소개가 없습니다.",
+		"KnownFor": "유명 분야",
+		"title": "인기 인물"
+	},
+	"Auth": {
+		"Sign in with": "로그인",
+		"title": "권한 부여"
+	},
+	"Discover": {
+		"Popular": {
+			"title": "인기"
+		},
+		"title": "발견하다",
+		"Top Rated": {
+			"title": "높은 평점"
+		},
+		"Upcoming": {
+			"title": "개봉 예정"
+		}
+	},
+	"MainPage": {
+		"ButtonviewMovie": "자세한 내용은",
+		"title": "메인 페이지"
+	},
+	"MoviePage": {
+		"ErrorNoInfo": "이 제목에 대한 정보가 없습니다.",
+		"MainCast": "주요 출연진",
+		"SimilarTitles": "추천"
 	},
 	"Trending": {
 		"title": "트렌드"

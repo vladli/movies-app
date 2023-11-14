@@ -1,35 +1,9 @@
 {
-	"Actors": {
-		"fullBioButton": "Полная биография",
-		"KnownFor": "Известен как",
-		"noBioError": "Биографии этого человека нет.",
-		"title": "Актеры"
-	},
-	"Discover": {
-		"Popular": {
-			"title": "Популярные"
-		},
-		"title": "Другое",
-		"Top Rated": {
-			"title": "Лучшие"
-		},
-		"Upcoming": {
-			"title": "Ожидаемые"
-		}
-	},
-	"MainPage": {
-		"title": "Главная",
-		"viewMovieButton": "Подробнее"
-	},
-	"MoviePage": {
-		"MainCast": "В главных ролях",
-		"noInfoError": "Нет информации.",
-		"SimilarTitles": "Рекомендации"
-	},
-	"ROOT": {
-		"actors": "Актеры",
-		"backButton": "Назад",
-		"collapseButton": "Скрыть",
+	"#ROOT": {
+		"ButtonBack": "Назад",
+		"ButtonCollapse": "Скрыть",
+		"ButtonViewAll": "Развернуть",
+		"ButtonWatchTrailer": "Смотреть трейлер",
 		"Favorites": {
 			"added": "Добавлено в избранное.",
 			"addTo": "Добавить в избранное",
@@ -44,25 +18,53 @@
 			"signInToAdd": "Войдите, чтобы добавить в избранное"
 		},
 		"Header": {
-			"Auth": {
-				"Sign in with": "Войти в систему с помощью",
-				"title": "Авторизация"
-			},
 			"Profile": {
 				"LogOut": "Выйти",
 				"MyFavorites": "Мои любимые",
 				"MySettings": "Мои настройки",
 				"signedInAs": "Выполнен вход как"
 			},
+			"Search": {
+				"Actors": "Актеры",
+				"movie": "Фильмы",
+				"SearchNoResults": "Нет результатов",
+				"SearchText": "Поиск...",
+				"tv": "Сериалы"
+			},
 			"signIn": "Войти"
 		},
-		"movie": "Фильмы",
-		"SearchNoResults": "Нет результатов",
-		"SearchText": "Поиск...",
-		"Total": "Итого: {results}",
-		"tv": "Сериалы",
-		"viewAllButton": "Развернуть",
-		"watchTrailerButton": "Смотреть трейлер"
+		"Total": "Итого: {results}"
+	},
+	"Actors": {
+		"ButtonFullBio": "Полная биография",
+		"ErrorNoBio": "Биографии этого человека нет.",
+		"KnownFor": "Известен как",
+		"title": "Актеры"
+	},
+	"Auth": {
+		"Sign in with": "Войти в систему с помощью",
+		"title": "Авторизация"
+	},
+	"Discover": {
+		"Popular": {
+			"title": "Популярные"
+		},
+		"title": "Другое",
+		"Top Rated": {
+			"title": "Лучшие"
+		},
+		"Upcoming": {
+			"title": "Ожидаемые"
+		}
+	},
+	"MainPage": {
+		"ButtonviewMovie": "Подробнее",
+		"title": "Главная"
+	},
+	"MoviePage": {
+		"ErrorNoInfo": "Нет информации.",
+		"MainCast": "В главных ролях",
+		"SimilarTitles": "Рекомендации"
 	},
 	"Trending": {
 		"title": "Тренды"

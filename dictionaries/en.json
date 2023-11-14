@@ -1,35 +1,9 @@
 {
-	"Actors": {
-		"fullBioButton": "Full Biography",
-		"KnownFor": "Known For",
-		"noBioError": "No biography for this person.",
-		"title": "Actors"
-	},
-	"Discover": {
-		"Popular": {
-			"title": "Popular"
-		},
-		"title": "Discover",
-		"Top Rated": {
-			"title": "Top Rated"
-		},
-		"Upcoming": {
-			"title": "Upcoming"
-		}
-	},
-	"MainPage": {
-		"title": "Main page",
-		"viewMovieButton": "View Movie"
-	},
-	"MoviePage": {
-		"MainCast": "Main Cast",
-		"noInfoError": "No information about this title.",
-		"SimilarTitles": "Similar Titles"
-	},
-	"ROOT": {
-		"actors": "Actors",
-		"backButton": "Back",
-		"collapseButton": "Collapse",
+	"#ROOT": {
+		"ButtonBack": "Back",
+		"ButtonCollapse": "Collapse",
+		"ButtonViewAll": "View all",
+		"ButtonWatchTrailer": "Watch Trailer",
 		"Favorites": {
 			"added": "Added to favorites.",
 			"addTo": "Add to favorites",
@@ -44,25 +18,53 @@
 			"signInToAdd": "Sign in to add to favorites"
 		},
 		"Header": {
-			"Auth": {
-				"Sign in with": "Sign in with",
-				"title": "Authorization"
-			},
 			"Profile": {
 				"LogOut": "Log Out",
 				"MyFavorites": "My Favorites",
 				"MySettings": "My Settings",
 				"signedInAs": "Signed in as"
 			},
+			"Search": {
+				"Actors": "Actors",
+				"movie": "Movies",
+				"SearchNoResults": "No items",
+				"SearchText": "Search...",
+				"tv": "TV"
+			},
 			"signIn": "Sign In"
 		},
-		"movie": "Movies",
-		"SearchNoResults": "No items",
-		"SearchText": "Search...",
-		"Total": "Total: {results}",
-		"tv": "TV",
-		"viewAllButton": "View all",
-		"watchTrailerButton": "Watch Trailer"
+		"Total": "Total: {results}"
+	},
+	"Actors": {
+		"ButtonFullBio": "Full Biography",
+		"ErrorNoBio": "No biography for this person.",
+		"KnownFor": "Known For",
+		"title": "Actors"
+	},
+	"Auth": {
+		"Sign in with": "Sign in with",
+		"title": "Authorization"
+	},
+	"Discover": {
+		"Popular": {
+			"title": "Popular"
+		},
+		"title": "Discover",
+		"Top Rated": {
+			"title": "Top Rated"
+		},
+		"Upcoming": {
+			"title": "Upcoming"
+		}
+	},
+	"MainPage": {
+		"ButtonviewMovie": "View Movie",
+		"title": "Main page"
+	},
+	"MoviePage": {
+		"ErrorNoInfo": "No information about this title.",
+		"MainCast": "Main Cast",
+		"SimilarTitles": "Similar Titles"
 	},
 	"Trending": {
 		"title": "Trending"

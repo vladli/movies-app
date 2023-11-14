@@ -59,23 +59,3 @@ export async function editFavorites(
     console.log(error);
   }
 }
-
-export async function checkFavorites(movieId?: number) {
-  const session = await getServerSession(authOptions);
-
-  if (!session) throw "Error";
-  const movie = {
-    movieId: 123,
-    dataType: "movie",
-    title: "Loser",
-    image: "img",
-  };
-  try {
-    const data = await prisma.user.findFirst({
-      where: { id: session.user?.id },
-    });
-    return data?.favoriteMovies;
-  } catch (error) {
-    console.log(error);
-  }
-}

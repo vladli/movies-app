@@ -1,5 +1,3 @@
-"use client";
-import React from "react";
 import { Card, CardHeader, Chip, Image } from "@nextui-org/react";
 import NextImage from "next/image";
 import Link from "next/link";

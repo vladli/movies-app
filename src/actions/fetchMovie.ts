@@ -12,6 +12,8 @@ import {
   TSortType,
 } from "@/types/types";
 
+import type { TLocales } from "@/navigation";
+
 export async function fetchData(
   url: string,
   opt?: RequestInit
@@ -35,9 +37,10 @@ export async function fetchData(
   }
 }
 
-const getLang = (lang: string) => (lang === "kr" ? "ko" : lang);
+const getLang = (lang: TLocales) => (lang === "kr" ? "ko" : lang);
 
 export async function getTrendingMovies(
+  language: TLocales = "en",
   page: number | undefined = 1
 ): Promise<TResponse<TMovieData[]> | undefined> {
   if (isNaN(Number(page))) {
@@ -45,6 +48,7 @@ export async function getTrendingMovies(
   }
   const params = new URLSearchParams({
     page: page.toString(),
+    language: getLang(language),
   }).toString();
   const url = `https://api.themoviedb.org/3/trending/all/week?${params}`;
   return fetchData(url);
@@ -52,10 +56,12 @@ export async function getTrendingMovies(
 
 export async function getMovie(
   category: TCategory,
-  id: string
+  id: string,
+  language: TLocales = "en"
 ): Promise<TMovieData | undefined> {
   const params = new URLSearchParams({
     append_to_response: "videos",
+    language: getLang(language),
   }).toString();
   const url = `https://api.themoviedb.org/3/${category}/${id}?${params}`;
   return fetchData(url);
@@ -63,14 +69,19 @@ export async function getMovie(
 
 export async function getSimilarMovie(
   category: TCategory,
-  id: string
+  id: string,
+  language: TLocales = "en"
 ): Promise<TResponse<TMovieData[]> | undefined> {
-  const url = `https://api.themoviedb.org/3/${category}/${id}/similar`;
+  const params = new URLSearchParams({
+    language: getLang(language),
+  }).toString();
+  const url = `https://api.themoviedb.org/3/${category}/${id}/similar?${params}`;
   return fetchData(url);
 }
 
 export async function getMovieList(
   type: TListType,
+  language: TLocales = "en",
   page: number = 1
 ): Promise<TResponse<TMovieData[]> | undefined> {
   if (isNaN(Number(page))) {
@@ -78,6 +89,7 @@ export async function getMovieList(
   }
   const params = new URLSearchParams({
     page: page.toString(),
+    language: getLang(language),
   }).toString();
   const url = `https://api.themoviedb.org/3/movie/${type}?${params}`;
   return fetchData(url);
@@ -85,6 +97,7 @@ export async function getMovieList(
 
 export async function getDiscover(
   category: TCategory,
+  language: TLocales = "en",
   genre: number | undefined = undefined,
   sort_by: TSortType = "popularity.desc",
   page: number | undefined = 1
@@ -93,6 +106,7 @@ export async function getDiscover(
     page = 1;
   }
   const params = new URLSearchParams({
+    language: getLang(language),
     page: page.toString(),
     sort_by: sort_by,
     with_genres: genre?.toString() || "undefined",
@@ -103,54 +117,77 @@ export async function getDiscover(
 
 export async function getCast(
   category: TCategory,
-  id: string
+  id: string,
+  language: TLocales = "en"
 ): Promise<{ id: number; cast: TCastMember[] } | undefined> {
-  const url = `https://api.themoviedb.org/3/${category}/${id}/credits`;
+  const params = new URLSearchParams({
+    language: getLang(language),
+  }).toString();
+  const url = `https://api.themoviedb.org/3/${category}/${id}/credits?${params}`;
   return fetchData(url);
 }
 
 export async function getGenres(
-  category: TCategory
+  category: TCategory,
+  language: TLocales = "en"
 ): Promise<{ genres: TGenre[] } | undefined> {
-  const url = `https://api.themoviedb.org/3/genre/${category}/list`;
+  const params = new URLSearchParams({
+    language: getLang(language),
+  }).toString();
+  const url = `https://api.themoviedb.org/3/genre/${category}/list?${params}`;
 
   return fetchData(url);
 }
 
 export async function getActors(
-  page: number = 1
+  page: number = 1,
+  language: TLocales = "en"
 ): Promise<TResponse<TCastMember[]> | undefined> {
   if (isNaN(Number(page))) {
     page = 1;
   }
   const params = new URLSearchParams({
     page: page.toString(),
+    language: getLang(language),
   }).toString();
+
   const url = `https://api.themoviedb.org/3/person/popular?${params}`;
 
   return fetchData(url);
 }
 
-export async function getActor(personId: string): Promise<TActor | undefined> {
-  const url = `https://api.themoviedb.org/3/person/${personId}`;
+export async function getActor(
+  personId: string,
+  language: TLocales = "en"
+): Promise<TActor | undefined> {
+  const params = new URLSearchParams({
+    language: getLang(language),
+  }).toString();
+  const url = `https://api.themoviedb.org/3/person/${personId}?${params}`;
 
   return fetchData(url);
 }
 
 export async function getCombinedCredits(
-  personId: string
+  personId: string,
+  language: TLocales = "en"
 ): Promise<{ cast: TMovieData[] } | undefined> {
-  const url = `https://api.themoviedb.org/3/person/${personId}/combined_credits`;
+  const params = new URLSearchParams({
+    language: getLang(language),
+  }).toString();
+  const url = `https://api.themoviedb.org/3/person/${personId}/combined_credits?${params}`;
 
   return fetchData(url);
 }
 
 export async function getSearchResults(
-  keyword: string
+  keyword: string,
+  language: TLocales = "en"
 ): Promise<TResponse<TSearchResult[]> | undefined> {
   const params = new URLSearchParams({
     include_adult: "true",
     query: keyword.toString(),
+    language: getLang(language),
   }).toString();
   const url = `https://api.themoviedb.org/3/search/multi?${params}`;
   return fetchData(url);

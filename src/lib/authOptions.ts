@@ -1,13 +1,10 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { NextAuthOptions } from "next-auth";
-import EmailProvider from "next-auth/providers/email";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import KakaoProvider from "next-auth/providers/kakao";
 
 import { prisma } from "@/lib/prisma";
-
-import { sendVerificationRequest } from "./email/resend";
 
 export const authOptions: NextAuthOptions = {
   debug: false,
@@ -59,9 +56,6 @@ export const authOptions: NextAuthOptions = {
     },
   },
   providers: [
-    EmailProvider({
-      sendVerificationRequest,
-    }),
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID as string,
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
@@ -77,6 +71,5 @@ export const authOptions: NextAuthOptions = {
   ],
   pages: {
     signIn: "/auth/login",
-    verifyRequest: "/auth/verify-request",
   },
 };

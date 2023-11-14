@@ -20,12 +20,13 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  plugins: ["react", "simple-import-sort", "@tanstack/query"],
+  plugins: ["react", "simple-import-sort", "@tanstack/query", "unused-imports"],
   rules: {
     // Possible errors
     "no-console": "off",
     "no-undef": "off",
     "no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
     // Best practices
     "dot-notation": "error",
     "no-else-return": "error",
