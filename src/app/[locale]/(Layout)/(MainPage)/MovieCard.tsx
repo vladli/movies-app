@@ -1,12 +1,12 @@
 "use client";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import NextImage from "next/image";
-import Link from "next/link";
 import { useLocale } from "next-intl";
 
 import MovieFavorite from "@/components/MovieFavorite";
 import MovieRating from "@/components/MovieRating";
 import { TMDB_POSTER_780 } from "@/lib/constants";
+import { Link } from "@/navigation";
 import { TMovieData } from "@/types/types";
 
 type Props = {

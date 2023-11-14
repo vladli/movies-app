@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic";
 
-import Footer from "../Layout/Footer";
 import Header from "../Layout/Header";
 const DynamiFooter = dynamic(() => import("../Layout/Footer"), {
   loading: () => <p>Loading...</p>,

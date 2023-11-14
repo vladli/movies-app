@@ -1,6 +1,5 @@
 import React from "react";
 import { notFound } from "next/navigation";
-import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
 import { getMovieList } from "@/actions/fetchMovie";
@@ -37,33 +36,25 @@ type Props = {
   };
 };
 
-function Translate({ children }: { children: (t: any) => React.ReactNode }) {
-  const t = useTranslations();
-  return <>{children(t)}</>;
-}
-
 export default async function page({ params, searchParams }: Props) {
   if (!["upcoming", "top_rated", "popular"].includes(params.category))
     return notFound();
+  const t = await getTranslations();
   const { page } = searchParams;
   const data = await getMovieList(params.category, params.locale, Number(page));
 
   return (
-    <Translate>
-      {(t) => (
-        <PageContainer
-          data={data}
-          title={t(title[params.category])}
-        >
-          {data?.results?.map((movie) => (
-            <MovieBlock
-              category="movie"
-              key={movie.id}
-              movie={movie}
-            />
-          ))}
-        </PageContainer>
-      )}
-    </Translate>
+    <PageContainer
+      data={data}
+      title={t(title[params.category] as any)}
+    >
+      {data?.results?.map((movie) => (
+        <MovieBlock
+          category="movie"
+          key={movie.id}
+          movie={movie}
+        />
+      ))}
+    </PageContainer>
   );
 }

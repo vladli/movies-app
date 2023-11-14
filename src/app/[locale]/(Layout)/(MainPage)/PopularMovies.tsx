@@ -1,15 +1,15 @@
 "use client";
 import { Button, Chip, Image } from "@nextui-org/react";
 import NextImage from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Autoplay, Keyboard, Navigation, Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import MovieRating from "@/components/MovieRating";
 import { TMDB_BACKDROP_PATH, TMDB_POSTER_780 } from "@/lib/constants";
 import { filterGenreNamesByIDs } from "@/lib/utils";
+import { Link } from "@/navigation";
 import { TGenre, TMovieData } from "@/types/types";
-import { useTranslations } from "next-intl";
 
 type Props = {
   data: TMovieData[] | undefined;

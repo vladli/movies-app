@@ -1,5 +1,4 @@
 import React from "react";
-import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
 import { getActors } from "@/actions/fetchMovie";
@@ -25,29 +24,21 @@ type Props = {
   };
 };
 
-function Translate({ children }: { children: (t: any) => React.ReactNode }) {
-  const t = useTranslations();
-  return <>{children(t)}</>;
-}
-
 export default async function page({ params, searchParams }: Props) {
   const { page } = searchParams;
+  const t = await getTranslations("Actors");
   const actors = await getActors(Number(page), params.locale);
   return (
-    <Translate>
-      {(t) => (
-        <PageContainer
-          data={actors}
-          title={t("Actors.title")}
-        >
-          {actors?.results.map((actor) => (
-            <ActorBlock
-              actor={actor}
-              key={actor.id}
-            />
-          ))}
-        </PageContainer>
-      )}
-    </Translate>
+    <PageContainer
+      data={actors}
+      title={t("title")}
+    >
+      {actors?.results.map((actor) => (
+        <ActorBlock
+          actor={actor}
+          key={actor.id}
+        />
+      ))}
+    </PageContainer>
   );
 }

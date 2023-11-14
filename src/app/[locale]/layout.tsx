@@ -1,17 +1,17 @@
 import { Toaster } from "react-hot-toast";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { notFound } from "next/navigation";
 import { getServerSession } from "next-auth";
+import { NextIntlClientProvider, useMessages } from "next-intl";
 
 import { authOptions } from "@/lib/authOptions";
+import { locales } from "@/navigation";
 
 import BottomTools from "./Layout/BottomTools";
 import Providers from "./providers";
 
 import "./globals.css";
-import { locales } from "@/navigation";
-import { notFound } from "next/navigation";
-import { NextIntlClientProvider, useMessages } from "next-intl";
 
 const inter = Inter({ subsets: ["latin"] });
 

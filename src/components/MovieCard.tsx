@@ -1,9 +1,10 @@
+"use client";
 import { Card, CardHeader, Chip, Image } from "@nextui-org/react";
 import NextImage from "next/image";
-import Link from "next/link";
 
 import MovieRating from "@/components/MovieRating";
 import { TMDB_POSTER_780 } from "@/lib/constants";
+import { Link } from "@/navigation";
 import { TCategory, TMovieData } from "@/types/types";
 
 import MovieFavorite from "./MovieFavorite";

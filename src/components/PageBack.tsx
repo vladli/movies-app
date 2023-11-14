@@ -2,8 +2,9 @@
 import React from "react";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+
+import { useRouter } from "@/navigation";
 
 export default function PageBack() {
   const t = useTranslations();

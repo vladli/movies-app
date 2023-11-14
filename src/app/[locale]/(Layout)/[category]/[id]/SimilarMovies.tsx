@@ -2,12 +2,12 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 import { getSimilarMovie } from "@/actions/fetchMovie";
 import MovieCard from "@/components/MovieCard";
-import { TCategory, TMovieData } from "@/types/types";
-import { useTranslations } from "next-intl";
 import { TLocales } from "@/navigation";
+import { TCategory } from "@/types/types";
 
 type Props = {
   id: string;

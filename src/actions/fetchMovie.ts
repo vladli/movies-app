@@ -1,5 +1,6 @@
 "use server";
 
+import type { TLocales } from "@/navigation";
 import {
   TActor,
   TCastMember,
@@ -11,8 +12,6 @@ import {
   TSearchResult,
   TSortType,
 } from "@/types/types";
-
-import type { TLocales } from "@/navigation";
 
 export async function fetchData(
   url: string,

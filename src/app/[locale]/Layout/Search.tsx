@@ -3,13 +3,12 @@ import React, { useState } from "react";
 import { MdSearch } from "react-icons/md";
 import { Input, Listbox, ListboxItem, ListboxSection } from "@nextui-org/react";
 import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 
 import { getSearchResults } from "@/actions/fetchMovie";
 import useDebounce from "@/hooks/useDebounce";
 import { cn } from "@/lib/utils";
-import { useLocale, useTranslations } from "next-intl";
-import { TLocales } from "@/navigation";
+import { Link, TLocales } from "@/navigation";
 
 type Props = {
   className?: string;

@@ -1,8 +1,8 @@
 import { getGenres, getMovieList } from "@/actions/fetchMovie";
+import type { TLocales } from "@/navigation";
 
 import CategoryBlock from "./CategoryBlock";
 import PopularMovies from "./PopularMovies";
-import type { TLocales } from "@/navigation";
 
 export const revalidate = 3600;
 

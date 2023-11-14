@@ -17,8 +17,8 @@ export default function ThemeSwitcher() {
   return (
     <Button
       isIconOnly
-      radius="full"
       onClick={() => setTheme(switchTheme)}
+      radius="full"
     >
       {theme === "light" ? <MdDarkMode /> : <MdLightMode />}
     </Button>

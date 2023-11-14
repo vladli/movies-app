@@ -1,6 +1,6 @@
+import { NextRequest } from "next/server";
 import { withAuth } from "next-auth/middleware";
 import createIntlMiddleware from "next-intl/middleware";
-import { NextRequest } from "next/server";
 
 import { locales } from "@/navigation";
 
@@ -33,9 +33,9 @@ export default function middleware(req: NextRequest) {
 
   if (isPrivatePage) {
     return (authMiddleware as any)(req);
-  } else {
+  } 
     return intlMiddleware(req);
-  }
+  
 }
 
 export const config = {

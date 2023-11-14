@@ -3,11 +3,10 @@ import { useState } from "react";
 import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 import { TMenu } from "@/lib/data";
-import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/navigation";
 
 const MenuItemMobile = React.memo(({ toggle, url, name, children }: TMenu) => {
   const t = useTranslations();

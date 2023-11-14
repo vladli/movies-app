@@ -1,8 +1,9 @@
 "use client";
-import { Button, Pagination as NextPagination } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { Button, Pagination as NextPagination } from "@nextui-org/react";
+
+import { useRouter } from "@/navigation";
 
 type Props = {
   currentPage: number | undefined;

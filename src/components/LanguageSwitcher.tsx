@@ -1,5 +1,5 @@
 "use client";
-import { usePathname, useRouter } from "@/navigation";
+import { useState } from "react";
 import {
   Avatar,
   Dropdown,
@@ -8,7 +8,8 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import { useLocale } from "next-intl";
-import { useState } from "react";
+
+import { usePathname, useRouter } from "@/navigation";
 
 const locales = [
   {
@@ -52,9 +53,9 @@ export default function LanguageSwitcher() {
         onAction={(key) => {
           router.replace(pathname, { locale: key.toString() });
         }}
-        selectionMode="single"
-        selectedKeys={selectedKeys}
         onSelectionChange={setSelectedKeys}
+        selectedKeys={selectedKeys}
+        selectionMode="single"
         variant="faded"
       >
         {locales.map(({ name, value, flag }) => (

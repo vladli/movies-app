@@ -3,14 +3,14 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@nextui-org/react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 import { getCast } from "@/actions/fetchMovie";
 import useToggle from "@/hooks/useToggle";
+import { TLocales } from "@/navigation";
 import { TCategory } from "@/types/types";
 
 import CastCard from "./CastCard";
-import { useTranslations } from "next-intl";
-import { TLocales } from "@/navigation";
 
 type Props = {
   category: TCategory;

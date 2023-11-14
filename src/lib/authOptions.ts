@@ -3,8 +3,9 @@ import { NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import KakaoProvider from "next-auth/providers/kakao";
-import YandexProvider from "next-auth/providers/yandex";
 import VkProvider from "next-auth/providers/vk";
+import YandexProvider from "next-auth/providers/yandex";
+
 import { prisma } from "@/lib/prisma";
 
 export const authOptions: NextAuthOptions = {

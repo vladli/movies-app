@@ -1,9 +1,9 @@
 import React from "react";
+import { useTranslations } from "next-intl";
 
 import { TCastMember, TMovieData, TResponse } from "@/types/types";
 
 import Pagination from "./Pagination";
-import { useTranslations } from "next-intl";
 
 type Props = {
   children: React.ReactNode;

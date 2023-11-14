@@ -2,18 +2,18 @@
 import { useEffect } from "react";
 import { Button } from "@nextui-org/react";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 
 import Logo from "@/components/Logo";
 import useToggle from "@/hooks/useToggle";
 import { menu } from "@/lib/data";
+import { Link } from "@/navigation";
 
 import MenuItem from "./MenuItem";
 import MenuItemMobile from "./MenuItemMobile";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
-import { useTranslations } from "next-intl";
 
 export default function Header() {
   const t = useTranslations();
