@@ -1,13 +1,13 @@
 import React from "react";
 import { notFound } from "next/navigation";
-import { Metadata } from "next/types";
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import { getMovieList } from "@/actions/fetchMovie";
 import MovieBlock from "@/components/MovieCard";
 import PageContainer from "@/components/PageContainer";
-import { TListType } from "@/types/types";
-import { useTranslations } from "next-intl";
 import { TLocales } from "@/navigation";
+import { TListType } from "@/types/types";
 
 export const revalidate = 3600;
 
@@ -17,9 +17,12 @@ const title = {
   upcoming: "Discover.Upcoming.title",
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params: { locale, category },
+}: Props) {
+  const t = await getTranslations({ locale });
   return {
-    title: title[params.category],
+    title: t(title[category] as any),
   };
 }
 

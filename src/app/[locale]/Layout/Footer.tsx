@@ -1,6 +1,7 @@
 import { AiFillGithub } from "react-icons/ai";
 import { MdOutlineContactPage } from "react-icons/md";
 import { Button } from "@nextui-org/react";
+import { useTranslations } from "next-intl";
 
 const socials = [
   {
@@ -16,17 +17,18 @@ const socials = [
 ];
 
 export default function Footer() {
+  const t = useTranslations();
   return (
-    <footer className="mb-[4rem] bg-background border-t border-foreground-200 p-4 lg:mb-0">
+    <footer className="mb-[4rem] border-t border-foreground-200 bg-background p-4 lg:mb-0">
       <div className="flex flex-col items-center gap-4">
         <div className="flex gap-2">
           {socials.map(({ name, icon: Icon, link }) => (
             <Button
-              key={link}
               as="a"
               href={link}
-              target="_blank"
+              key={link}
               startContent={<Icon size="1.5rem" />}
+              target="_blank"
               variant="flat"
             >
               {name}
@@ -34,7 +36,7 @@ export default function Footer() {
           ))}
         </div>
         <div className="text-center">
-          This project was created for the vladli.dev portfolio.
+          {t("#ROOT.Footer.description", { website: "vladli.dev" })}
         </div>
       </div>
     </footer>

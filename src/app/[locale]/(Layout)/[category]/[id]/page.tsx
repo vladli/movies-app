@@ -3,15 +3,15 @@ import { notFound } from "next/navigation";
 
 import { getMovie } from "@/actions/fetchMovie";
 import PageBack from "@/components/PageBack";
+import { TLocales } from "@/navigation";
 import { TCategory } from "@/types/types";
 
 import MovieCard from "./MovieCard";
 import MovieCast from "./MovieCast";
 import SimilarMovies from "./SimilarMovies";
-import { TLocales } from "@/navigation";
 
 export async function generateMetadata({ params }: Props) {
-  const movie = await getMovie(params.category, params.id);
+  const movie = await getMovie(params.category, params.id, params.locale);
   return {
     title: movie?.title || movie?.name || "Not Found",
   };

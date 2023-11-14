@@ -8,7 +8,6 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
-  User,
 } from "@nextui-org/react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
@@ -51,14 +50,14 @@ export default function UserMenu() {
             key="favorites"
             startContent={<AiFillHeart />}
           >
-            My Favorites
+            {t("#ROOT.Header.Profile.MyFavorites")}
           </DropdownItem>
           <DropdownItem
             key="settings"
             showDivider
             startContent={<MdSettings />}
           >
-            My Settings
+            {t("#ROOT.Header.Profile.MySettings")}
           </DropdownItem>
 
           <DropdownItem
@@ -67,7 +66,7 @@ export default function UserMenu() {
             onPress={() => signOut()}
             startContent={<MdLogout />}
           >
-            Log Out
+            {t("#ROOT.Header.Profile.LogOut")}
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>

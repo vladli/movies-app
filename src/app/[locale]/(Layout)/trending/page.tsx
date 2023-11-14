@@ -1,17 +1,20 @@
 import React from "react";
-import { Metadata } from "next";
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import { getTrendingMovies } from "@/actions/fetchMovie";
 import MovieCard from "@/components/MovieCard";
 import PageContainer from "@/components/PageContainer";
-import { useTranslations } from "next-intl";
 import { TLocales } from "@/navigation";
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: "Trending",
-};
+export async function generateMetadata({ params: { locale } }: Props) {
+  const t = await getTranslations({ locale, namespace: "Trending" });
+  return {
+    title: t("title"),
+  };
+}
 
 type Props = {
   params: { locale: TLocales };

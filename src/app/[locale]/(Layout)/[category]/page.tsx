@@ -1,19 +1,19 @@
 import React from "react";
-import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import { getDiscover } from "@/actions/fetchMovie";
 import MovieBlock from "@/components/MovieCard";
 import PageContainer from "@/components/PageContainer";
-import { useTranslations } from "next-intl";
 import { TLocales } from "@/navigation";
 
 export const revalidate = 3600;
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const title = params.category === "tv" ? "TV" : "Movies";
+export async function generateMetadata({ params: { locale } }: Props) {
+  const t = await getTranslations({ locale });
   return {
-    title: title,
+    title: t("TV Series.title"),
   };
 }
 

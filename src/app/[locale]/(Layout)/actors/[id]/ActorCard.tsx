@@ -3,6 +3,7 @@ import { MdOutlineCalendarMonth, MdOutlinePlace } from "react-icons/md";
 import { Button, Chip, useDisclosure } from "@nextui-org/react";
 import { motion, Variants } from "framer-motion";
 import NextImage from "next/image";
+import { useLocale, useTranslations } from "next-intl";
 
 import { TMDB_POSTER_780 } from "@/lib/constants";
 import { TActor } from "@/types/types";
@@ -10,7 +11,6 @@ import { TActor } from "@/types/types";
 import FullBiography from "./FullBiography";
 
 import BackdropImage from "/public/bio.jpg";
-import { useTranslations } from "next-intl";
 
 const h2: Variants = {
   visible: { opacity: 1, scale: 1 },
@@ -31,12 +31,16 @@ type Props = {
 
 export default function ActorCard({ actor }: Props) {
   const t = useTranslations();
+  let locale = useLocale();
+  locale = locale === "kr" ? "ko" : locale;
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const birthDate = new Date(actor?.birthday as string);
-  const birthDateFormat = `${birthDate.getDate()} ${birthDate.toLocaleString(
-    "en-US",
-    { month: "long" }
-  )} ${birthDate.getFullYear()}`;
+
+  const birthDateFormat = birthDate.toLocaleString(locale, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
   return (
     <section className="relative">
       <div className="absolute left-0 top-0 z-0 h-full w-full select-none">
@@ -93,7 +97,7 @@ export default function ActorCard({ actor }: Props) {
             variants={h3}
           >
             <p className="line-clamp-[10]">
-              {actor?.biography || "No biography for this person."}
+              {actor?.biography || t("Actors.ErrorNoBio")}
             </p>
             {actor?.biography && (
               <Button
