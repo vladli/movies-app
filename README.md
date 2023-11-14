@@ -8,15 +8,6 @@
 
 [https://movie-app.vladli.dev](https://movie-app.vladli.dev)
 
-<h2>Project Screenshots:</h2>
-
-<img src="https://vladli.dev/projects/MoviesApp/1.png" alt="project-screenshot" width="200">
-
-<img src="https://vladli.dev/projects/MoviesApp/2.png" alt="project-screenshot" width="200">
-
-<img src="https://vladli.dev/projects/MoviesApp/3.png" alt="project-screenshot" width="200">
-
-  
   
 <h2>🧐 Features</h2>
 
