@@ -139,15 +139,13 @@ export async function getGenres(
 }
 
 export async function getActors(
-  page: number = 1,
-  language: TLocales = "en"
+  page: number = 1
 ): Promise<TResponse<TCastMember[]> | undefined> {
   if (isNaN(Number(page))) {
     page = 1;
   }
   const params = new URLSearchParams({
     page: page.toString(),
-    language: getLang(language),
   }).toString();
 
   const url = `https://api.themoviedb.org/3/person/popular?${params}`;

@@ -24,10 +24,10 @@ type Props = {
   };
 };
 
-export default async function page({ params, searchParams }: Props) {
+export default async function page({ searchParams }: Props) {
   const { page } = searchParams;
   const t = await getTranslations("Actors");
-  const actors = await getActors(Number(page), params.locale);
+  const actors = await getActors(Number(page));
   return (
     <PageContainer
       data={actors}
