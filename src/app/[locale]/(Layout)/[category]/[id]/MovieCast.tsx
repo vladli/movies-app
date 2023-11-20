@@ -57,7 +57,7 @@ export default function MovieCast({ category, id, locale }: Props) {
           onClick={toggle}
           size="lg"
         >
-          {!on ? "View all" : "Collapse"}
+          {!on ? t("#ROOT.ButtonViewAll") : t("#ROOT.ButtonCollapse")}
         </Button>
       )}
     </motion.section>
