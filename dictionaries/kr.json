@@ -18,7 +18,7 @@
 			"Profile": {
 				"LogOut": "로그 아웃",
 				"MyFavorites": "내가 좋아하는 것들",
-				"MySettings": "내 설정",
+				"MyProfile": "내 프로필",
 				"signedInAs": "로그인됨"
 			},
 			"Search": {
@@ -67,6 +67,11 @@
 		"Favorites": {
 			"empty": "아직 즐겨찾기에 추가한 영화가 없습니다.",
 			"title": "즐겨 찾기"
+		},
+		"MyProfile": {
+			"email": "이메일: {email}",
+			"title": "윤곽",
+			"userName": "사용자 이름: {name}"
 		}
 	},
 	"Trending": {

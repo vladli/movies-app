@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { AiFillHeart } from "react-icons/ai";
-import { MdLogout, MdSettings } from "react-icons/md";
+import { MdAccountCircle, MdLogout } from "react-icons/md";
 import {
   Avatar,
   Dropdown,
@@ -29,7 +29,7 @@ export default function UserMenu() {
         </DropdownTrigger>
         <DropdownMenu
           aria-label="Profile Actions"
-          disabledKeys={["profile", "settings"]}
+          disabledKeys={["profile"]}
           variant="flat"
         >
           <DropdownItem
@@ -53,11 +53,13 @@ export default function UserMenu() {
             {t("#ROOT.Header.Profile.MyFavorites")}
           </DropdownItem>
           <DropdownItem
+            as={Link}
+            href="/profile"
             key="settings"
             showDivider
-            startContent={<MdSettings />}
+            startContent={<MdAccountCircle />}
           >
-            {t("#ROOT.Header.Profile.MySettings")}
+            {t("#ROOT.Header.Profile.MyProfile")}
           </DropdownItem>
 
           <DropdownItem

@@ -17,8 +17,8 @@
 		"Header": {
 			"Profile": {
 				"LogOut": "Выйти",
-				"MyFavorites": "Мои любимые",
-				"MySettings": "Мои настройки",
+				"MyFavorites": "Мои избранные",
+				"MyProfile": "Мой профиль",
 				"signedInAs": "Выполнен вход как"
 			},
 			"Search": {
@@ -67,6 +67,11 @@
 		"Favorites": {
 			"empty": "Вы еще не добавили ни одного фильма в избранное.",
 			"title": "Избранные"
+		},
+		"MyProfile": {
+			"email": "Эл. адрес: {email}",
+			"title": "Профиль",
+			"userName": "Имя пользователя: {name}"
 		}
 	},
 	"Trending": {
