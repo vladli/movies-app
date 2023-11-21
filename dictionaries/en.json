@@ -18,7 +18,7 @@
 			"Profile": {
 				"LogOut": "Log Out",
 				"MyFavorites": "My Favorites",
-				"MySettings": "My Settings",
+				"MyProfile": "My Profile",
 				"signedInAs": "Signed in as"
 			},
 			"Search": {
@@ -67,6 +67,11 @@
 		"Favorites": {
 			"empty": "You did not add any movies to favorites yet.",
 			"title": "Favorites"
+		},
+		"MyProfile": {
+			"email": "Email: {email}",
+			"title": "Profile",
+			"userName": "Username: {name}"
 		}
 	},
 	"Trending": {
