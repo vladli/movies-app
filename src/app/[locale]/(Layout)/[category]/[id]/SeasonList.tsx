@@ -11,7 +11,7 @@ import { TLocales } from "@/navigation";
 import { TMovieData } from "@/types/types";
 
 type Props = {
-  tv: TMovieData | undefined;
+  tv: TMovieData;
   id: string;
   locale: TLocales;
 };
@@ -27,7 +27,9 @@ function toHoursAndMinutes(totalMinutes: number) {
 
 export default function SeasonList({ tv, id, locale }: Props) {
   const t = useTranslations();
-  const [selectedTab, setSelectedTab] = useState<any>(0);
+  const [selectedTab, setSelectedTab] = useState<any>(
+    tv.seasons ? tv.seasons[0].season_number : 1
+  );
   const { data } = useQuery({
     queryKey: ["seriesList", id, selectedTab, locale],
     queryFn: () => getSeriesList(id, selectedTab, locale),

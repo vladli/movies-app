@@ -37,7 +37,7 @@ export default async function page({ params }: Props) {
         category={params.category}
         movie={movie}
       />
-      {params.category === "tv" && (
+      {params.category === "tv" && movie && (
         <SeasonList
           id={params.id}
           locale={params.locale}
