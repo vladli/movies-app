@@ -34,6 +34,7 @@ export default function SeasonList({ tv, id, locale }: Props) {
     queryKey: ["seriesList", id, selectedTab, locale],
     queryFn: () => getSeriesList(id, selectedTab, locale),
   });
+  console.log(data, selectedTab, id, locale);
   return (
     <motion.section
       animate={{ opacity: 1, x: 0, transition: { delay: 0.6 } }}
