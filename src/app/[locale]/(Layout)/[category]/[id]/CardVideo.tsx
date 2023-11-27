@@ -18,7 +18,9 @@ export default function CardVideo({ isOpen, onOpenChange, data }: Props) {
       autoplay: 0,
     },
   };
-  const video = data?.find((video) => video.type === "Trailer");
+  let video = data?.find((video) => video.type === "Trailer");
+  if (!video && data) video = data[0];
+
   if (!data || !video) return null;
   return (
     <Modal

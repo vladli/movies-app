@@ -61,6 +61,8 @@
 	"MoviePage": {
 		"ErrorNoInfo": "Нет информации.",
 		"MainCast": "В главных ролях",
+		"Reviews": "Отзывы",
+		"SeasonList": "Список сезонов",
 		"SimilarTitles": "Рекомендации"
 	},
 	"Profile": {

@@ -34,6 +34,7 @@ export default function MovieCast({ category, id, locale }: Props) {
     if (!on) setCasts(data?.cast?.slice(0, 10));
     else setCasts(data?.cast);
   }, [on]);
+  if (!data?.cast.length) return null;
   return (
     <motion.section
       animate={{ opacity: 1, x: 0, transition: { delay: 0.6 } }}

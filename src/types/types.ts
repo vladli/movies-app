@@ -6,6 +6,11 @@ export type TResponse<T> = {
   total_results: number;
   total_pages: number;
 };
+export type TResponseSeasons<T> = {
+  _id: string;
+  air_date: string;
+  episodes: T;
+};
 export type TListType = "upcoming" | "top_rated" | "popular";
 export type TCategory = "movie" | "tv";
 export type TSortType =
@@ -52,6 +57,28 @@ export type TMovieData = {
     results: TVideo[];
   };
   similar?: TResponse<TMovieData[]>;
+  seasons?: {
+    air_date: string;
+    episode_count: number;
+    id: number;
+    name: string;
+    overview: string;
+    poster_path: string;
+    season_number: number;
+    vote_average: number;
+  }[];
+};
+
+export type TSeries = {
+  air_date: string;
+  episode_count: number;
+  id: number;
+  name: string;
+  overview: string;
+  runtime: number;
+  still_path: string;
+  season_number: number;
+  vote_average: number;
 };
 
 export type TCastMember = {
@@ -99,4 +126,19 @@ export type TVideo = {
     | "Bloopers";
 
   id: string;
+};
+
+export type TReview = {
+  author: string;
+  author_details: {
+    name: string;
+    username: string;
+    avatar_path: string;
+    rating: number | null;
+  };
+  content: string;
+  created_at: string;
+  id: string;
+  updated_at: string;
+  url: string;
 };

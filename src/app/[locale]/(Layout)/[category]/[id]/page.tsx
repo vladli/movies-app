@@ -8,6 +8,8 @@ import { TCategory } from "@/types/types";
 
 import MovieCard from "./MovieCard";
 import MovieCast from "./MovieCast";
+import Reviews from "./Reviews";
+import SeasonList from "./SeasonList";
 import SimilarMovies from "./SimilarMovies";
 
 export async function generateMetadata({ params }: Props) {
@@ -35,12 +37,24 @@ export default async function page({ params }: Props) {
         category={params.category}
         movie={movie}
       />
+      {params.category === "tv" && (
+        <SeasonList
+          id={params.id}
+          locale={params.locale}
+          tv={movie}
+        />
+      )}
       <MovieCast
         category={params.category}
         id={params.id}
         locale={params.locale}
       />
       <SimilarMovies
+        category={params.category}
+        id={params.id}
+        locale={params.locale}
+      />
+      <Reviews
         category={params.category}
         id={params.id}
         locale={params.locale}

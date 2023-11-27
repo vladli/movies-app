@@ -31,7 +31,7 @@ export default function SimilarMovies({ id, category, locale }: Props) {
         {t("MoviePage.SimilarTitles")}
       </h2>
       <motion.ul className="flex flex-wrap justify-around gap-4">
-        {data?.results.map((movie) => (
+        {data?.results.slice(0, 10).map((movie) => (
           <MovieCard
             category={category}
             key={movie.id}

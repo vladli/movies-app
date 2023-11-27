@@ -9,7 +9,10 @@ import {
   TListType,
   TMovieData,
   TResponse,
+  TResponseSeasons,
+  TReview,
   TSearchResult,
+  TSeries,
   TSortType,
 } from "@/types/types";
 
@@ -63,18 +66,6 @@ export async function getMovie(
     language: getLang(language),
   }).toString();
   const url = `https://api.themoviedb.org/3/${category}/${id}?${params}`;
-  return fetchData(url);
-}
-
-export async function getSimilarMovie(
-  category: TCategory,
-  id: string,
-  language: TLocales = "en"
-): Promise<TResponse<TMovieData[]> | undefined> {
-  const params = new URLSearchParams({
-    language: getLang(language),
-  }).toString();
-  const url = `https://api.themoviedb.org/3/${category}/${id}/similar?${params}`;
   return fetchData(url);
 }
 
@@ -174,6 +165,42 @@ export async function getCombinedCredits(
   }).toString();
   const url = `https://api.themoviedb.org/3/person/${personId}/combined_credits?${params}`;
 
+  return fetchData(url);
+}
+
+export async function getSimilarMovie(
+  category: TCategory,
+  id: string,
+  language: TLocales = "en"
+): Promise<TResponse<TMovieData[]> | undefined> {
+  const params = new URLSearchParams({
+    language: getLang(language),
+  }).toString();
+  const url = `https://api.themoviedb.org/3/${category}/${id}/similar?${params}`;
+  return fetchData(url);
+}
+
+export async function getSeriesList(
+  id: string,
+  seasonNumber: number = 1,
+  language: TLocales = "en"
+): Promise<TResponseSeasons<TSeries[]> | undefined> {
+  const params = new URLSearchParams({
+    language: getLang(language),
+  }).toString();
+  const url = `https://api.themoviedb.org/3/tv/${id}/season/${seasonNumber}?${params}`;
+  return fetchData(url);
+}
+
+export async function getReviews(
+  category: TCategory,
+  id: string,
+  language: TLocales = "en"
+): Promise<TResponse<TReview[]> | undefined> {
+  const params = new URLSearchParams({
+    language: getLang(language),
+  }).toString();
+  const url = `https://api.themoviedb.org/3/${category}/${id}/reviews?${params}`;
   return fetchData(url);
 }
 
