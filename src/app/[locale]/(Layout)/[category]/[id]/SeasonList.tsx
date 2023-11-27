@@ -28,13 +28,12 @@ function toHoursAndMinutes(totalMinutes: number) {
 export default function SeasonList({ tv, id, locale }: Props) {
   const t = useTranslations();
   const [selectedTab, setSelectedTab] = useState<any>(
-    tv.seasons ? tv.seasons[0].season_number : 1
+    tv.seasons ? tv.seasons[0].season_number.toString() : "1"
   );
   const { data } = useQuery({
     queryKey: ["seriesList", id, selectedTab, locale],
     queryFn: () => getSeriesList(id, selectedTab, locale),
   });
-  console.log(data, selectedTab, id, locale);
   return (
     <motion.section
       animate={{ opacity: 1, x: 0, transition: { delay: 0.6 } }}
