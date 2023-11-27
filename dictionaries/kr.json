@@ -61,6 +61,8 @@
 	"MoviePage": {
 		"ErrorNoInfo": "이 제목에 대한 정보가 없습니다.",
 		"MainCast": "주요 출연진",
+		"Reviews": "리뷰",
+		"SeasonList": "시즌 목록",
 		"SimilarTitles": "추천"
 	},
 	"Profile": {

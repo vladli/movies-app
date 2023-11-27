@@ -61,6 +61,8 @@
 	"MoviePage": {
 		"ErrorNoInfo": "No information about this title.",
 		"MainCast": "Main Cast",
+		"Reviews": "Reviews",
+		"SeasonList": "Season List",
 		"SimilarTitles": "Similar Titles"
 	},
 	"Profile": {
