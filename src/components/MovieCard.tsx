@@ -1,6 +1,6 @@
 "use client";
+import { CiImageOff } from "react-icons/ci";
 import { Card, CardHeader, Chip, Image } from "@nextui-org/react";
-import NextImage from "next/image";
 
 import MovieRating from "@/components/MovieRating";
 import { TMDB_POSTER_780 } from "@/lib/constants";
@@ -54,16 +54,18 @@ export default function MovieCard({ category, movie }: Props) {
         {movie.poster_path ? (
           <Image
             alt="Card background"
-            as={NextImage}
             className="h-full w-full object-cover"
             height={780}
             radius="none"
             removeWrapper
             src={TMDB_POSTER_780 + movie.poster_path}
-            unoptimized
             width={1170}
           />
-        ) : null}
+        ) : (
+          <div className="flex h-full items-center justify-center">
+            <CiImageOff size="4rem" />
+          </div>
+        )}
       </div>
     </Card>
   );

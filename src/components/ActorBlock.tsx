@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
+import { CiImageOff } from "react-icons/ci";
 import { Card, CardHeader, Image } from "@nextui-org/react";
-import NextImage from "next/image";
 
 import { TMDB_POSTER_780 } from "@/lib/constants";
 import { Link } from "@/navigation";
@@ -23,21 +23,21 @@ export default function ActorBlock({ category, actor }: Props) {
       <CardHeader className="flex-col !items-start py-4 text-large font-bold">
         {actor.name}
       </CardHeader>
-      {actor.profile_path ? (
-        <div className="h-full w-full">
+      <div className="flex h-full w-full items-center justify-center">
+        {actor.profile_path ? (
           <Image
             alt="Card background"
-            as={NextImage}
             className="h-full w-full object-cover"
             height={1170}
             radius="none"
             removeWrapper
             src={TMDB_POSTER_780 + actor.profile_path}
-            unoptimized
             width={780}
           />
-        </div>
-      ) : null}
+        ) : (
+          <CiImageOff size="4rem" />
+        )}
+      </div>
     </Card>
   );
 }

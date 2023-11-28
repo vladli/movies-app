@@ -1,6 +1,6 @@
 import React from "react";
+import { CiImageOff } from "react-icons/ci";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
-import NextImage from "next/image";
 
 import { TMDB_POSTER_780 } from "@/lib/constants";
 import { Link } from "@/navigation";
@@ -21,18 +21,20 @@ export default function CastCard({ actor }: Props) {
       shadow="sm"
     >
       <CardBody className="overflow-visible p-0 ">
-        {actor.profile_path && (
+        {actor.profile_path ? (
           <Image
             alt=""
-            as={NextImage}
             className="h-[16rem] w-[14rem] select-none object-cover"
             height={1170}
             radius="lg"
             shadow="sm"
             src={TMDB_POSTER_780 + actor.profile_path}
-            unoptimized
             width={780}
           />
+        ) : (
+          <div className="flex h-full items-center justify-center">
+            <CiImageOff size="4rem" />
+          </div>
         )}
       </CardBody>
       <CardFooter className="justify-between text-small">

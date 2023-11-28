@@ -1,6 +1,7 @@
 "use client";
+import { CiImageOff } from "react-icons/ci";
 import { MdOutlineCalendarMonth, MdOutlinePlace } from "react-icons/md";
-import { Button, Chip, useDisclosure } from "@nextui-org/react";
+import { Button, Chip, Image, useDisclosure } from "@nextui-org/react";
 import { motion, Variants } from "framer-motion";
 import NextImage from "next/image";
 import { useLocale, useTranslations } from "next-intl";
@@ -9,8 +10,6 @@ import { TMDB_POSTER_780 } from "@/lib/constants";
 import { TActor } from "@/types/types";
 
 import FullBiography from "./FullBiography";
-
-import BackdropImage from "/public/bio.jpg";
 
 const h2: Variants = {
   visible: { opacity: 1, scale: 1 },
@@ -49,20 +48,22 @@ export default function ActorCard({ actor }: Props) {
           alt=""
           className="object-cover"
           fill
-          priority
-          src={BackdropImage}
+          src="/bio.jpg"
         />
       </div>
       <div className="relative top-6 flex flex-col items-center justify-around gap-2 p-6 lg:flex-row-reverse lg:items-start">
-        <section className="relative max-w-[18rem] select-none">
-          <NextImage
-            alt=""
-            className="rounded-large"
-            height={1170}
-            src={TMDB_POSTER_780 + actor?.profile_path}
-            unoptimized
-            width={780}
-          />
+        <section className="relative flex min-h-[30rem] max-w-[18rem] select-none items-center">
+          {actor?.profile_path ? (
+            <Image
+              alt="Card background"
+              className="h-full w-full object-cover"
+              height={1170}
+              src={TMDB_POSTER_780 + actor.profile_path}
+              width={780}
+            />
+          ) : (
+            <CiImageOff size="4rem" />
+          )}
         </section>
         <motion.section
           animate="visible"
@@ -76,12 +77,14 @@ export default function ActorCard({ actor }: Props) {
             {actor?.name}
           </motion.h2>
           <div className="flex flex-wrap gap-2">
-            <Chip
-              color="primary"
-              startContent={<MdOutlineCalendarMonth size={16} />}
-            >
-              {birthDateFormat}
-            </Chip>
+            {actor?.birthday && (
+              <Chip
+                color="primary"
+                startContent={<MdOutlineCalendarMonth size={16} />}
+              >
+                {birthDateFormat}
+              </Chip>
+            )}
             {actor?.place_of_birth && (
               <Chip
                 color="default"

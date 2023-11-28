@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
-import { Button, Chip, useDisclosure } from "@nextui-org/react";
+import { CiImageOff } from "react-icons/ci";
+import { Button, Chip, Image, useDisclosure } from "@nextui-org/react";
 import { motion, Variants } from "framer-motion";
 import NextImage from "next/image";
 import { useTranslations } from "next-intl";
@@ -44,16 +45,18 @@ export default function MovieCard({ category, movie }: Props) {
 
   return (
     <section className="relative">
-      <div className="absolute left-0 top-0 z-0 h-full w-full select-none">
-        <div className="absolute z-10 h-full w-full bg-gradient-to-b from-background via-background/50 to-background" />
-        <NextImage
-          alt=""
-          className="object-cover"
-          fill
-          priority
-          src={TMDB_BACKDROP_PATH + backDropImage}
-        />
-      </div>
+      {backDropImage && (
+        <div className="absolute left-0 top-0 z-0 h-full w-full select-none">
+          <div className="absolute z-10 h-full w-full bg-gradient-to-b from-background via-background/50 to-background" />
+          <NextImage
+            alt=""
+            className="object-cover"
+            fill
+            priority
+            src={TMDB_BACKDROP_PATH + backDropImage}
+          />
+        </div>
+      )}
       <div className="relative top-6 flex flex-col items-center justify-around gap-2 p-6 lg:flex-row-reverse lg:items-start">
         <section className="relative max-w-[28rem] select-none">
           <MovieRating
@@ -61,16 +64,19 @@ export default function MovieCard({ category, movie }: Props) {
             score={movie?.vote_average}
           />
 
-          <NextImage
-            alt=""
-            className="rounded-large"
-            height={1170}
-            priority
-            quality={100}
-            src={TMDB_POSTER_780 + posterImage}
-            unoptimized
-            width={780}
-          />
+          {movie?.poster_path ? (
+            <Image
+              alt="Card background"
+              className="h-full w-full object-cover"
+              height={780}
+              src={TMDB_POSTER_780 + movie.poster_path}
+              width={1170}
+            />
+          ) : (
+            <div className="flex h-full min-h-[30rem] items-center justify-center">
+              <CiImageOff size="4rem" />
+            </div>
+          )}
         </section>
         <motion.section
           animate="visible"
@@ -120,7 +126,7 @@ export default function MovieCard({ category, movie }: Props) {
             className="flex max-w-[32rem] flex-col text-lg font-medium"
             variants={h3}
           >
-            <p>{movie?.overview || "No information about this title."}</p>
+            <p>{movie?.overview || t("MoviePage.ErrorNoInfo")}</p>
             {movie?.videos.results.length ? (
               <Button
                 className="my-10 font-medium"

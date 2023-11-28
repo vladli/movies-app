@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { CiImageOff } from "react-icons/ci";
 import { Card, CardBody, Chip, Image, Tab, Tabs } from "@nextui-org/react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
@@ -81,14 +82,20 @@ export default function SeasonList({ tv, id, locale }: Props) {
                 <CardBody>
                   <div className="grid grid-cols-2 items-center justify-center gap-6 lg:grid-cols-12 lg:gap-4">
                     <div className="relative col-span-8 lg:col-span-4">
-                      <Image
-                        alt="Album cover"
-                        className="max-h-[300px] object-contain"
-                        height={300}
-                        removeWrapper
-                        src={TMDB_POSTER_780 + episode.still_path}
-                        width="100%"
-                      />
+                      {episode.still_path ? (
+                        <Image
+                          alt="Album cover"
+                          className="max-h-[300px] object-contain"
+                          height={300}
+                          removeWrapper
+                          src={TMDB_POSTER_780 + episode.still_path}
+                          width="100%"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center">
+                          <CiImageOff size="4rem" />
+                        </div>
+                      )}
                     </div>
 
                     <div className="col-span-8 flex flex-col">
