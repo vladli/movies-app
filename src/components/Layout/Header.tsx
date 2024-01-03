@@ -2,7 +2,6 @@
 import { useState } from "react";
 import {
   Button,
-  Link,
   Navbar,
   NavbarContent,
   NavbarMenu,
@@ -14,6 +13,7 @@ import { useTranslations } from "next-intl";
 
 import Logo from "@/components/Logo";
 import { menu } from "@/lib/data";
+import { Link } from "@/navigation";
 
 import MenuItem from "./MenuItem";
 import MenuItemMobile from "./MenuItemMobile";
