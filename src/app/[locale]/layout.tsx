@@ -4,11 +4,12 @@ import { Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { NextIntlClientProvider, useMessages } from "next-intl";
+import NextTopLoader from "nextjs-toploader";
 
 import { authOptions } from "@/lib/authOptions";
 import { locales } from "@/navigation";
 
-import BottomTools from "./Layout/BottomTools";
+import BottomTools from "../../components/Layout/BottomTools";
 import Providers from "./providers";
 
 import "./globals.css";
@@ -43,6 +44,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className={`${inter.className} relative`}>
+        <NextTopLoader showSpinner={false} />
         <NextIntlClientProvider
           locale={locale}
           messages={messages}

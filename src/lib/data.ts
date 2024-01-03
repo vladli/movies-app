@@ -1,5 +1,7 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type TMenu = {
-  toggle?: () => void;
+  setIsMenuOpen?: Dispatch<SetStateAction<boolean>>;
   name: any;
   url?: string;
   children?: {

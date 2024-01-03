@@ -38,6 +38,7 @@ export default function Search({ className }: Props) {
     <div className={cn("relative", className)}>
       <Input
         className="w-[7rem] sm:w-[10rem]"
+        classNames={{ inputWrapper: "h-[2.5rem]" }}
         isClearable
         onBlur={() => setActive(false)}
         onChange={(e) => setSearch(e.target.value)}

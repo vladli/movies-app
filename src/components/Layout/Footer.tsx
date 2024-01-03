@@ -19,7 +19,7 @@ const socials = [
 export default function Footer() {
   const t = useTranslations();
   return (
-    <footer className="mb-[4rem] border-t border-foreground-200 bg-background p-4 lg:mb-0">
+    <footer className="border-t border-foreground-200 bg-background p-4 lg:mb-0">
       <div className="flex flex-col items-center gap-4">
         <div className="flex gap-2">
           {socials.map(({ name, icon: Icon, link }) => (

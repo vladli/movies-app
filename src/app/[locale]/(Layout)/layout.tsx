@@ -1,9 +1,12 @@
 import dynamic from "next/dynamic";
 
-import Header from "../Layout/Header";
-const DynamiFooter = dynamic(() => import("../Layout/Footer"), {
-  loading: () => <p>Loading...</p>,
-});
+import Header from "../../../components/Layout/Header";
+const DynamiFooter = dynamic(
+  () => import("../../../components/Layout/Footer"),
+  {
+    loading: () => <p>Loading...</p>,
+  }
+);
 
 type Props = {
   children: React.ReactNode;
