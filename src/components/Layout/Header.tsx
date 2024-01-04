@@ -63,8 +63,8 @@ export default function Header() {
         </ul>
       </NavbarContent>
       <NavbarContent justify="end">
-        <div className="absolute right-4 flex items-center gap-2">
-          <Search />
+        <div className="flex items-center gap-2">
+          <Search className="hidden lg:flex" />
           {!session ? (
             <Button
               as={Link}
@@ -79,6 +79,7 @@ export default function Header() {
         </div>
       </NavbarContent>
       <NavbarMenu>
+        <Search className="w-full lg:hidden" />
         {menu.map(({ url, name, children }, index) => (
           <NavbarMenuItem key={`${name}-${index}`}>
             <MenuItemMobile {...{ setIsMenuOpen, url, name, children }} />

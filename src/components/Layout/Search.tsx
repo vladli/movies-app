@@ -35,9 +35,9 @@ export default function Search({ className }: Props) {
     .slice(0, 5)
     .filter((result: any) => result.media_type === "tv");
   return (
-    <div className={cn("relative", className)}>
+    <div className="relative z-50">
       <Input
-        className="w-[7rem] sm:w-[10rem]"
+        className={cn("w-[10rem]", className)}
         classNames={{ inputWrapper: "h-[2.5rem]" }}
         isClearable
         onBlur={() => setActive(false)}
@@ -51,7 +51,7 @@ export default function Search({ className }: Props) {
       />
       {active && data && search && (
         <div
-          className="absolute top-11 w-[10rem] rounded-small border-small border-default-200 bg-content1 px-1 py-2"
+          className="absolute top-11 w-fit rounded-small border-small border-default-200 bg-content1 px-1 py-2"
           onBlur={() => setActive(false)}
           onFocus={() => setActive(true)}
         >
