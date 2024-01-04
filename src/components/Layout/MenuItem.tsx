@@ -8,7 +8,7 @@ import { TMenu } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { Link, usePathname } from "@/navigation";
 
-const MenuItem = React.memo(({ url, name, children }: TMenu) => {
+const MenuItem = React.memo(({ url, name, submenu }: TMenu) => {
   const t = useTranslations();
   const pathname = usePathname();
   const [hover, setHoveredItem] = useState<string | null>(null);
@@ -49,7 +49,7 @@ const MenuItem = React.memo(({ url, name, children }: TMenu) => {
       onHoverEnd={handleMouseLeave}
       onHoverStart={() => handleItemHover(name)}
     >
-      {url ? (
+      {!submenu.length ? (
         <Link
           className="relative p-1 transition-colors hover:text-foreground-500"
           href={url}
@@ -71,7 +71,7 @@ const MenuItem = React.memo(({ url, name, children }: TMenu) => {
         <span className="cursor-pointer">{t(name)}</span>
       )}
       <AnimatePresence>
-        {children && isHovered && (
+        {submenu.length > 0 && isHovered && (
           <motion.ul
             animate={{ opacity: 1, y: 0 }}
             className={cn(
@@ -81,10 +81,11 @@ const MenuItem = React.memo(({ url, name, children }: TMenu) => {
             initial={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
           >
-            {children.map(({ url, name }) => (
+            {submenu.map(({ url, name }) => (
               <MenuItem
                 key={name}
                 name={name}
+                submenu={[]}
                 url={url}
               />
             ))}

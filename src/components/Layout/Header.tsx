@@ -5,7 +5,6 @@ import {
   Navbar,
   NavbarContent,
   NavbarMenu,
-  NavbarMenuItem,
   NavbarMenuToggle,
 } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
@@ -27,7 +26,6 @@ export default function Header() {
 
   return (
     <Navbar
-      className=" z-50 select-none font-medium"
       isMenuOpen={isMenuOpen}
       maxWidth="full"
       onMenuOpenChange={setIsMenuOpen}
@@ -40,31 +38,38 @@ export default function Header() {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         />
       </NavbarContent>
+
       <NavbarContent
         className="flex lg:hidden"
         justify="center"
       >
         <Logo className="p-4" />
       </NavbarContent>
+
       <NavbarContent
         className="hidden lg:flex"
         justify="start"
       >
         <Logo className="p-4" />
       </NavbarContent>
+
       <NavbarContent justify="center">
         <ul className="absolute left-1/2 hidden -translate-x-1/2 gap-4 lg:flex">
-          {menu.map(({ url, name, children }) => (
+          {menu.map(({ url, name, submenu }) => (
             <MenuItem
               key={name}
-              {...{ url, name, children }}
+              {...{ url, name, submenu }}
             />
           ))}
         </ul>
       </NavbarContent>
+
       <NavbarContent justify="end">
         <div className="flex items-center gap-2">
-          <Search className="hidden lg:flex" />
+          <Search
+            className="hidden lg:flex"
+            {...{ setIsMenuOpen }}
+          />
           {!session ? (
             <Button
               as={Link}
@@ -78,12 +83,17 @@ export default function Header() {
           )}
         </div>
       </NavbarContent>
-      <NavbarMenu>
-        <Search className="w-full lg:hidden" />
-        {menu.map(({ url, name, children }, index) => (
-          <NavbarMenuItem key={`${name}-${index}`}>
-            <MenuItemMobile {...{ setIsMenuOpen, url, name, children }} />
-          </NavbarMenuItem>
+
+      <NavbarMenu className="select-none lg:hidden">
+        <Search
+          className="w-full lg:hidden"
+          {...{ setIsMenuOpen }}
+        />
+        {menu.map(({ url, name, submenu }, index) => (
+          <MenuItemMobile
+            key={index}
+            {...{ setIsMenuOpen, url, name, submenu }}
+          />
         ))}
       </NavbarMenu>
     </Navbar>

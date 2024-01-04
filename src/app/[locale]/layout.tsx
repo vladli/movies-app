@@ -10,6 +10,7 @@ import { authOptions } from "@/lib/authOptions";
 import { locales } from "@/navigation";
 
 import BottomTools from "../../components/Layout/BottomTools";
+
 import Providers from "./providers";
 
 import "./globals.css";

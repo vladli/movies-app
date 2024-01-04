@@ -12,9 +12,10 @@ import { Link, TLocales } from "@/navigation";
 
 type Props = {
   className?: string;
+  setIsMenuOpen: (isOpen: boolean) => void;
 };
 
-export default function Search({ className }: Props) {
+export default function Search({ className, setIsMenuOpen }: Props) {
   const t = useTranslations();
   const locale = useLocale() as TLocales;
   const [active, setActive] = useState(false);
@@ -34,6 +35,10 @@ export default function Search({ className }: Props) {
   const tvSeries = data?.results
     .slice(0, 5)
     .filter((result: any) => result.media_type === "tv");
+  const handleClick = () => {
+    setSearch("");
+    setIsMenuOpen(false);
+  };
   return (
     <div className="relative z-50">
       <Input
@@ -58,7 +63,8 @@ export default function Search({ className }: Props) {
           <Listbox
             aria-label="Actions"
             disabledKeys={["unknown"]}
-            onAction={() => setActive(false)}
+            onAction={handleClick}
+            onClick={(e) => e.stopPropagation()}
           >
             <ListboxSection
               showDivider

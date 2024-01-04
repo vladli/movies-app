@@ -3,8 +3,8 @@ import { Dispatch, SetStateAction } from "react";
 export type TMenu = {
   setIsMenuOpen?: Dispatch<SetStateAction<boolean>>;
   name: any;
-  url?: string;
-  children?: {
+  url: string;
+  submenu: {
     name: string;
     url: string;
   }[];
@@ -13,14 +13,17 @@ export const menu: TMenu[] = [
   {
     name: "MainPage.title",
     url: "/",
+    submenu: [],
   },
   {
     name: "Trending.title",
     url: "/trending",
+    submenu: [],
   },
   {
     name: "Discover.title",
-    children: [
+    url: "/discover",
+    submenu: [
       {
         name: "Discover.Popular.title",
         url: "/discover/popular",
@@ -38,9 +41,11 @@ export const menu: TMenu[] = [
   {
     name: "TV Series.title",
     url: "/tv",
+    submenu: [],
   },
   {
     name: "Actors.title",
     url: "/actors",
+    submenu: [],
   },
 ];

@@ -9,7 +9,7 @@ import { TMenu } from "@/lib/data";
 import { Link, usePathname } from "@/navigation";
 
 const MenuItemMobile = React.memo(
-  ({ setIsMenuOpen, url, name, children }: TMenu) => {
+  ({ setIsMenuOpen, url, name, submenu }: TMenu) => {
     const t = useTranslations();
     const [toggled, setToggled] = useState<string | null>(null);
     const pathname = usePathname();
@@ -22,7 +22,7 @@ const MenuItemMobile = React.memo(
 
     return (
       <motion.div>
-        {url ? (
+        {!submenu!.length ? (
           <Link
             className="relative p-1"
             href={url}
@@ -57,7 +57,7 @@ const MenuItemMobile = React.memo(
               </motion.span>
             </span>
             <AnimatePresence>
-              {children && toggled && (
+              {submenu.length > 0 && toggled && (
                 <motion.ul
                   animate={{ opacity: 1, height: "auto" }}
                   className="relative left-4 flex list-disc flex-col gap-2"
@@ -65,11 +65,12 @@ const MenuItemMobile = React.memo(
                   initial={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  {children.map(({ url, name }) => (
+                  {submenu.map(({ url, name }) => (
                     <MenuItemMobile
                       key={name}
                       name={name}
                       setIsMenuOpen={setIsMenuOpen}
+                      submenu={[]}
                       url={url}
                     />
                   ))}
