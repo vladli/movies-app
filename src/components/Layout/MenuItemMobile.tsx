@@ -11,7 +11,7 @@ import { Link, usePathname } from "@/navigation";
 const MenuItemMobile = React.memo(
   ({ setIsMenuOpen, url, name, submenu }: TMenu) => {
     const t = useTranslations();
-    const [toggled, setToggled] = useState<string | null>(null);
+    const [toggled, setToggled] = useState<string | null>("all");
     const pathname = usePathname();
     const handleToggle = () => {
       if (toggled === null) setToggled(name);

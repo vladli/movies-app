@@ -11,7 +11,7 @@ export default function PageBack() {
   const router = useRouter();
   return (
     <motion.button
-      className="absolute left-2 top-2 z-50 select-none font-medium"
+      className="absolute left-2 top-2 z-20 select-none font-medium"
       onClick={() => router.back()}
     >
       <motion.div

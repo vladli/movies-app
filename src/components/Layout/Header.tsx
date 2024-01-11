@@ -5,6 +5,7 @@ import {
   Navbar,
   NavbarContent,
   NavbarMenu,
+  NavbarMenuItem,
   NavbarMenuToggle,
 } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
@@ -90,10 +91,9 @@ export default function Header() {
           {...{ setIsMenuOpen }}
         />
         {menu.map(({ url, name, submenu }, index) => (
-          <MenuItemMobile
-            key={index}
-            {...{ setIsMenuOpen, url, name, submenu }}
-          />
+          <NavbarMenuItem key={index}>
+            <MenuItemMobile {...{ setIsMenuOpen, url, name, submenu }} />
+          </NavbarMenuItem>
         ))}
       </NavbarMenu>
     </Navbar>
