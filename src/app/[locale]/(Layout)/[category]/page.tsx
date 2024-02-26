@@ -34,7 +34,7 @@ export default async function page({ params, searchParams }: Props) {
   const data = await getDiscover(
     params.category,
     params.locale,
-    undefined,
+
     undefined,
     Number(page)
   );

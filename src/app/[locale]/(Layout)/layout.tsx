@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 
 import Header from "../../../components/Layout/Header";
-const DynamiFooter = dynamic(
+const DynamicFooter = dynamic(
   () => import("../../../components/Layout/Footer"),
   {
     loading: () => <p>Loading...</p>,
@@ -16,10 +16,10 @@ export default function layout({ children }: Props) {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="relative grow bg-background text-foreground">
+      <main className="relative flex flex-col grow bg-background text-foreground">
         {children}
       </main>
-      <DynamiFooter />
+      <DynamicFooter />
     </div>
   );
 }

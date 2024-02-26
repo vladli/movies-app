@@ -88,7 +88,6 @@ export async function getMovieList(
 export async function getDiscover(
   category: TCategory,
   language: TLocales = "en",
-  genre: number | undefined = undefined,
   sort_by: TSortType = "popularity.desc",
   page: number | undefined = 1
 ): Promise<TResponse<TMovieData[]> | undefined> {
@@ -99,7 +98,6 @@ export async function getDiscover(
     language: getLang(language),
     page: page.toString(),
     sort_by: sort_by,
-    with_genres: genre?.toString() || "undefined",
   }).toString();
   const url = `https://api.themoviedb.org/3/discover/${category}?${params}`;
   return fetchData(url);

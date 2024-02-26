@@ -6,6 +6,7 @@ import { TLocales } from "@/navigation";
 
 import ActorCard from "./ActorCard";
 import KnowForBlock from "./KnowForBlock";
+import DotBackground from "@/components/DotBackground";
 
 export async function generateMetadata({ params }: Props) {
   const actor = await getActor(params.id);
@@ -24,13 +25,13 @@ type Props = {
 export default async function page({ params }: Props) {
   const actor = await getActor(params.id, params.locale);
   return (
-    <>
+    <DotBackground>
       <PageBack />
       <ActorCard actor={actor} />
       <KnowForBlock
         id={params.id}
         locale={params.locale}
       />
-    </>
+    </DotBackground>
   );
 }

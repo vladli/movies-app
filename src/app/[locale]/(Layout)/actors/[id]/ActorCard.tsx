@@ -42,15 +42,6 @@ export default function ActorCard({ actor }: Props) {
   });
   return (
     <section className="relative">
-      <div className="absolute left-0 top-0 z-0 h-full w-full select-none">
-        <div className="absolute z-10 h-full w-full bg-gradient-to-b from-background via-background/50 to-background" />
-        <NextImage
-          alt=""
-          className="object-cover"
-          fill
-          src="/bio.jpg"
-        />
-      </div>
       <div className="relative top-6 flex flex-col items-center justify-around gap-2 p-6 lg:flex-row-reverse lg:items-start">
         <section className="relative flex min-h-[30rem] max-w-[18rem] select-none items-center">
           {actor?.profile_path ? (
@@ -99,7 +90,7 @@ export default function ActorCard({ actor }: Props) {
             className="flex max-w-[32rem] flex-col gap-2 font-medium "
             variants={h3}
           >
-            <p className="line-clamp-[10]">
+            <p className="line-clamp-[10] text-foreground-600">
               {actor?.biography || t("Actors.ErrorNoBio")}
             </p>
             {actor?.biography && (
