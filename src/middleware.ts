@@ -1,43 +1,41 @@
 import { NextRequest } from "next/server";
 import { withAuth } from "next-auth/middleware";
-import createIntlMiddleware from "next-intl/middleware";
+import createMiddleware from "next-intl/middleware";
 
-import { locales } from "@/navigation";
+import { routing } from "@/i18n/routing";
 
-const intlMiddleware = createIntlMiddleware({
-  locales,
-  defaultLocale: "en",
-});
+
+const intlMiddleware = createMiddleware(routing);
 
 const authMiddleware = withAuth(
-  function onSuccess(req) {
-    return intlMiddleware(req);
-  },
-  {
-    callbacks: {
-      authorized: ({ token }) => token != null,
+    function onSuccess(req) {
+        return intlMiddleware(req);
     },
-    pages: {
-      signIn: "/auth/login",
-    },
-  }
+    {
+        callbacks: {
+            authorized: ({token}) => token != null,
+        },
+        pages: {
+            signIn: "/auth/login",
+        },
+    }
 );
 const privatePages = ["/profile"];
 
 export default function middleware(req: NextRequest) {
-  const privatePathnameRegex = RegExp(
-    `^(/(${locales.join("|")}))?(${privatePages.join("|")})/?$`,
-    "i"
-  );
-  const isPrivatePage = privatePathnameRegex.test(req.nextUrl.pathname);
+    const privatePathnameRegex = RegExp(
+        `^(/(${routing.locales.join("|")}))?(${privatePages.join("|")})/?$`,
+        "i"
+    );
+    const isPrivatePage = privatePathnameRegex.test(req.nextUrl.pathname);
 
-  if (isPrivatePage) {
-    return (authMiddleware as any)(req);
-  } 
+    if (isPrivatePage) {
+        return (authMiddleware as any)(req);
+    }
     return intlMiddleware(req);
-  
+
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+    matcher: ["/((?!api|_next|.*\\..*).*)"],
 };
