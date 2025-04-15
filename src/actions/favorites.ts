@@ -1,6 +1,5 @@
 "use server";
 
-import type {Prisma} from "@prisma/client";
 import {getServerSession} from "next-auth";
 
 import {authOptions} from "@/lib/authOptions";
@@ -45,7 +44,7 @@ export async function editFavorites(
             const findMovie = user?.favoriteMovies.filter(
                 //@ts-ignore
                 (movie) => movie?.id !== data.id
-            ) as Prisma.InputJsonValue[];
+            ) as any;
             await prisma.user.update({
                 where: {id: session?.user?.id},
                 data: {
