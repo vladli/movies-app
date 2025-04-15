@@ -15,6 +15,8 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 COPY prisma ./prisma
 
+RUN echo "===== schema.prisma used in build =====" && cat prisma/schema.prisma
+
 RUN corepack enable pnpm && pnpm prisma generate && pnpm run build
 
 FROM base AS runner
