@@ -15,9 +15,16 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 COPY prisma ./prisma
 
-RUN echo "===== schema.prisma used in build =====" && cat prisma/schema.prisma
-
-RUN corepack enable pnpm && pnpm prisma generate && pnpm run build
+RUN corepack enable pnpm && \
+    # Явная установка @prisma/client (на всякий случай)
+    pnpm add @prisma/client && \
+    # Проверка существования schema.prisma
+    ls -l prisma/schema.prisma && \
+    # Явный вызов prisma generate с указанием пути к схеме
+    pnpm prisma generate --schema=./prisma/schema.prisma && \
+    # Проверка содержимого сгенерированного клиента
+    ls -l node_modules/@prisma/client && \
+    pnpm run build
 
 FROM base AS runner
 WORKDIR /app
