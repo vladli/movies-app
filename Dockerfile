@@ -15,10 +15,10 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # 👉 Сначала билдим Next.js
-RUN corepack enable pnpm && pnpm run build
+RUN corepack enable pnpm
 
 # 👉 Потом генерируем Prisma Client
-RUN npx prisma generate
+RUN pnpm prisma generate && pnpm run build
 
 FROM base AS runner
 WORKDIR /app
