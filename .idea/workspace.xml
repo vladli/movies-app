@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0a8864ed-132a-4060-957f-dd117274cf22" name="Changes" comment="fix: explicitly copy generated Prisma client to Docker image">
       <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +91,7 @@
       <workItem from="1735552762459" duration="1758000" />
       <workItem from="1736055009373" duration="5958000" />
       <workItem from="1736070100318" duration="73000" />
-      <workItem from="1744699456060" duration="2273000" />
+      <workItem from="1744699456060" duration="2601000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -182,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744701579767</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fix: explicitly copy generated Prisma client to Docker image">
+      <option name="closed" value="true" />
+      <created>1744701856217</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1744701856217</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
