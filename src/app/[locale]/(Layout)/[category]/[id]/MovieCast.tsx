@@ -1,14 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Button } from "@nextui-org/react";
-import { useQuery } from "@tanstack/react-query";
-import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import React, {useEffect, useState} from "react";
+import {Button} from "@nextui-org/react";
+import {useQuery} from "@tanstack/react-query";
+import {motion} from "framer-motion";
+import {useTranslations} from "next-intl";
 
-import { getCast } from "@/actions/fetchMovie";
+import {getCast} from "@/actions/fetchMovie";
 import useToggle from "@/hooks/useToggle";
-import { TLocales } from "@/i18n/routing";
-import { TCategory } from "@/types/types";
+import {TLocales} from "@/i18n/routing";
+import {TCategory} from "@/types/types";
 
 import CastCard from "./CastCard";
 
@@ -55,7 +55,7 @@ export default function MovieCast({category, id, locale}: Props) {
             {data && data?.cast.length > 10 && (
                 <Button
                     color="primary"
-                    onClick={toggle}
+                    onPress={toggle}
                     size="lg"
                 >
                     {!on ? t("#ROOT.ButtonViewAll") : t("#ROOT.ButtonCollapse")}

@@ -1,20 +1,20 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
+    output: 'standalone',
+    images: {
+        unoptimized: true,
 
-  images: {
-    unoptimized: true,
-
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "image.tmdb.org",
-      },
-    ],
-  },
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "image.tmdb.org",
+            },
+        ],
+    },
 };
 const withNextIntl = require("next-intl/plugin")();
 
