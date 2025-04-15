@@ -15,14 +15,10 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 COPY prisma ./prisma
 
-RUN corepack enable pnpm && \
-    pnpm add @prisma/client && \
-    pnpm prisma generate --schema=./prisma/schema.prisma && \
-    # Очистка кэша Next.js
-    rm -rf .next/cache
+# Генерация Prisma Client (в кастомный путь)
+RUN pnpm prisma generate --schema=./prisma/schema.prisma
 
-COPY . .
-
+# Билд Next.js
 RUN pnpm run build
 
 FROM base AS runner
@@ -38,8 +34,7 @@ COPY --from=builder /app/public ./public
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@prisma ./node_modules/@prisma
+COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 
 USER nextjs
 
