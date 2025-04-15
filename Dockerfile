@@ -7,7 +7,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml* .npmrc* ./
-RUN corepack enable pnpm && pnpm store prune && pnpm install --frozen-lockfile
+RUN corepack enable pnpm && pnpm install --frozen-lockfile
 
 FROM base AS builder
 WORKDIR /app
@@ -15,8 +15,9 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 COPY prisma ./prisma
 
+RUN corepack enable && corepack prepare pnpm@latest --activate
 # Генерация Prisma Client (в кастомный путь)
-RUN pnpm prisma generate --schema=./prisma/schema.prisma
+RUN pnpx prisma generate --schema=./prisma/schema.prisma
 
 # Билд Next.js
 RUN pnpm run build
