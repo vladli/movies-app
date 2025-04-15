@@ -1,10 +1,10 @@
 import React from "react";
-import { CiImageOff } from "react-icons/ci";
-import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+import {CiImageOff} from "react-icons/ci";
+import {Card, CardBody, CardFooter, Image} from "@nextui-org/react";
 
-import { Link } from "@/i18n/routing";
-import { TMDB_POSTER_780 } from "@/lib/constants";
-import { TCastMember } from "@/types/types";
+import {Link} from "@/i18n/routing";
+import {TMDB_POSTER_780} from "@/lib/constants";
+import {TCastMember} from "@/types/types";
 
 type Props = {
     key: number;
@@ -25,11 +25,9 @@ export default function CastCard({actor}: Props) {
                     <Image
                         alt=""
                         className="h-64 w-56 select-none object-cover"
-                        height={1170}
                         radius="lg"
                         shadow="sm"
                         src={TMDB_POSTER_780 + actor.profile_path}
-                        width={780}
                     />
                 ) : (
                     <div className="flex h-full items-center justify-center">
