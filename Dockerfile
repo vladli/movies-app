@@ -18,7 +18,7 @@ COPY . .
 RUN corepack enable pnpm
 
 # 👉 Потом генерируем Prisma Client
-RUN pnpm prisma generate && pnpm run build
+RUN pnpx prisma generate && pnpm run build
 
 FROM base AS runner
 WORKDIR /app
