@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, } from "@nextui-org/react";
+import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, } from "@heroui/react";
 import { useLocale } from "next-intl";
 
 import { usePathname, useRouter } from "@/i18n/routing";

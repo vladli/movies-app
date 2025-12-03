@@ -1,6 +1,6 @@
 "use client";
 
-import {Avatar} from "@nextui-org/react";
+import {Avatar} from "@heroui/react";
 import {useSession} from "next-auth/react";
 import {useTranslations} from "next-intl";
 

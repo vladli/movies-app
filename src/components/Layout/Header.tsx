@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Button, Navbar, NavbarContent, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, } from "@nextui-org/react";
+import { Button, Navbar, NavbarContent, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, } from "@heroui/react";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 

@@ -1,7 +1,7 @@
 "use client";
 import {CiImageOff} from "react-icons/ci";
 import {MdOutlineCalendarMonth, MdOutlinePlace} from "react-icons/md";
-import {Button, Chip, Image, useDisclosure} from "@nextui-org/react";
+import {Button, Chip, Image, useDisclosure} from "@heroui/react";
 import {motion, Variants} from "framer-motion";
 import {useLocale, useTranslations} from "next-intl";
 

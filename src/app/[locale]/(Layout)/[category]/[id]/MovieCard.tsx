@@ -1,7 +1,7 @@
 "use client";
 import {useEffect} from "react";
 import {CiImageOff} from "react-icons/ci";
-import {Button, Chip, Image, useDisclosure} from "@nextui-org/react";
+import {Button, Chip, Image, useDisclosure} from "@heroui/react";
 import {motion, Variants} from "framer-motion";
 import NextImage from "next/image";
 import {useTranslations} from "next-intl";

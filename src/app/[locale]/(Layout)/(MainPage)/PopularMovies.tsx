@@ -1,5 +1,5 @@
 "use client";
-import { Button, Chip, Image } from "@nextui-org/react";
+import { Button, Chip, Image } from "@heroui/react";
 import NextImage from "next/image";
 import { useTranslations } from "next-intl";
 import { Autoplay, Keyboard, Navigation, Virtual } from "swiper/modules";

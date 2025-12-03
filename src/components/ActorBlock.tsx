@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { CiImageOff } from "react-icons/ci";
-import { Card, CardHeader, Image } from "@nextui-org/react";
+import { Card, CardHeader, Image } from "@heroui/react";
 
 import { Link } from "@/i18n/routing";
 import { TMDB_POSTER_780 } from "@/lib/constants";

@@ -1,6 +1,6 @@
 import React from "react";
 import {CiImageOff} from "react-icons/ci";
-import {Card, CardBody, CardFooter, Image} from "@nextui-org/react";
+import {Card, CardBody, CardFooter, Image} from "@heroui/react";
 
 import {Link} from "@/i18n/routing";
 import {TMDB_POSTER_780} from "@/lib/constants";

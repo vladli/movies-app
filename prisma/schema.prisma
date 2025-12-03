@@ -1,71 +1,68 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
-  output   = "./prisma/generated"
+  provider = "prisma-client"
+  output   = "../src/generated"
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider = "mysql"
 }
 
 model Account {
-  id                       String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId                   String  @db.ObjectId
-  user_id                  Int?    @unique //VKontakte
-  email                    String? @unique //VKontakte
+  id                       Int       @id @default(autoincrement())
+  userId                   Int
+  user_id                  Int?      @unique
+  email                    String?   @unique
   type                     String
   provider                 String
   providerAccountId        String
-  refresh_token            String? @db.String
+  refresh_token            String?
   refresh_token_expires_in Int?
-  access_token             String? @db.String
+  access_token             String?
   expires_at               Int?
   token_type               String?
   scope                    String?
-  id_token                 String? @db.String
+  id_token                 String?
   session_state            String?
-  user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime? @default(now()) @map(name: "created_at")
-  updatedAt DateTime? @default(now()) @map(name: "updated_at")
+  createdAt                DateTime? @default(now()) @map("created_at")
+  updatedAt                DateTime? @default(now()) @map("updated_at")
+  user                     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@index([userId], map: "Account_userId_fkey")
 }
 
 model Session {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  id           Int      @id @default(autoincrement())
   sessionToken String   @unique
-  userId       String   @db.ObjectId
+  userId       Int
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "Session_userId_fkey")
 }
 
 model User {
-  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  id             Int       @id @default(autoincrement())
   name           String?
   email          String?   @unique
   emailVerified  DateTime?
   password       String?
   image          String?
+  role           String?
+  favoriteMovies Json?
+  createdAt      DateTime? @default(now()) @map("created_at")
+  updatedAt      DateTime? @default(now()) @map("updated_at")
   accounts       Account[]
   sessions       Session[]
-  role           String?
-  favoriteMovies Json[]
-
-  createdAt DateTime? @default(now()) @map(name: "created_at")
-  updatedAt DateTime? @default(now()) @map(name: "updated_at")
 }
 
 model VerificationToken {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  id         Int       @id @default(autoincrement())
   identifier String
   token      String    @unique
   expires    DateTime
-  createdAt  DateTime? @default(now()) @map(name: "created_at")
-  updatedAt  DateTime? @default(now()) @map(name: "updated_at")
+  createdAt  DateTime? @default(now()) @map("created_at")
+  updatedAt  DateTime? @default(now()) @map("updated_at")
 
   @@unique([id, token])
 }

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { MdSearch } from "react-icons/md";
-import { Input, Listbox, ListboxItem, ListboxSection } from "@nextui-org/react";
+import { Input, Listbox, ListboxItem, ListboxSection } from "@heroui/react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 

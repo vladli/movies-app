@@ -5,9 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a8864ed-132a-4060-957f-dd117274cf22" name="Changes" comment="fix: explicitly copy generated Prisma client to Docker image">
+      <change afterPath="$PROJECT_DIR$/prisma.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/hero.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.npmrc" beforeDir="false" afterPath="$PROJECT_DIR$/.npmrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postcss.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/postcss.config.mjs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(Layout)/(MainPage)/MovieCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(Layout)/(MainPage)/MovieCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(Layout)/(MainPage)/PopularMovies.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(Layout)/(MainPage)/PopularMovies.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(Layout)/[category]/[id]/CardVideo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(Layout)/[category]/[id]/CardVideo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(Layout)/[category]/[id]/CastCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(Layout)/[category]/[id]/CastCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(Layout)/[category]/[id]/MovieCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(Layout)/[category]/[id]/MovieCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(Layout)/[category]/[id]/MovieCast.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(Layout)/[category]/[id]/MovieCast.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(Layout)/[category]/[id]/Reviews.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(Layout)/[category]/[id]/Reviews.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(Layout)/[category]/[id]/SeasonList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(Layout)/[category]/[id]/SeasonList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(Layout)/actors/[id]/ActorCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(Layout)/actors/[id]/ActorCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(Layout)/actors/[id]/FullBiography.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(Layout)/actors/[id]/FullBiography.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(Layout)/actors/[id]/KnowForBlock.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(Layout)/actors/[id]/KnowForBlock.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(Layout)/profile/ProfileInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(Layout)/profile/ProfileInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/auth/login/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/auth/login/LoginForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/auth/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/auth/login/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/providers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ActorBlock.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ActorBlock.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LanguageSwitcher.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LanguageSwitcher.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Search.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Search.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/UserMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/UserMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MovieCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MovieCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MovieFavorite.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MovieFavorite.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Pagination.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Pagination.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ThemeSwitcher.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ThemeSwitcher.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/prisma.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/prisma.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,30 +94,54 @@
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/vlad/Developer/NextJS/movies-app&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/vlad/Developer/NextJS/movies-app/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "js.debugger.nextJs.config.created.client": "true",
+    "js.debugger.nextJs.config.created.server": "true",
+    "last_opened_file_path": "/Users/vlad/Developer/NextJS/movies-app",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "pnpm",
+    "rearrange.code.on.save": "true",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "/Users/vlad/Developer/NextJs/movies-app/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/lib" />
+      <recent name="$PROJECT_DIR$/src/app" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.Next.js: server-side">
+    <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:3000/">
+      <method v="2" />
+    </configuration>
+    <configuration name="Next.js: server-side" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-WS-252.28238.10" />
       </set>
     </attachedChunks>
   </component>
@@ -94,6 +157,9 @@
       <workItem from="1736055009373" duration="5958000" />
       <workItem from="1736070100318" duration="73000" />
       <workItem from="1744699456060" duration="2953000" />
+      <workItem from="1764677526463" duration="1547000" />
+      <workItem from="1764679729592" duration="403000" />
+      <workItem from="1764750493940" duration="4640000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />

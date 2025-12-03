@@ -1,21 +1,21 @@
 import React from "react";
-import { Toaster } from "react-hot-toast";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { notFound } from "next/navigation";
-import { getServerSession } from "next-auth";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import {Toaster} from "react-hot-toast";
+
+import type {Metadata} from "next";
+
+import {getServerSession} from "next-auth";
+import {NextIntlClientProvider} from "next-intl";
+import {getMessages} from "next-intl/server";
+import {Inter} from "next/font/google";
+import {notFound} from "next/navigation";
 import NextTopLoader from "nextjs-toploader";
 
-import { routing } from "@/i18n/routing";
-import { authOptions } from "@/lib/authOptions";
+import {routing} from "@/i18n/routing";
+import {authOptions} from "@/lib/authOptions";
 
 import BottomTools from "../../components/Layout/BottomTools";
-
 import Providers from "./providers";
-
-import "./globals.css";
+import "../globals.css";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -46,8 +46,8 @@ export default async function RootLayout(
     const messages = await getMessages();
     return (
         <html
-            lang={locale}
             suppressHydrationWarning
+            lang={locale}
         >
         <body className={`${inter.className} relative`}>
         <NextTopLoader showSpinner={false}/>

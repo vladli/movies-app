@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { CiImageOff } from "react-icons/ci";
-import { Card, CardBody, Chip, Image, Tab, Tabs } from "@nextui-org/react";
+import { Card, CardBody, Chip, Image, Tab, Tabs } from "@heroui/react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";

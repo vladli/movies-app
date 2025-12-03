@@ -1,5 +1,5 @@
 "use client";
-import { Accordion, AccordionItem, Avatar } from "@nextui-org/react";
+import { Accordion, AccordionItem, Avatar } from "@heroui/react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";

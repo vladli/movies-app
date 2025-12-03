@@ -1,6 +1,6 @@
 "use client";
 import { CiImageOff } from "react-icons/ci";
-import { Card, CardHeader, Chip, Image } from "@nextui-org/react";
+import { Card, CardHeader, Chip, Image } from "@heroui/react";
 
 import MovieRating from "@/components/MovieRating";
 import { Link } from "@/i18n/routing";

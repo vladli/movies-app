@@ -22,7 +22,7 @@ const authMiddleware = withAuth(
 );
 const privatePages = ["/profile"];
 
-export default function middleware(req: NextRequest) {
+export default function proxy(req: NextRequest) {
     const privatePathnameRegex = RegExp(
         `^(/(${routing.locales.join("|")}))?(${privatePages.join("|")})/?$`,
         "i"
